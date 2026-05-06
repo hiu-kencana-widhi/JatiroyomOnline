@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Desa Jatiroyom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-pemalang.png') }}">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --primary-bg: #0f172a;
+            --accent-color: #3b82f6;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--primary-bg);
+            color: #fff;
+            transition: all 0.3s ease;
+            z-index: 1050;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto; /* Allow sidebar to scroll */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+        .sidebar.collapsed {
+            left: calc(-1 * var(--sidebar-width));
+        }
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-wrapper.expanded {
+            margin-left: 0;
+        }
+        .top-bar {
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-sidebar .nav-link {
+            color: #94a3b8;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin: 4px 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-sidebar .nav-link i {
+            font-size: 1.25rem;
+            margin-right: 12px;
+        }
+        .nav-sidebar .nav-link.active {
+            background-color: var(--accent-color);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .nav-sidebar .nav-link:hover:not(.active) {
+            background-color: rgba(255,255,255,0.05);
+            color: #f8fafc;
+        }
+        .content-area {
+            padding: 30px;
+            flex: 1;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+            backdrop-filter: blur(2px);
+        }
+        @media (max-width: 991.98px) {
+            .sidebar { left: calc(-1 * var(--sidebar-width)); }
+            .sidebar.show { left: 0; }
+            .main-wrapper { margin-left: 0; }
+            .sidebar-overlay.show { display: block; }
+            .content-area { padding: 20px; }
+        }
+    </style>
+    @yield('styles')
+</head>
+<body>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="p-4 mb-3 d-flex align-items-center border-bottom border-secondary border-opacity-25">
+            <div class="bg-primary rounded-3 p-2 me-2">
+                <i class="bi bi-shield-lock-fill text-white fs-4"></i>
+            </div>
+            <span class="fw-bold fs-5 tracking-tight">Admin<span class="text-primary">Desa</span></span>
+        </div>
+        <nav class="nav-sidebar">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="bi bi-grid-1x2-fill"></i> Dashboard
+            </a>
+            <div class="text-uppercase small fw-bold px-4 mb-2 mt-4 text-secondary opacity-50" style="font-size: 0.7rem; letter-spacing: 1px;">Manajemen Data</div>
+            <a href="{{ route('admin.warga.index') }}" class="nav-link {{ request()->routeIs('admin.warga.*') ? 'active' : '' }}">
+                <i class="bi bi-people-fill"></i> Warga
+            </a>
+            <a href="{{ route('admin.pengajuan.index') }}" class="nav-link {{ request()->routeIs('admin.pengajuan.*') ? 'active' : '' }}">
+                <i class="bi bi-file-earmark-check-fill"></i> Permohonan
+            </a>
+            <a href="{{ route('admin.jenis-surat.index') }}" class="nav-link {{ request()->routeIs('admin.jenis-surat.*') ? 'active' : '' }}">
+                <i class="bi bi-file-earmark-medical-fill"></i> Template Surat
+            </a>
+            <div class="text-uppercase small fw-bold px-4 mb-2 mt-4 text-secondary opacity-50" style="font-size: 0.7rem; letter-spacing: 1px;">Publikasi</div>
+            <a href="{{ route('admin.acara.index') }}" class="nav-link {{ request()->routeIs('admin.acara.*') ? 'active' : '' }}">
+                <i class="bi bi-calendar3-event-fill"></i> Acara Desa
+            </a>
+            <a href="{{ route('admin.potret.index') }}" class="nav-link {{ request()->routeIs('admin.potret.*') ? 'active' : '' }}">
+                <i class="bi bi-camera-fill"></i> Potret Desa
+            </a>
+            <a href="{{ route('admin.anggaran.index') }}" class="nav-link {{ request()->routeIs('admin.anggaran.*') ? 'active' : '' }}">
+                <i class="bi bi-pie-chart-fill"></i> Anggaran
+            </a>
+            <a href="{{ route('admin.pengaturan.index') }}" class="nav-link {{ request()->routeIs('admin.pengaturan.*') ? 'active' : '' }}">
+                <i class="bi bi-sliders"></i> Pengaturan
+            </a>
+            <div class="mt-5 px-3">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger w-100 rounded-pill d-flex align-items-center justify-content-center fw-bold">
+                        <i class="bi bi-box-arrow-left me-2"></i> Keluar
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-wrapper" id="mainWrapper">
+        <div class="top-bar d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-light rounded-circle me-3" id="toggleBtn">
+                    <i class="bi bi-list fs-5"></i>
+                </button>
+                <h6 class="mb-0 fw-bold d-none d-md-block">Administrasi Desa Jatiroyom</h6>
+            </div>
+            <div class="dropdown">
+                <div class="d-flex align-items-center bg-light p-1 pe-3 rounded-pill" role="button" data-bs-toggle="dropdown">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="small fw-bold">{{ explode(' ', auth()->user()->nama_lengkap)[0] }}</div>
+                    <i class="bi bi-chevron-down small ms-2 text-muted"></i>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-2" style="border-radius: 12px;">
+                    <li><a class="dropdown-item rounded-3" href="{{ route('admin.pengaturan.index') }}"><i class="bi bi-gear me-2"></i> Pengaturan Desa</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item rounded-3 text-danger"><i class="bi bi-box-arrow-left me-2"></i> Keluar</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-area">
+            @yield('content')
+        </div>
+
+        <footer class="mt-auto py-4 px-5 border-top bg-white">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <div class="text-muted small">
+                    &copy; {{ date('Y') }} <span class="fw-bold">Pemerintah Desa Jatiroyom</span>. Seluruh Hak Dilindungi.
+                </div>
+                <div class="d-flex align-items-center gap-4">
+                    <a href="#" class="text-decoration-none text-muted small hover-primary">Pusat Bantuan</a>
+                    <a href="#" class="text-decoration-none text-muted small hover-primary">Kebijakan Privasi</a>
+                    <span class="badge bg-light text-secondary border rounded-pill px-3">v2.1.0</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const mainWrapper = document.getElementById('mainWrapper');
+
+        function toggleSidebar() {
+            if (window.innerWidth >= 992) {
+                // Desktop Toggle
+                sidebar.classList.toggle('collapsed');
+                mainWrapper.classList.toggle('expanded');
+            } else {
+                // Mobile Toggle
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('show');
+                
+                // Lock/Unlock Background Scroll
+                if (sidebar.classList.contains('show')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        }
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleSidebar();
+        });
+        
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Reset if window resized
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 992) {
+                sidebar.classList.remove('show');
+                overlay.classList.remove('show');
+            } else {
+                sidebar.classList.remove('collapsed');
+                mainWrapper.classList.remove('expanded');
+            }
+        });
+    </script>
+    @yield('scripts')
+</body>
+</html>
