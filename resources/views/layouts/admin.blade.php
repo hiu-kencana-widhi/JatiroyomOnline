@@ -4,21 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin - Desa Jatiroyom</title>
+    
+    <!-- Preloads for Speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="{{ asset('image/logo-pemalang.png') }}">
+    
     <style>
         :root {
             --sidebar-width: 280px;
             --primary-bg: #0f172a;
             --accent-color: #3b82f6;
         }
+
+        /* Optimization Base */
+        * {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             background-color: #f8fafc;
             overflow-x: hidden;
+            color: #1e293b;
         }
+
+        /* GPU Accelerated Sidebar */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -27,26 +44,35 @@
             left: 0;
             background: var(--primary-bg);
             color: #fff;
-            transition: all 0.3s ease;
             z-index: 1050;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-            overflow-y: auto; /* Allow sidebar to scroll */
+            box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            will-change: transform;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.2) transparent;
+            scrollbar-color: rgba(255,255,255,0.1) transparent;
         }
+
         .sidebar.collapsed {
-            left: calc(-1 * var(--sidebar-width));
+            transform: translateX(calc(-1 * var(--sidebar-width)));
         }
+
         .main-wrapper {
             margin-left: var(--sidebar-width);
-            transition: all 0.3s ease;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transform: translateZ(0);
+            will-change: margin-left;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .main-wrapper.expanded {
             margin-left: 0;
         }
+
         .top-bar {
             background: #fff;
             border-bottom: 1px solid #e2e8f0;
@@ -54,7 +80,9 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            transform: translateZ(0);
         }
+
         .nav-sidebar .nav-link {
             color: #94a3b8;
             padding: 12px 20px;
@@ -63,44 +91,76 @@
             display: flex;
             align-items: center;
             font-weight: 500;
-            transition: all 0.2s;
+            transform: translateZ(0);
+            transition: all 0.2s ease;
         }
-        .nav-sidebar .nav-link i {
-            font-size: 1.25rem;
-            margin-right: 12px;
-        }
+
         .nav-sidebar .nav-link.active {
             background-color: var(--accent-color);
             color: #fff;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            box-shadow: none; /* Removed as requested */
         }
+
         .nav-sidebar .nav-link:hover:not(.active) {
             background-color: rgba(255,255,255,0.05);
             color: #f8fafc;
+            transform: translateX(5px);
         }
+
         .content-area {
             padding: 30px;
             flex: 1;
         }
+
         .card {
             border: none;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transform: translateZ(0);
         }
+
         .sidebar-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
             z-index: 1040;
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: opacity 0.3s ease;
         }
+
         @media (max-width: 991.98px) {
-            .sidebar { left: calc(-1 * var(--sidebar-width)); }
-            .sidebar.show { left: 0; }
+            .sidebar { 
+                transform: translateX(calc(-1 * var(--sidebar-width))); 
+            }
+            .sidebar.show { 
+                transform: translateX(0); 
+            }
             .main-wrapper { margin-left: 0; }
-            .sidebar-overlay.show { display: block; }
+            .sidebar-overlay.show { display: block; opacity: 1; }
             .content-area { padding: 20px; }
+        }
+
+        /* Responsive Table Stack */
+        @media (max-width: 767.98px) {
+            .table-responsive-stack tr {
+                display: block;
+                background: #fff;
+                border: 1px solid #e2e8f0;
+                border-radius: 16px;
+                margin-bottom: 15px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            }
+            .table-responsive-stack td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none !important;
+                padding: 8px 15px !important;
+                font-size: 0.85rem;
+            }
         }
     </style>
     @yield('styles')
@@ -189,12 +249,10 @@
         <footer class="mt-auto py-4 px-5 border-top bg-white">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                 <div class="text-muted small">
-                    &copy; {{ date('Y') }} <span class="fw-bold">Pemerintah Desa Jatiroyom</span>. Seluruh Hak Dilindungi.
+                    &copy; {{ date('Y') }} <span class="fw-bold">Pemerintah Desa Jatiroyom</span>.
                 </div>
                 <div class="d-flex align-items-center gap-4">
-                    <a href="#" class="text-decoration-none text-muted small hover-primary">Pusat Bantuan</a>
-                    <a href="#" class="text-decoration-none text-muted small hover-primary">Kebijakan Privasi</a>
-                    <span class="badge bg-light text-secondary border rounded-pill px-3">v2.1.0</span>
+                    <span class="badge bg-light text-secondary border rounded-pill px-3">v2.1.2</span>
                 </div>
             </div>
         </footer>
@@ -209,20 +267,12 @@
 
         function toggleSidebar() {
             if (window.innerWidth >= 992) {
-                // Desktop Toggle
                 sidebar.classList.toggle('collapsed');
                 mainWrapper.classList.toggle('expanded');
             } else {
-                // Mobile Toggle
                 sidebar.classList.toggle('show');
                 overlay.classList.toggle('show');
-                
-                // Lock/Unlock Background Scroll
-                if (sidebar.classList.contains('show')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = '';
-                }
+                document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : '';
             }
         }
 
@@ -230,19 +280,7 @@
             e.preventDefault();
             toggleSidebar();
         });
-        
         overlay.addEventListener('click', toggleSidebar);
-
-        // Reset if window resized
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 992) {
-                sidebar.classList.remove('show');
-                overlay.classList.remove('show');
-            } else {
-                sidebar.classList.remove('collapsed');
-                mainWrapper.classList.remove('expanded');
-            }
-        });
     </script>
     @yield('scripts')
 </body>

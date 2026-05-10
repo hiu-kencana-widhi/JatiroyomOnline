@@ -30,7 +30,7 @@
             <div class="bg-warning bg-opacity-10 text-warning rounded-circle mx-auto mb-2 mb-md-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; min-width: 50px;">
                 <i class="bi bi-hourglass-split fs-4"></i>
             </div>
-            <h4 class="fw-bold mb-1">{{ \App\Models\PengajuanSurat::where('status', 'menunggu')->count() }}</h4>
+            <h4 class="fw-bold mb-1">{{ \App\Models\Surat\PengajuanSurat::where('status', 'menunggu')->count() }}</h4>
             <p class="text-muted small mb-0">Menunggu</p>
         </div>
     </div>
@@ -39,7 +39,7 @@
             <div class="bg-success bg-opacity-10 text-success rounded-circle mx-auto mb-2 mb-md-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; min-width: 50px;">
                 <i class="bi bi-check-circle-fill fs-4"></i>
             </div>
-            <h4 class="fw-bold mb-1">{{ \App\Models\PengajuanSurat::where('status', 'selesai')->count() }}</h4>
+            <h4 class="fw-bold mb-1">{{ \App\Models\Surat\PengajuanSurat::where('status', 'selesai')->count() }}</h4>
             <p class="text-muted small mb-0">Surat Terbit</p>
         </div>
     </div>
@@ -48,7 +48,7 @@
             <div class="bg-info bg-opacity-10 text-info rounded-circle mx-auto mb-2 mb-md-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; min-width: 50px;">
                 <i class="bi bi-file-earmark-medical-fill fs-4"></i>
             </div>
-            <h4 class="fw-bold mb-1">{{ \App\Models\JenisSurat::count() }}</h4>
+            <h4 class="fw-bold mb-1">{{ \App\Models\Master\JenisSurat::count() }}</h4>
             <p class="text-muted small mb-0">Layanan</p>
         </div>
     </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle mb-0 table-responsive-stack">
                         <thead class="bg-light">
                             <tr>
                                 <th class="ps-4 py-3 small text-uppercase">Warga</th>
@@ -73,23 +73,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse(\App\Models\PengajuanSurat::with('user', 'jenisSurat')->latest()->take(5)->get() as $p)
+                            @forelse($recentPermohonan as $p)
                             <tr>
-                                <td class="ps-4">
+                                <td class="ps-4" data-label="Warga">
                                     <div class="fw-bold mb-0">{{ $p->user->nama_lengkap }}</div>
                                     <small class="text-muted">{{ $p->user->nik }}</small>
                                 </td>
-                                <td>{{ $p->jenisSurat->nama_surat }}</td>
-                                <td>
+                                <td data-label="Jenis Surat">{{ $p->jenisSurat->nama_surat }}</td>
+                                <td data-label="Status">
                                     @if($p->status == 'menunggu')
                                         <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3">Menunggu</span>
                                     @elseif($p->status == 'selesai')
                                         <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Selesai</span>
+                                    @elseif($p->status == 'siap_diambil')
+                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3">Siap Diambil</span>
                                     @else
                                         <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3">Ditolak</span>
                                     @endif
                                 </td>
-                                <td>
+                                <td data-label="Aksi">
                                     <a href="{{ route('admin.pengajuan.show', $p) }}" class="btn btn-sm btn-primary rounded-pill px-3">Proses</a>
                                 </td>
                             </tr>
@@ -111,7 +113,7 @@
             </div>
             <div class="card-body">
                 <div class="timeline">
-                    @forelse(\App\Models\LogAktivitas::latest()->take(5)->get() as $log)
+                    @forelse(\App\Models\System\LogAktivitas::latest()->take(5)->get() as $log)
                     <div class="d-flex mb-3">
                         <div class="me-3 position-relative">
                             <div class="bg-primary rounded-circle" style="width: 12px; height: 12px; margin-top: 5px;"></div>

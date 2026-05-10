@@ -9,7 +9,9 @@
     @csrf
     <div class="mb-3">
         <label for="pin" class="form-label">PIN Admin</label>
-        <input type="password" class="form-control text-center" id="pin" name="pin" placeholder="••••••" required autofocus maxlength="6" style="letter-spacing: 5px; font-size: 1.5rem;">
+        <input type="password" class="form-control text-center" id="pin" name="pin" placeholder="••••••" required autofocus maxlength="6" 
+               inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+               style="letter-spacing: 5px; font-size: 1.5rem;">
         @error('pin')
             <div class="error-msg">{{ $message }}</div>
         @enderror

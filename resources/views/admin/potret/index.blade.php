@@ -10,7 +10,17 @@
 
 @if(session('success'))
 <div class="alert alert-success border-0 shadow-sm mb-4">
-    {{ session('success') }}
+    <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+</div>
+@endif
+
+@if($errors->any())
+<div class="alert alert-danger border-0 shadow-sm mb-4">
+    <ul class="mb-0">
+        @foreach($errors->all() as $error)
+            <li><i class="bi bi-exclamation-triangle-fill me-2"></i> {{ $error }}</li>
+        @endforeach
+    </ul>
 </div>
 @endif
 
@@ -19,7 +29,7 @@
     <div class="col-md-6 col-xl-4">
         <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <div class="position-relative">
-                <img src="{{ asset('storage/' . $p->gambar) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                <img src="{{ asset('storage/' . $p->gambar) }}" class="card-img-top" style="height: 200px; object-fit: cover;" loading="lazy">
                 <div class="position-absolute top-0 end-0 p-2">
                     <span class="badge {{ $p->is_aktif ? 'bg-success' : 'bg-secondary' }}">
                         {{ $p->is_aktif ? 'Aktif' : 'Nonaktif' }}
@@ -72,8 +82,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Ganti Gambar (Opsional)</label>
-                            <input type="file" name="gambar" class="form-control" accept="image/*">
-                            <small class="text-muted">Biarkan kosong jika tidak ingin mengubah gambar.</small>
+                            <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/*">
+                            @error('gambar') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <small class="text-muted">Format: JPG, PNG. Max 5MB. Biarkan kosong jika tidak ingin mengubah gambar.</small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -112,7 +123,9 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Pilih Gambar</label>
-                        <input type="file" name="gambar" class="form-control" accept="image/*" required>
+                        <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/*" required>
+                        @error('gambar') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <small class="text-muted">Format: JPG, PNG. Max 5MB.</small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -123,4 +136,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    @if($errors->any())
+        var addModal = new bootstrap.Modal(document.getElementById('addModal'));
+        addModal.show();
+    @endif
+</script>
 @endsection

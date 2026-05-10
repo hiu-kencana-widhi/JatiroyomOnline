@@ -9,7 +9,7 @@ class AcaraController extends Controller
 {
     public function index()
     {
-        $acara = \App\Models\AcaraDesa::orderBy('tanggal', 'desc')->paginate(10);
+        $acara = \App\Models\Master\AcaraDesa::orderBy('tanggal', 'desc')->paginate(10);
         return view('admin.acara.index', compact('acara'));
     }
 
@@ -25,7 +25,7 @@ class AcaraController extends Controller
             'deskripsi' => 'nullable|string',
             'tanggal' => 'required|date',
             'lokasi' => 'nullable|string|max:255',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             'is_aktif' => 'required|boolean',
         ]);
 
@@ -34,24 +34,24 @@ class AcaraController extends Controller
         }
 
         $data['created_by'] = auth()->id();
-        \App\Models\AcaraDesa::create($data);
+        \App\Models\Master\AcaraDesa::create($data);
 
         return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil ditambahkan.');
     }
 
-    public function edit(\App\Models\AcaraDesa $acara)
+    public function edit(\App\Models\Master\AcaraDesa $acara)
     {
         return view('admin.acara.edit', compact('acara'));
     }
 
-    public function update(\Illuminate\Http\Request $request, \App\Models\AcaraDesa $acara)
+    public function update(\Illuminate\Http\Request $request, \App\Models\Master\AcaraDesa $acara)
     {
         $data = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'tanggal' => 'required|date',
             'lokasi' => 'nullable|string|max:255',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             'is_aktif' => 'required|boolean',
         ]);
 
@@ -67,7 +67,7 @@ class AcaraController extends Controller
         return redirect()->route('admin.acara.index')->with('success', 'Acara berhasil diperbarui.');
     }
 
-    public function destroy(\App\Models\AcaraDesa $acara)
+    public function destroy(\App\Models\Master\AcaraDesa $acara)
     {
         if ($acara->gambar) {
             \Illuminate\Support\Facades\Storage::disk('public')->delete($acara->gambar);

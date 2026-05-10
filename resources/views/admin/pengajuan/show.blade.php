@@ -25,9 +25,13 @@
                 <div class="mb-0">
                     <small class="text-muted d-block">Status Permohonan</small>
                     @if($pengajuan->status == 'menunggu')
-                        <span class="badge bg-warning text-dark px-3 py-2">Menunggu Konfirmasi</span>
-                    @elseif($pengajuan->status == 'dikonfirmasi')
-                        <span class="badge bg-success px-3 py-2">Selesai / Dikonfirmasi</span>
+                        <span class="badge bg-warning text-dark px-3 py-2">Menunggu Persetujuan</span>
+                    @elseif($pengajuan->status == 'disetujui')
+                        <span class="badge bg-info text-dark px-3 py-2">Disetujui - Tunggu TTD</span>
+                    @elseif($pengajuan->status == 'siap_diambil')
+                        <span class="badge bg-primary px-3 py-2">Siap Diambil</span>
+                    @elseif($pengajuan->status == 'selesai')
+                        <span class="badge bg-success px-3 py-2">Selesai</span>
                     @else
                         <span class="badge bg-danger px-3 py-2">Ditolak</span>
                     @endif
@@ -42,8 +46,8 @@
                 <h6 class="fw-bold mb-3">Tindakan Admin</h6>
                 <form action="{{ route('admin.pengajuan.konfirmasi', $pengajuan->id) }}" method="POST" class="mb-3">
                     @csrf
-                    <button type="submit" class="btn btn-success w-100 fw-bold py-2" onclick="return confirm('Konfirmasi permohonan ini? Sistem akan generate PDF dan upload ke Drive.')">
-                        <i class="bi bi-check-circle-fill me-2"></i> Konfirmasi & Terbitkan
+                    <button type="submit" class="btn btn-primary w-100 fw-bold py-2" onclick="return confirm('Konfirmasi permohonan ini?')">
+                        <i class="bi bi-check-circle-fill me-2"></i> Konfirmasi Permohonan
                     </button>
                 </form>
                 
@@ -52,15 +56,57 @@
                 </button>
             </div>
         </div>
-        @elseif($pengajuan->status == 'dikonfirmasi')
-        <div class="card border-0 shadow-sm">
+        @elseif($pengajuan->status == 'disetujui')
+        <div class="card border-0 shadow-sm border-info" style="border-top: 4px solid #0dcaf0 !important;">
+            <div class="card-body p-4">
+                <h6 class="fw-bold mb-3 text-info"><i class="bi bi-gear-fill me-2"></i> Proses Penerbitan</h6>
+                
+                @if(!$pengajuan->nomor_surat)
+                    <p class="small text-muted mb-3">Permohonan telah dikonfirmasi. Klik tombol di bawah untuk menerbitkan nomor surat.</p>
+                    <form action="{{ route('admin.pengajuan.terbitkan', $pengajuan->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-info text-white w-100 fw-bold py-2">
+                            <i class="bi bi-hash me-2"></i> Terbitkan Nomor Surat
+                        </button>
+                    </form>
+                @else
+                    <p class="small text-muted mb-3">Nomor surat: <strong>{{ $pengajuan->nomor_surat }}</strong>. Silakan cetak dan mintakan TTD.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{{ route('admin.pengajuan.download-pdf', $pengajuan->id) }}" target="_blank" class="btn btn-outline-info fw-bold py-2">
+                            <i class="bi bi-printer-fill me-2"></i> Download & Cetak PDF
+                        </a>
+                        <hr class="my-1">
+                        <form action="{{ route('admin.pengajuan.siap-diambil', $pengajuan->id) }}" method="POST" onsubmit="return confirm('Sudah dicetak dan TTD? Sistem akan mengarsipkan ke Google Drive.')">
+                            @csrf
+                            <button type="submit" class="btn btn-success w-100 fw-bold py-2">
+                                <i class="bi bi-check-all me-2"></i> Sudah TTD: Siap Diambil
+                            </button>
+                        </form>
+                    </div>
+                @endif
+            </div>
+        </div>
+        @elseif($pengajuan->status == 'siap_diambil' || $pengajuan->status == 'selesai')
+        <div class="card border-0 shadow-sm border-success" style="border-top: 4px solid #198754 !important;">
             <div class="card-body p-4 text-center">
                 <i class="bi bi-cloud-check-fill text-success display-4 mb-3 d-block"></i>
-                <h6 class="fw-bold">Surat Sudah Terbit</h6>
-                <p class="small text-muted">Nomor: {{ $pengajuan->nomor_surat }}</p>
-                <a href="{{ $pengajuan->file_drive_url }}" target="_blank" class="btn btn-outline-primary w-100 fw-bold">
-                    <i class="bi bi-eye me-2"></i> Lihat di Google Drive
-                </a>
+                <h6 class="fw-bold">Surat {{ $pengajuan->status == 'selesai' ? 'Selesai' : 'Siap Diambil' }}</h6>
+                <p class="small text-muted mb-3">Nomor: {{ $pengajuan->nomor_surat }}</p>
+                
+                <div class="d-grid gap-2">
+                    <a href="{{ $pengajuan->file_drive_url }}" target="_blank" class="btn btn-outline-primary fw-bold">
+                        <i class="bi bi-file-earmark-pdf-fill me-2"></i> Lihat Dokumen Digital
+                    </a>
+                    
+                    @if($pengajuan->status == 'siap_diambil')
+                    <form action="{{ route('admin.pengajuan.selesai', $pengajuan->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-success w-100 fw-bold shadow-sm">
+                            <i class="bi bi-check-all me-2"></i> Sudah Diambil oleh Warga
+                        </button>
+                    </form>
+                    @endif
+                </div>
             </div>
         </div>
         @endif

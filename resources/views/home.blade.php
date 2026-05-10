@@ -3,23 +3,124 @@
 @section('styles')
 <style>
     /* Premium Landing Page Styling */
+    /* Full Screen Hero with Transparent Navbar */
     .hero-section {
         position: relative;
         min-height: 100vh;
+        margin-top: -76px; /* Offset for navbar height to make it truly full */
         display: flex;
         align-items: center;
-        background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
-                    url('{{ asset('image/gambar-jatiroyom1.jpg') }}'); /* Actual Village Image */
+        background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), 
+                    url('{{ asset('image/gambar-jatiroyom1.png') }}');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
         color: white;
         overflow: hidden;
+        transform: translateZ(0); /* Hardware Acceleration */
+    }
+
+    /* Navbar adjustment for home page */
+    .navbar {
+        background-color: transparent !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        transition: background-color 0.35s ease-in-out, box-shadow 0.35s ease-in-out, backdrop-filter 0.35s ease-in-out;
+        transform: translateZ(0);
+    }
+
+    .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(10px) !important;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important;
+    }
+
+    .navbar .nav-link, .navbar .navbar-brand span {
+        color: white !important;
+        transition: color 0.3s;
+    }
+
+    .navbar.scrolled .nav-link, .navbar.scrolled .navbar-brand span {
+        color: #334155 !important;
+    }
+
+    .navbar .navbar-brand i {
+        color: white !important;
+    }
+
+    .navbar.scrolled .navbar-brand i {
+        color: var(--primary-color) !important;
+    }
+
+    /* Mobile Navbar Toggler Fix */
+    .navbar .navbar-toggler {
+        border-color: rgba(255,255,255,0.5) !important;
+        background: rgba(255,255,255,0.1) !important;
+    }
+
+    .navbar.scrolled .navbar-toggler {
+        border-color: rgba(0,0,0,0.1) !important;
+        background: transparent !important;
+    }
+
+    .navbar .navbar-toggler-icon {
+        filter: brightness(0) invert(1); /* Make hamburger white */
+    }
+
+    .navbar.scrolled .navbar-toggler-icon {
+        filter: none; /* Make hamburger default (dark) */
+    }
+
+    /* Mobile Menu - Push Down Style */
+    @media (max-width: 991.98px) {
+        .navbar-collapse {
+            background: transparent;
+            padding: 0;
+            margin-top: 0;
+            transition: all 0.35s ease-in-out;
+        }
+        
+        /* Smoothly show background on the WHOLE navbar when expanded */
+        .navbar.expanded {
+            background-color: white !important;
+            backdrop-filter: blur(10px) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        }
+
+        .navbar.expanded .navbar-collapse {
+            padding: 10px 0 20px;
+        }
+
+        .navbar:not(.scrolled):not(.expanded) .nav-link {
+            color: white !important;
+        }
+        
+        .navbar.expanded .nav-link, 
+        .navbar.scrolled .nav-link {
+            color: #334155 !important;
+        }
+
+        .navbar.expanded .navbar-brand span, 
+        .navbar.expanded .navbar-brand i,
+        .navbar.expanded .navbar-toggler-icon {
+            color: var(--primary-color) !important;
+            filter: none !important;
+        }
+        
+        /* Smooth push down effect */
+        .hero-section {
+            transition: margin-top 0.35s ease-in-out;
+        }
+
+        .hero-section.pushed {
+            margin-top: 0 !important;
+        }
     }
 
     .hero-content {
         z-index: 10;
-        animation: fadeInUp 1s ease-out;
+        animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
     }
 
     .glass-card {
@@ -27,12 +128,13 @@
         backdrop-filter: blur(15px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 24px;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
     }
 
     .glass-card:hover {
         background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-5px);
+        transform: translateY(-5px) translateZ(0);
     }
 
     .btn-premium {
@@ -41,23 +143,25 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1px;
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
     }
 
     .gallery-img {
         height: 300px;
         object-fit: cover;
         border-radius: 20px;
-        transition: all 0.5s ease;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
     }
 
     .gallery-img:hover {
-        transform: scale(1.03);
+        transform: scale(1.03) translateZ(0);
     }
 
     @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translateY(30px) translateZ(0); }
+        to { opacity: 1; transform: translateY(0) translateZ(0); }
     }
 
     .stat-circle {
@@ -70,12 +174,14 @@
         justify-content: center;
         margin: 0 auto 15px;
         box-shadow: 0 10px 20px rgba(13, 110, 253, 0.3);
+        transform: translateZ(0);
     }
 
     /* Responsive Modal Styling - Side-by-Side on Desktop */
     .modal-content {
         border-radius: 28px !important;
         border: none !important;
+        transform: translateZ(0);
     }
     
     .modal-flex-container {
@@ -122,11 +228,26 @@
 
     /* Hover Lift Effect for Cards */
     .hover-lift {
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transform: translateZ(0);
+        will-change: transform, box-shadow;
     }
     .hover-lift:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+        transform: translateY(-12px) translateZ(0);
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15) !important;
+    }
+    .hover-lift:hover .bg-opacity-10 {
+        background-opacity: 0.2 !important;
+        transform: scale(1.1);
+    }
+    .shadow-soft {
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 5px 15px -8px rgba(0, 0, 0, 0.05) !important;
+    }
+    .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08) !important;
+    }
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, var(--bs-primary) 0%, transparent 100%);
     }
 </style>
 @endsection
@@ -159,117 +280,127 @@
     <!-- Decorative Wave -->
     <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden" style="line-height: 0;">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(100% + 1.3px); height: 80px; transform: rotate(180deg);">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#F8FAFC"></path>
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
         </svg>
     </div>
 </section>
 
-<!-- Acara Desa Section -->
-<section id="acara" class="py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Acara & Agenda Desa</h2>
-            <div class="bg-primary mx-auto mb-3" style="width: 60px; height: 4px; border-radius: 2px;"></div>
-            <p class="text-muted">Ikuti terus kegiatan dan berita terbaru dari Pemerintah Desa Jatiroyom.</p>
-        </div>
-        
-        <div class="row g-4">
-            @php $acaras = \App\Models\AcaraDesa::where('is_aktif', true)->latest()->take(3)->get(); @endphp
-            @forelse($acaras as $ac)
-            <div class="col-md-6 col-lg-4">
-                <div class="glass-card p-2 h-100 cursor-pointer shadow-hover hover-lift" data-bs-toggle="modal" data-bs-target="#acaraModal{{ $ac->id }}" style="cursor: pointer;">
-                    @if($ac->gambar)
-                        <img src="{{ asset('storage/' . $ac->gambar) }}" class="gallery-img w-100 shadow-sm" alt="{{ $ac->judul }}">
-                    @else
-                        <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center gallery-img w-100">
-                            <i class="bi bi-calendar-event text-secondary fs-1"></i>
-                        </div>
-                    @endif
-                    <div class="p-3">
-                        <div class="text-primary small fw-bold mb-2"><i class="bi bi-clock me-1"></i> {{ \Carbon\Carbon::parse($ac->tanggal)->format('d M Y') }}</div>
-                        <h6 class="fw-bold mb-2 text-dark">{{ $ac->judul }}</h6>
-                        <p class="text-muted small mb-0">{{ Str::limit($ac->deskripsi, 100) }}</p>
-                        <div class="mt-3 text-primary small fw-bold">Baca Selengkapnya <i class="bi bi-arrow-right"></i></div>
-                    </div>
-                </div>
-            </div>
+<!-- Visi & Misi Section -->
+<section id="visimisi" class="py-5 bg-white overflow-hidden position-relative">
+    <!-- Premium Background Glow -->
+    <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 pointer-events-none opacity-50">
+        <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle" style="width: 500px; height: 500px; filter: blur(150px); opacity: 0.1;"></div>
+        <div class="position-absolute bottom-0 end-0 translate-middle bg-success rounded-circle" style="width: 400px; height: 400px; filter: blur(120px); opacity: 0.1;"></div>
+    </div>
 
-            <!-- Modal Acara -->
-            <div class="modal fade" id="acaraModal{{ $ac->id }}" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-                    <div class="modal-content overflow-hidden shadow-lg">
-                        <div class="modal-flex-container">
-                            @if($ac->gambar)
-                                <div class="modal-img-side">
-                                    <img src="{{ asset('storage/' . $ac->gambar) }}" alt="{{ $ac->judul }}">
+    <div class="container py-lg-5 position-relative">
+        <!-- Visi: Centered Top Layout -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="d-inline-block px-4 py-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-bold mb-4 shadow-sm" style="letter-spacing: 2px; font-size: 0.85rem;">
+                    <i class="bi bi-shield-check me-2"></i> KOMITMEN DESA
+                </div>
+                <h2 class="display-5 fw-bold mb-4 text-dark" style="letter-spacing: -1px;">Arah Masa Depan Jatiroyom</h2>
+                
+                <div class="mx-auto" style="max-width: 950px;">
+                    <div class="card border-0 rounded-4 bg-white shadow-sm hover-lift transition-all position-relative overflow-hidden" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#visiModal">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="h-100 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-5">
+                                    <i class="bi bi-patch-check-fill text-primary" style="font-size: 8rem; opacity: 0.2;"></i>
                                 </div>
-                            @endif
-                            <div class="modal-content-side">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 fw-bold small">
-                                        <i class="bi bi-calendar-event me-1"></i> {{ \Carbon\Carbon::parse($ac->tanggal)->format('d F Y') }}
-                                    </span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <h3 class="fw-bold text-dark mb-2">{{ $ac->judul }}</h3>
-                                <div class="d-flex align-items-center text-muted mb-4 small">
-                                    <i class="bi bi-geo-alt-fill text-danger me-2"></i> 
-                                    <span>{{ $ac->lokasi ?? 'Desa Jatiroyom' }}</span>
-                                </div>
-                                <div class="text-secondary" style="font-size: 0.95rem; line-height: 1.6;">
-                                    {!! nl2br(e($ac->deskripsi)) !!}
-                                </div>
-                                <div class="mt-4 pt-3 border-top">
-                                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold w-100" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4 p-md-5 text-center text-md-start">
+                                    <h4 class="fw-bold text-primary mb-3"><i class="bi bi-eye-fill me-2"></i> Visi Desa</h4>
+                                    <p class="mb-0 fs-4 text-dark lh-base" style="font-family: 'Outfit', sans-serif; font-weight: 600; letter-spacing: -0.5px;">
+                                        "Mewujudkan Desa Jatiroyom yang Mandiri, Sejahtera, dan Berbudaya melalui Tata Kelola Pemerintahan yang Transparan dan Inovatif."
+                                    </p>
+                                    <div class="mt-4 text-muted small fw-bold"><i class="bi bi-arrows-angle-expand me-1"></i> Klik untuk memperbesar informasi</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @empty
-            <div class="col-12 text-center text-muted py-5">Belum ada agenda acara saat ini.</div>
-            @endforelse
         </div>
-    </div>
-</section>
 
-<!-- Anggaran Section -->
-<section id="anggaran" class="py-5 bg-white border-top">
-    <div class="container py-5 text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3 fw-bold">TRANSPARANSI PUBLIK</div>
-                <h2 class="fw-bold mb-4">Laporan Anggaran & APBDes</h2>
-                <p class="text-muted mb-5 lead">
-                    Sebagai bentuk keterbukaan informasi publik, Pemerintah Desa Jatiroyom menyediakan akses bagi seluruh warga untuk melihat dan mengunduh laporan realisasi anggaran.
-                </p>
-                
-                @php $anggaranAktif = \App\Models\AnggaranDesa::where('is_active', true)->latest()->first(); @endphp
-                @if($anggaranAktif)
-                <div class="glass-card p-4 d-flex align-items-center justify-content-between border-2 border-primary border-opacity-25 shadow-lg">
-                    <div class="text-start d-flex align-items-center">
-                        <div class="bg-danger text-white rounded-circle p-3 me-3">
-                            <i class="bi bi-file-earmark-pdf fs-3"></i>
+        <!-- Visi Modal -->
+        <div class="modal fade" id="visiModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 30px;">
+                    <div class="modal-body p-5 text-center">
+                        <div class="stat-circle mb-4 bg-primary bg-opacity-10 text-primary mx-auto" style="width: 80px; height: 80px;">
+                            <i class="bi bi-stars fs-1"></i>
                         </div>
-                        <div>
-                            <h5 class="fw-bold mb-1 text-dark">{{ $anggaranAktif->judul }}</h5>
-                            <small class="text-muted">Diperbarui pada: {{ $anggaranAktif->created_at->format('d M Y') }}</small>
+                        <h4 class="fw-bold mb-4">Visi Desa Jatiroyom</h4>
+                        <p class="fs-4 text-dark italic lh-base">
+                            "Mewujudkan Desa Jatiroyom yang Mandiri, Sejahtera, dan Berbudaya melalui Tata Kelola Pemerintahan yang Transparan dan Inovatif."
+                        </p>
+                        <button type="button" class="btn btn-primary rounded-pill px-5 mt-4 fw-bold" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Misi: Grid Bottom Layout -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-12">
+                <div class="text-center mb-5">
+                    <div class="d-inline-block px-4 py-2 rounded-pill bg-success bg-opacity-10 text-success fw-bold mb-3 shadow-sm" style="letter-spacing: 2px; font-size: 0.85rem;">
+                        <i class="bi bi-rocket-takeoff me-2"></i> MISI STRATEGIS
+                    </div>
+                    <h3 class="display-6 fw-bold text-dark">Langkah Nyata Membangun Desa</h3>
+                </div>
+                
+                <div class="row g-4 px-2">
+                    @php
+                        $misi = [
+                            ['id' => 'digital', 'icon' => 'bi-display', 'color' => 'primary', 'title' => 'Digitalisasi', 'desc' => 'Transformasi pelayanan publik berbasis teknologi untuk efisiensi dan transparansi maksimal bagi warga.'],
+                            ['id' => 'mandiri', 'icon' => 'bi-cash-stack', 'color' => 'success', 'title' => 'Kemandirian', 'desc' => 'Pemberdayaan ekonomi melalui UMKM lokal dan optimalisasi potensi sumber daya alam berkelanjutan.'],
+                            ['id' => 'infra', 'icon' => 'bi-truck', 'color' => 'warning', 'title' => 'Infrastruktur', 'desc' => 'Pemerataan pembangunan sarana fisik yang berkualitas dan berdaya guna di setiap dusun secara merata.'],
+                            ['id' => 'sosial', 'icon' => 'bi-people', 'color' => 'danger', 'title' => 'Sosial Budaya', 'desc' => 'Memperkuat semangat gotong royong dan melestarikan warisan budaya luhur serta kearifan lokal.']
+                        ];
+                    @endphp
+
+                    @foreach($misi as $m)
+                    <div class="col-6 col-lg-3">
+                        <div class="card border-0 rounded-4 p-3 p-md-4 h-100 bg-white shadow-soft hover-lift transition-all text-center cursor-pointer" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#misiModal{{ $m['id'] }}">
+                            <!-- Icon with Gradient Background -->
+                            <div class="d-flex align-items-center justify-content-center mb-3 mb-md-4 mx-auto rounded-4 bg-{{ $m['color'] }} bg-opacity-10 text-{{ $m['color'] }}" style="width: 50px; height: 50px; transition: 0.3s;">
+                                <i class="bi {{ $m['icon'] }} fs-4 fs-md-2"></i>
+                            </div>
+                            <h6 class="fw-bold mb-2 mb-md-3 text-dark">{{ $m['title'] }}</h6>
+                            <p class="text-muted x-small small-md mb-0 lh-base lh-md-lg">{{ $m['desc'] }}</p>
+                            
+                            <!-- Bottom Line Accent -->
+                            <div class="mt-4 mx-auto bg-{{ $m['color'] }} opacity-25" style="width: 40px; height: 3px; border-radius: 10px;"></div>
                         </div>
                     </div>
-                    <a href="{{ asset('storage/' . $anggaranAktif->file_path) }}" target="_blank" class="btn btn-primary rounded-pill px-4 fw-bold">
-                        <i class="bi bi-download me-2"></i> Unduh Laporan
-                    </a>
+
+                    <!-- Misi Modal -->
+                    <div class="modal fade" id="misiModal{{ $m['id'] }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content border-0 shadow-lg" style="border-radius: 30px;">
+                                <div class="modal-body p-5 text-center">
+                                    <div class="stat-circle mb-4 bg-{{ $m['color'] }} bg-opacity-10 text-{{ $m['color'] }} mx-auto" style="width: 80px; height: 80px;">
+                                        <i class="bi {{ $m['icon'] }} fs-1"></i>
+                                    </div>
+                                    <h4 class="fw-bold mb-3">{{ $m['title'] }}</h4>
+                                    <p class="text-muted lh-lg">
+                                        {{ $m['desc'] }}
+                                    </p>
+                                    <button type="button" class="btn btn-{{ $m['color'] }} rounded-pill px-5 mt-4 fw-bold text-white" data-bs-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
-                @else
-                <div class="p-5 border-2 border-dashed rounded-4 bg-light text-muted">
-                    <i class="bi bi-folder-x fs-1 d-block mb-3"></i>
-                    Belum ada laporan anggaran yang dipublikasikan untuk periode ini.
-                </div>
-                @endif
             </div>
         </div>
     </div>
+
 </section>
 
 <!-- Potret Desa Kita Section -->
@@ -284,7 +415,7 @@
             @forelse($potret as $p)
             <div class="col-md-6 col-lg-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 cursor-pointer shadow-hover hover-lift" data-bs-toggle="modal" data-bs-target="#wisataModal{{ $p->id }}" style="cursor: pointer;">
-                    <img src="{{ asset('storage/' . $p->gambar) }}" class="w-100" style="height: 250px; object-fit: cover;" alt="{{ $p->judul }}">
+                    <img src="{{ asset('storage/' . $p->gambar) }}" class="w-100" style="height: 250px; object-fit: cover;" alt="{{ $p->judul }}" loading="lazy">
                     <div class="card-body p-4 text-center">
                         <h5 class="fw-bold text-dark mb-2">{{ $p->judul }}</h5>
                         <p class="text-muted small mb-0">{{ Str::limit($p->deskripsi, 60) }}</p>
@@ -305,7 +436,7 @@
             <div class="modal-content overflow-hidden shadow-lg">
                 <div class="modal-flex-container">
                     <div class="modal-img-side">
-                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->judul }}">
+                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->judul }}" loading="lazy">
                     </div>
                     <div class="modal-content-side">
                         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -365,4 +496,39 @@
         </a>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+<script>
+    const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero-section');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+
+    // Throttled Scroll Handling for Ultra Smooth Performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Handle Mobile Menu Open/Close for "Push Down" effect
+    navbarCollapse.addEventListener('show.bs.collapse', function () {
+        navbar.classList.add('expanded');
+        hero.classList.add('pushed');
+    });
+
+    navbarCollapse.addEventListener('hide.bs.collapse', function () {
+        navbar.classList.remove('expanded');
+        hero.classList.remove('pushed');
+    });
+</script>
 @endsection

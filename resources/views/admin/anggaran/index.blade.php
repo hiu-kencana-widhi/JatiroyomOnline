@@ -96,7 +96,7 @@
                             @empty
                             <tr>
                                 <td colspan="4" class="text-center py-5">
-                                    <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-5369.jpg" width="150" class="mb-3 opacity-50">
+                                    <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-5369.jpg" width="150" class="mb-3 opacity-50" loading="lazy">
                                     <p class="text-muted">Belum ada laporan anggaran yang diunggah.</p>
                                 </td>
                             </tr>

@@ -31,7 +31,7 @@ class LoginController extends Controller
 
         // Login as citizen
         \Illuminate\Support\Facades\Auth::login($user);
-        \App\Models\LogAktivitas::record('Login', 'Warga login menggunakan NIK');
+        \App\Models\System\LogAktivitas::record('Login', 'Warga login menggunakan NIK');
         return redirect()->route('user.dashboard');
     }
 
@@ -58,14 +58,14 @@ class LoginController extends Controller
 
         session()->forget('pending_admin_nik');
         \Illuminate\Support\Facades\Auth::login($user);
-        \App\Models\LogAktivitas::record('Login Admin', 'Administrator login');
+        \App\Models\System\LogAktivitas::record('Login Admin', 'Administrator login');
         
         return redirect()->route('admin.dashboard');
     }
 
     public function logout(Request $request)
     {
-        \App\Models\LogAktivitas::record('Logout', 'User keluar dari sistem');
+        \App\Models\System\LogAktivitas::record('Logout', 'User keluar dari sistem');
         \Illuminate\Support\Facades\Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

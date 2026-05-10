@@ -20,52 +20,54 @@
 <div class="card border-0 shadow-sm overflow-hidden">
     <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
+            <table class="table table-hover align-middle mb-0 table-responsive-stack">
                 <thead class="bg-light">
                     <tr>
                         <th class="ps-4 py-3 small text-uppercase text-secondary">Warga</th>
                         <th class="py-3 small text-uppercase text-secondary">Identitas</th>
                         <th class="py-3 small text-uppercase text-secondary">Alamat</th>
-                        <th class="py-3 small text-uppercase text-secondary">Aksi</th>
+                        <th class="py-3 small text-uppercase text-secondary text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($warga as $item)
                     <tr>
-                        <td class="ps-4">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; font-weight: 600;">
+                        <td class="ps-4" data-label="Warga">
+                            <div class="d-flex align-items-center justify-content-end justify-content-md-start w-100">
+                                <div class="bg-primary text-white rounded-circle d-none d-md-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; font-weight: 600;">
                                     {{ substr($item->nama_lengkap, 0, 1) }}
                                 </div>
-                                <div>
+                                <div class="text-end text-md-start">
                                     <div class="fw-bold text-dark">{{ $item->nama_lengkap }}</div>
                                     <small class="text-muted">{{ $item->pekerjaan ?? '-' }}</small>
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td data-label="Identitas">
                             <div class="small fw-bold text-dark">NIK: {{ $item->nik }}</div>
                             <div class="small text-muted">KK: {{ $item->no_kk ?? '-' }}</div>
                         </td>
-                        <td>
-                            <div class="small text-dark">{{ Str::limit($item->alamat, 40) }}</div>
+                        <td data-label="Alamat">
+                            <div class="small text-dark">{{ Str::limit($item->alamat, 30) }}</div>
                             <div class="small text-muted">RT/RW {{ $item->rt_rw ?? '-' }}</div>
                         </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-light btn-sm rounded-circle shadow-sm" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2 rounded-3">
-                                    <li><a class="dropdown-item rounded-2" href="{{ route('admin.warga.edit', $item) }}"><i class="bi bi-pencil me-2 text-primary"></i> Edit</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <form action="{{ route('admin.warga.destroy', $item) }}" method="POST" onsubmit="return confirm('Hapus warga ini?')">
-                                            @csrf @method('DELETE')
-                                            <button class="dropdown-item rounded-2 text-danger"><i class="bi bi-trash me-2"></i> Hapus</button>
-                                        </form>
-                                    </li>
-                                </ul>
+                        <td class="text-center" data-label="Aksi">
+                            <div class="d-flex justify-content-end justify-content-md-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm rounded-circle shadow-sm" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2 rounded-3">
+                                        <li><a class="dropdown-item rounded-2" href="{{ route('admin.warga.edit', $item) }}"><i class="bi bi-pencil me-2 text-primary"></i> Edit</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form action="{{ route('admin.warga.destroy', $item) }}" method="POST" onsubmit="return confirm('Hapus warga ini?')">
+                                                @csrf @method('DELETE')
+                                                <button class="dropdown-item rounded-2 text-danger"><i class="bi bi-trash me-2"></i> Hapus</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>

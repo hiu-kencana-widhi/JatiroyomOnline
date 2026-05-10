@@ -23,7 +23,7 @@
         <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <div class="position-relative">
                 @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" style="height: 200px; object-fit: cover;" loading="lazy">
                 @else
                     <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
                         <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
@@ -61,7 +61,7 @@
     @empty
     <div class="col-12">
         <div class="card border-0 shadow-sm p-5 text-center">
-            <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-5369.jpg" width="200" class="mx-auto mb-3 opacity-50">
+            <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-5369.jpg" width="200" class="mx-auto mb-3 opacity-50" loading="lazy">
             <h5 class="text-muted">Belum ada acara yang terdaftar.</h5>
             <div class="mt-3">
                 <a href="{{ route('admin.acara.create') }}" class="btn btn-primary rounded-pill px-4 fw-bold">Tambah Acara Pertama</a>

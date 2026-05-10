@@ -8,25 +8,45 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $acara = \App\Models\AcaraDesa::where('is_aktif', true)
+        $acara = \App\Models\Master\AcaraDesa::where('is_aktif', true)
             ->where('tanggal', '>=', now())
             ->orderBy('tanggal', 'asc')
-            ->take(4)
+            ->take(3)
             ->get();
 
-        $anggaran = \App\Models\AnggaranDesa::where('is_active', true)->first();
+        $anggaran = \App\Models\Master\AnggaranDesa::where('is_active', true)->first();
         
-        $potret = \App\Models\PotretDesa::where('is_aktif', true)->latest()->get();
+        $potret = \App\Models\Master\PotretDesa::where('is_aktif', true)->latest()->get();
         
-        $settings = \App\Models\Pengaturan::pluck('value', 'key');
+        $settings = \App\Models\System\Pengaturan::getAllCached();
 
         return view('home', compact('acara', 'anggaran', 'settings', 'potret'));
     }
 
-    public function downloadAnggaran()
+    public function acara()
     {
-        $anggaran = \App\Models\AnggaranDesa::where('is_active', true)->firstOrFail();
+        $acara = \App\Models\Master\AcaraDesa::where('is_aktif', true)
+            ->orderBy('tanggal', 'desc')
+            ->paginate(9);
         
+        $settings = \App\Models\System\Pengaturan::getAllCached();
+
+        return view('acara', compact('acara', 'settings'));
+    }
+
+    public function anggaran()
+    {
+        $anggaran = \App\Models\Master\AnggaranDesa::where('is_active', true)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        $settings = \App\Models\System\Pengaturan::getAllCached();
+
+        return view('anggaran', compact('anggaran', 'settings'));
+    }
+
+    public function downloadAnggaran(\App\Models\Master\AnggaranDesa $anggaran)
+    {
         if (!\Illuminate\Support\Facades\Storage::disk('public')->exists($anggaran->file_path)) {
             return back()->with('error', 'File tidak ditemukan.');
         }

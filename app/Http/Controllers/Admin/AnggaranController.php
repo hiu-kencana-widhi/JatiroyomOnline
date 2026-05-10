@@ -9,7 +9,7 @@ class AnggaranController extends Controller
 {
     public function index()
     {
-        $anggaran = \App\Models\AnggaranDesa::orderBy('created_at', 'desc')->get();
+        $anggaran = \App\Models\Master\AnggaranDesa::orderBy('created_at', 'desc')->get();
         return view('admin.anggaran.index', compact('anggaran'));
     }
 
@@ -21,11 +21,11 @@ class AnggaranController extends Controller
         ]);
 
         // Nonaktifkan anggaran lain
-        \App\Models\AnggaranDesa::where('is_active', true)->update(['is_active' => false]);
+        \App\Models\Master\AnggaranDesa::where('is_active', true)->update(['is_active' => false]);
 
         $path = $request->file('file')->store('anggaran', 'public');
 
-        \App\Models\AnggaranDesa::create([
+        \App\Models\Master\AnggaranDesa::create([
             'judul' => $request->judul,
             'file_path' => $path,
             'is_active' => true,
@@ -35,7 +35,7 @@ class AnggaranController extends Controller
         return redirect()->route('admin.anggaran.index')->with('success', 'File anggaran berhasil diunggah dan diaktifkan.');
     }
 
-    public function destroy(\App\Models\AnggaranDesa $anggaran)
+    public function destroy(\App\Models\Master\AnggaranDesa $anggaran)
     {
         \Illuminate\Support\Facades\Storage::disk('public')->delete($anggaran->file_path);
         $anggaran->delete();

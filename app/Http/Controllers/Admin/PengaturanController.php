@@ -9,7 +9,7 @@ class PengaturanController extends Controller
 {
     public function index()
     {
-        $settings = \App\Models\Pengaturan::pluck('value', 'key');
+        $settings = \App\Models\System\Pengaturan::getAllCached();
         return view('admin.pengaturan.index', compact('settings'));
     }
 
@@ -18,11 +18,13 @@ class PengaturanController extends Controller
         $data = $request->except('_token');
         
         foreach ($data as $key => $value) {
-            \App\Models\Pengaturan::updateOrCreate(
+            \App\Models\System\Pengaturan::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]
             );
         }
+
+        \Illuminate\Support\Facades\Cache::forget('village_settings');
 
         return back()->with('success', 'Pengaturan desa berhasil diperbarui.');
     }

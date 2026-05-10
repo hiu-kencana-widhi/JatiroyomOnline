@@ -34,7 +34,7 @@
             <div class="text-warning mb-2">
                 <i class="bi bi-clock-history fs-4"></i>
             </div>
-            <h4 class="fw-bold mb-0 text-dark">{{ \App\Models\PengajuanSurat::where('user_id', auth()->id())->where('status', 'menunggu')->count() }}</h4>
+            <h4 class="fw-bold mb-0 text-dark">{{ \App\Models\Surat\PengajuanSurat::where('user_id', auth()->id())->where('status', 'menunggu')->count() }}</h4>
             <p class="text-muted small mb-0" style="font-size: 0.7rem;">Sedang Proses</p>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <div class="text-success mb-2">
                 <i class="bi bi-check-circle-fill fs-4"></i>
             </div>
-            <h4 class="fw-bold mb-0 text-dark">{{ \App\Models\PengajuanSurat::where('user_id', auth()->id())->where('status', 'selesai')->count() }}</h4>
+            <h4 class="fw-bold mb-0 text-dark">{{ \App\Models\Surat\PengajuanSurat::where('user_id', auth()->id())->where('status', 'selesai')->count() }}</h4>
             <p class="text-muted small mb-0" style="font-size: 0.7rem;">Selesai</p>
         </div>
     </div>
@@ -76,7 +76,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse(\App\Models\PengajuanSurat::where('user_id', auth()->id())->latest()->take(5)->get() as $riwayat)
+                            @forelse(\App\Models\Surat\PengajuanSurat::where('user_id', auth()->id())->latest()->take(5)->get() as $riwayat)
                             <tr>
                                 <td class="ps-4">
                                     <div class="fw-bold">{{ $riwayat->created_at->format('d M Y') }}</div>
@@ -96,7 +96,7 @@
                             @empty
                             <tr>
                                 <td colspan="3" class="text-center py-5">
-                                    <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-5369.jpg" width="150" class="mb-3">
+                                    <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-5369.jpg" width="150" class="mb-3" loading="lazy">
                                     <p class="text-muted">Anda belum pernah mengajukan surat.</p>
                                     <a href="{{ route('user.surat.pilih') }}" class="btn btn-primary btn-sm rounded-pill px-4 fw-bold">Buat Sekarang</a>
                                 </td>

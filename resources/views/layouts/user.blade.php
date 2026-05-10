@@ -92,6 +92,51 @@
             .sidebar-overlay.show { display: block; }
             .content-area { padding: 15px; }
         }
+
+        /* Responsive Table Stack */
+        @media (max-width: 767.98px) {
+            .table-responsive-stack thead {
+                display: none;
+            }
+            .table-responsive-stack tr {
+                display: block;
+                background: #fff;
+                border: 1px solid #e2e8f0;
+                border-radius: 16px;
+                margin-bottom: 15px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            }
+            .table-responsive-stack td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none !important;
+                padding: 10px 15px !important;
+                text-align: right;
+                font-size: 0.9rem;
+            }
+            .table-responsive-stack td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 0.65rem;
+                color: #94a3b8;
+                text-align: left;
+                flex: 1;
+            }
+            .table-responsive-stack td > * {
+                flex: 2;
+                display: flex;
+                justify-content: flex-end;
+            }
+            .table-responsive-stack .ps-4 {
+                padding-left: 15px !important;
+            }
+            .table-responsive-stack .text-center {
+                text-align: right !important;
+            }
+        }
     </style>
     @yield('styles')
 </head>

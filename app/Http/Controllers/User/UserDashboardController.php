@@ -11,12 +11,12 @@ class UserDashboardController extends Controller
     {
         $user = auth()->user();
         $stats = [
-            'menunggu' => \App\Models\PengajuanSurat::where('user_id', $user->id)->where('status', 'menunggu')->count(),
-            'selesai' => \App\Models\PengajuanSurat::where('user_id', $user->id)->where('status', 'dikonfirmasi')->count(),
-            'ditolak' => \App\Models\PengajuanSurat::where('user_id', $user->id)->where('status', 'ditolak')->count(),
+            'menunggu' => \App\Models\Surat\PengajuanSurat::where('user_id', $user->id)->where('status', 'menunggu')->count(),
+            'selesai' => \App\Models\Surat\PengajuanSurat::where('user_id', $user->id)->whereIn('status', ['disetujui', 'siap_diambil', 'selesai'])->count(),
+            'ditolak' => \App\Models\Surat\PengajuanSurat::where('user_id', $user->id)->where('status', 'ditolak')->count(),
         ];
 
-        $pengajuanTerbaru = \App\Models\PengajuanSurat::where('user_id', $user->id)
+        $pengajuanTerbaru = \App\Models\Surat\PengajuanSurat::where('user_id', $user->id)
             ->with('jenisSurat')
             ->orderBy('created_at', 'desc')
             ->take(5)

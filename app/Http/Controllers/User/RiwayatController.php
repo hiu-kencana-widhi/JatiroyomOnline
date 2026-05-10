@@ -9,7 +9,7 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        $riwayat = \App\Models\PengajuanSurat::where('user_id', auth()->id())
+        $riwayat = \App\Models\Surat\PengajuanSurat::where('user_id', auth()->id())
             ->with('jenisSurat')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
@@ -17,7 +17,7 @@ class RiwayatController extends Controller
         return view('user.riwayat', compact('riwayat'));
     }
 
-    public function download(\App\Models\PengajuanSurat $pengajuan)
+    public function download(\App\Models\Surat\PengajuanSurat $pengajuan)
     {
         // Pastikan hanya pemilik yang bisa download
         if ($pengajuan->user_id !== auth()->id()) {
