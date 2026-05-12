@@ -45,16 +45,20 @@
                     @forelse($laporan as $item)
                     <tr>
                         <td class="ps-4" data-label="Pelapor">
-                            <div class="fw-bold text-dark">{{ $item->user->nama_lengkap ?? 'Warga Anonim' }}</div>
-                            <small class="text-muted">NIK: {{ $item->user->nik ?? '-' }}</small>
-                            <div class="text-secondary small mt-1"><i class="bi bi-clock me-1"></i> {{ $item->created_at->format('d/m/Y H:i') }}</div>
+                            <div>
+                                <div class="fw-bold text-dark">{{ $item->user->nama_lengkap ?? 'Warga Anonim' }}</div>
+                                <small class="text-muted">NIK: {{ $item->user->nik ?? '-' }}</small>
+                                <div class="text-secondary small mt-1"><i class="bi bi-clock me-1"></i> {{ $item->created_at->format('d/m/Y H:i') }}</div>
+                            </div>
                         </td>
                         <td data-label="Insiden & Deskripsi">
-                            <div class="fw-bold text-dark">{{ $item->judul_laporan }}</div>
-                            <span class="badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-2 py-1 mb-1 border border-secondary border-opacity-25">
-                                {{ $item->kategori }}
-                            </span>
-                            <p class="small text-muted mb-0 mt-1" style="max-width: 280px;">{{ $item->deskripsi }}</p>
+                            <div>
+                                <div class="fw-bold text-dark">{{ $item->judul_laporan }}</div>
+                                <span class="badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-2 py-1 mb-1 border border-secondary border-opacity-25">
+                                    {{ $item->kategori }}
+                                </span>
+                                <p class="small text-muted mb-0 mt-1" style="max-width: 280px;">{{ $item->deskripsi }}</p>
+                            </div>
                         </td>
                         <td data-label="Bukti & Lokasi">
                             <div class="d-flex align-items-center gap-2">
@@ -68,32 +72,34 @@
                             </div>
                         </td>
                         <td data-label="Status">
-                            @if($item->status == 'Menunggu')
-                                <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2">
-                                    <i class="bi bi-hourglass-split me-1"></i> Menunggu
-                                </span>
-                            @elseif($item->status == 'Diproses')
-                                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 animate-pulse">
-                                    <i class="bi bi-tools me-1"></i> Diproses
-                                </span>
-                            @elseif($item->status == 'Selesai')
-                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
-                                    <i class="bi bi-check-circle-fill me-1"></i> Selesai
-                                </span>
-                            @elseif($item->status == 'Ditolak')
-                                <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2">
-                                    <i class="bi bi-x-circle-fill me-1"></i> Ditolak
-                                </span>
-                            @endif
-                            
-                            @if($item->catatan_tanggapan)
-                                <div class="mt-2 text-end text-md-start">
-                                    <small class="text-secondary d-block fw-bold" style="font-size: 0.65rem;">CATATAN TERAKHIR:</small>
-                                    <span class="text-muted small text-truncate d-inline-block" style="max-width: 140px;" data-bs-toggle="tooltip" title="{{ $item->catatan_tanggapan }}">
-                                        {{ \Illuminate\Support\Str::limit($item->catatan_tanggapan, 25) }}
+                            <div>
+                                @if($item->status == 'Menunggu')
+                                    <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2">
+                                        <i class="bi bi-hourglass-split me-1"></i> Menunggu
                                     </span>
-                                </div>
-                            @endif
+                                @elseif($item->status == 'Diproses')
+                                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 animate-pulse">
+                                        <i class="bi bi-tools me-1"></i> Diproses
+                                    </span>
+                                @elseif($item->status == 'Selesai')
+                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
+                                        <i class="bi bi-check-circle-fill me-1"></i> Selesai
+                                    </span>
+                                @elseif($item->status == 'Ditolak')
+                                    <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2">
+                                        <i class="bi bi-x-circle-fill me-1"></i> Ditolak
+                                    </span>
+                                @endif
+                                
+                                @if($item->catatan_tanggapan)
+                                    <div class="mt-2 text-end text-md-start">
+                                        <small class="text-secondary d-block fw-bold" style="font-size: 0.65rem;">CATATAN TERAKHIR:</small>
+                                        <span class="text-muted small text-truncate d-inline-block" style="max-width: 140px;" data-bs-toggle="tooltip" title="{{ $item->catatan_tanggapan }}">
+                                            {{ \Illuminate\Support\Str::limit($item->catatan_tanggapan, 25) }}
+                                        </span>
+                                    </div>
+                                @endif
+                            </div>
                         </td>
                         <td class="text-end pe-4" data-label="Tindakan Moderasi">
                             <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#tanggapiModal{{ $item->id }}" style="position: relative; z-index: 10;">

@@ -94,27 +94,33 @@
                             @forelse($pengumuman as $item)
                             <tr>
                                 <td class="ps-4" data-label="Spanduk & Tipe">
-                                    <div class="fw-bold text-dark">{{ $item->judul }}</div>
-                                    <span class="badge bg-{{ $item->tipe_spanduk === 'darurat' ? 'danger' : ($item->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} rounded-pill text-uppercase" style="font-size: 0.65rem;">
-                                        {{ $item->tipe_spanduk }}
-                                    </span>
-                                    <p class="small text-muted mb-0 mt-1 text-truncate" style="max-width: 200px;">{{ $item->isi_pengumuman }}</p>
+                                    <div>
+                                        <div class="fw-bold text-dark">{{ $item->judul }}</div>
+                                        <span class="badge bg-{{ $item->tipe_spanduk === 'darurat' ? 'danger' : ($item->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} rounded-pill text-uppercase" style="font-size: 0.65rem;">
+                                            {{ $item->tipe_spanduk }}
+                                        </span>
+                                        <p class="small text-muted mb-0 mt-1 text-truncate" style="max-width: 200px;">{{ $item->isi_pengumuman }}</p>
+                                    </div>
                                 </td>
                                 <td data-label="Masa Penayangan">
-                                    <small class="text-dark d-block fw-medium"><i class="bi bi-calendar-event me-1"></i> S/d: {{ $item->tanggal_selesai->format('d M Y') }}</small>
-                                    <small class="text-muted">{{ $item->tanggal_selesai->format('H:i') }} WIB</small>
-                                    @if($item->tanggal_selesai < now())
-                                        <span class="d-block badge bg-secondary bg-opacity-10 text-secondary mt-1">Kedaluwarsa</span>
-                                    @endif
+                                    <div>
+                                        <small class="text-dark d-block fw-medium"><i class="bi bi-calendar-event me-1"></i> S/d: {{ $item->tanggal_selesai->format('d M Y') }}</small>
+                                        <small class="text-muted">{{ $item->tanggal_selesai->format('H:i') }} WIB</small>
+                                        @if($item->tanggal_selesai < now())
+                                            <span class="d-block badge bg-secondary bg-opacity-10 text-secondary mt-1">Kedaluwarsa</span>
+                                        @endif
+                                    </div>
                                 </td>
                                 <td data-label="Lampiran Bukti">
-                                    @if($item->file_lampiran)
-                                        <a href="{{ asset('storage/' . $item->file_lampiran) }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 fw-bold" style="position: relative; z-index: 10;">
-                                            <i class="bi bi-file-earmark-check me-1"></i> Buka File
-                                        </a>
-                                    @else
-                                        <span class="text-muted small italic">-</span>
-                                    @endif
+                                    <div>
+                                        @if($item->file_lampiran)
+                                            <a href="{{ asset('storage/' . $item->file_lampiran) }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 fw-bold" style="position: relative; z-index: 10;">
+                                                <i class="bi bi-file-earmark-check me-1"></i> Buka File
+                                            </a>
+                                        @else
+                                            <span class="text-muted small italic">-</span>
+                                        @endif
+                                    </div>
                                 </td>
                                 <td data-label="Status Tayang">
                                     <form action="{{ route('admin.pengumuman.toggle', $item->id) }}" method="POST" style="position: relative; z-index: 10;">
