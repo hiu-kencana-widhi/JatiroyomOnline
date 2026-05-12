@@ -31,6 +31,7 @@ Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyama
 
 ### 🌐 1. Portal Publik & Transparansi Informasi
 - **Beranda Interaktif**: Etalase visual keindahan profil desa, struktur kepemimpinan aparatur, dan sorotan ulasan pelayanan riil dari masyarakat.
+- **Siaran Spanduk Darurat (*Baru*)**: Pengunjung langsung disambut oleh pita pengumuman global bergaya *Glassmorphism* di bawah menu utama yang menyajikan peringatan mendesak, jadwal pemadaman, atau pembagian bansos secara *real-time*, lengkap dengan tombol pengunduhan surat edaran/dokumen pendukung.
 - **Agenda & Acara Desa**: Publikasi acara, pengumuman, dan jadwal kegiatan desa untuk memastikan masyarakat luas terus mendapatkan informasi terkini.
 - **Transparansi Anggaran**: Rilis publikasi grafik dan rincian laporan alokasi anggaran belanja desa yang dapat dipantau dan diunduh langsung oleh publik.
 - **Peta Lokasi Terintegrasi**: Sematan peta interaktif menuju titik koordinat pusat layanan desa dengan perlindungan privasi berskala tinggi.
@@ -39,6 +40,7 @@ Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyama
 - **Akses Instan NIK**: Otentikasi mandiri yang ringkas tanpa perlu mengingat kata sandi rumit, cukup menggunakan Nomor Induk Kependudukan (NIK).
 - **Pengajuan Surat Dinamis**: Memilih ragam surat pengantar, mengisi rincian formulir spesifik, dan melacak tahapan verifikasi secara seketika.
 - **Lapor Insiden Lapangan (*Baru*)**: Warga dapat mengadukan fasilitas rusak dengan menyalakan **kamera gawai langsung dari peramban** (mendukung penukaran instan lensa depan/belakang), menyedot titik koordinat presisi tinggi tanpa singgahan *cache* via **Geolocation API**, serta mengoreksi patokan lokasi menggunakan pin peta interaktif gratis (Leaflet.js).
+- **Pita Peringatan Dasbor (*Baru*)**: Memastikan warga yang masuk langsung membaca siaran darurat desa di urutan teratas layar mereka.
 - **Unduh Arsip Resmi**: Akses unduhan mandiri dokumen digital (PDF) bertanda tangan elektronik langsung setelah disetujui aparat.
 - **Penilaian Kinerja Aparatur**: Memberikan ulasan dan penilaian kepuasan layanan spesifik kepada masing-masing personel aparatur desa.
 
@@ -50,6 +52,7 @@ Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyama
 
 ### 🛡️ 4. Dasbor Administrator (Pusat Kendali Menyeluruh)
 - **Verifikasi Alur Surat**: Konfirmasi penerbitan, penolakan dengan catatan koreksi, dan pengiriman notifikasi pengambilan dokumen fisik di Balai Desa.
+- **Moderasi Spanduk Pengumuman (*Baru*)**: Menerbitkan, memperbarui lampiran dokumen, mengatur kedaluwarsa waktu otomatis, atau mematikan tayang siaran spanduk global secara instan melalui dasbor *Card Stacked* responsif.
 - **Moderasi Laporan Insiden (*Baru*)**: Pusat tinjauan aduan masyarakat yang dilengkapi jendela pratinjau foto bukti beresolusi penuh, filter kategori/status dinamis, serta kendali mutlak untuk mengubah status (*Menunggu* ➔ *Diproses* ➔ *Selesai*) dan memberikan instruksi penanganan.
 - **Moderasi Presensi & Penilaian Publik**: Validasi foto bukti presisi, kemampuan menginput izin/sakit secara manual, serta hak tayang ulasan publik.
 - **Manajemen Basis Data Terpadu**: Pengelolaan basis data penduduk, hak akses aparatur, pengaturan anggaran, dan penyesuaian jenis surat.

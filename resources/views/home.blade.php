@@ -269,6 +269,40 @@
 @endsection
 
 @section('content')
+
+<!-- Spanduk Siaran Pengumuman Global -->
+@php
+    $pengumumanAktif = \App\Models\PengumumanDesa::where('status_aktif', true)
+        ->where('tanggal_selesai', '>=', now())
+        ->latest()
+        ->first();
+@endphp
+@if($pengumumanAktif)
+<div class="position-absolute w-100 start-0" style="top: 76px; z-index: 50;">
+    <div class="container">
+        <div class="alert alert-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} alert-dismissible fade show border-0 shadow-lg rounded-4 text-start p-3 d-flex align-items-center justify-content-between flex-wrap gap-2" style="background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);">
+            <div class="d-flex align-items-center gap-3">
+                <div class="p-2 rounded-circle bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} bg-opacity-10 text-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }}">
+                    <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'info-circle-fill') }} fs-4"></i>
+                </div>
+                <div>
+                    <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.95rem;">{{ $pengumumanAktif->judul }}</h6>
+                    <p class="small text-muted mb-0 text-truncate" style="max-width: 500px;">{{ $pengumumanAktif->isi_pengumuman }}</p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                @if($pengumumanAktif->file_lampiran)
+                    <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-outline-dark rounded-pill fw-bold px-3 py-1 shadow-sm" style="position: relative; z-index: 60;">
+                        <i class="bi bi-file-earmark-arrow-down-fill text-primary me-1"></i> Unduh Lampiran
+                    </a>
+                @endif
+                <button type="button" class="btn-close position-static p-1 m-0" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 <!-- Hero Section -->
 <section class="hero-section text-center px-3">
     <div class="container hero-content">

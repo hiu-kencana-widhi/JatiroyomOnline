@@ -260,6 +260,9 @@
                 <i class="bi bi-megaphone-fill text-danger"></i> Laporan Warga
             </a>
             <div class="text-uppercase small fw-bold px-4 mb-2 mt-4 text-secondary opacity-50" style="font-size: 0.7rem; letter-spacing: 1px;">Publikasi</div>
+            <a href="{{ route('admin.pengumuman.index') }}" class="nav-link {{ request()->routeIs('admin.pengumuman.*') ? 'active' : '' }}">
+                <i class="bi bi-megaphone-fill text-info"></i> Siaran Pengumuman
+            </a>
             <a href="{{ route('admin.acara.index') }}" class="nav-link {{ request()->routeIs('admin.acara.*') ? 'active' : '' }}">
                 <i class="bi bi-calendar3-event-fill"></i> Acara Desa
             </a>

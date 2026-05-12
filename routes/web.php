@@ -135,6 +135,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Pengelolaan Laporan Insiden Warga
     Route::get('/laporan', [\App\Http\Controllers\Admin\KelolaLaporanController::class, 'index'])->name('laporan.index');
     Route::patch('/laporan/{id}/status', [\App\Http\Controllers\Admin\KelolaLaporanController::class, 'updateStatus'])->name('laporan.status');
+
+    // Manajemen Spanduk Pengumuman Desa Global
+    Route::patch('/pengumuman/{pengumuman}/toggle', [\App\Http\Controllers\Admin\PengumumanController::class, 'toggle'])->name('pengumuman.toggle');
+    Route::resource('pengumuman', \App\Http\Controllers\Admin\PengumumanController::class)->except(['show', 'create', 'edit']);
 });
 
 /*

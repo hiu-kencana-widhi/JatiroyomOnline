@@ -1,6 +1,40 @@
 @extends('layouts.user')
 
 @section('content')
+
+<!-- Spanduk Siaran Pengumuman Global -->
+@php
+    $pengumumanAktif = \App\Models\PengumumanDesa::where('status_aktif', true)
+        ->where('tanggal_selesai', '>=', now())
+        ->latest()
+        ->first();
+@endphp
+@if($pengumumanAktif)
+<div class="alert alert-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} alert-dismissible fade show border-0 shadow-sm rounded-4 text-start p-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3" style="background: {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#fef2f2' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#fefce8' : '#eff6ff') }}; border-left: 5px solid {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#ef4444' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#eab308' : '#3b82f6') }} !important;">
+    <div class="d-flex align-items-start gap-3">
+        <div class="p-2 rounded-circle bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} bg-opacity-10 text-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }}">
+            <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'info-circle-fill') }} fs-4"></i>
+        </div>
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} rounded-pill text-uppercase" style="font-size: 0.65rem;">Pengumuman Desa</span>
+                <small class="text-muted fw-bold">{{ $pengumumanAktif->created_at->format('d M Y') }}</small>
+            </div>
+            <h6 class="fw-bold mb-1 text-dark" style="font-size: 1.05rem;">{{ $pengumumanAktif->judul }}</h6>
+            <p class="small text-muted mb-0" style="max-width: 650px; line-height: 1.4;">{{ $pengumumanAktif->isi_pengumuman }}</p>
+        </div>
+    </div>
+    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0">
+        @if($pengumumanAktif->file_lampiran)
+            <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-primary rounded-pill fw-bold px-3 py-2 shadow-sm" style="position: relative; z-index: 20;">
+                <i class="bi bi-file-earmark-arrow-down-fill me-1"></i> Unduh Lampiran
+            </a>
+        @endif
+        <button type="button" class="btn-close position-static p-2 m-0" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+@endif
+
 <div class="row g-3 g-md-4 mb-4">
     <div class="col-12">
         <div class="card border-0 bg-white p-3 p-md-4 shadow-sm position-relative overflow-hidden rounded-4">
