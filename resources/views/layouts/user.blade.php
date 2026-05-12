@@ -45,7 +45,7 @@
             padding: 12px 25px;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1045;
         }
         .nav-sidebar .nav-link {
             color: #64748b;
@@ -193,6 +193,9 @@
             </a>
             <a href="{{ route('user.riwayat') }}" class="nav-link {{ request()->routeIs('user.riwayat') ? 'active' : '' }}">
                 <i class="bi bi-clock-history"></i> Riwayat
+            </a>
+            <a href="{{ route('user.laporan.index') }}" class="nav-link {{ request()->routeIs('user.laporan.*') ? 'active' : '' }}">
+                <i class="bi bi-megaphone-fill"></i> Lapor Insiden
             </a>
             <a href="{{ route('user.profil') }}" class="nav-link {{ request()->routeIs('user.profil') ? 'active' : '' }}">
                 <i class="bi bi-person-circle"></i> Profil Saya

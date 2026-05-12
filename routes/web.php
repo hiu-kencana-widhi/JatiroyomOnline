@@ -76,6 +76,11 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
     // Profil Mandiri
     Route::get('/profil', [ProfilController::class, 'edit'])->name('profil');
     Route::put('/profil', [ProfilController::class, 'update'])->name('profil.update');
+
+    // Pelaporan Insiden Warga
+    Route::get('/laporan', [\App\Http\Controllers\User\LaporanWargaController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/buat', [\App\Http\Controllers\User\LaporanWargaController::class, 'create'])->name('laporan.create');
+    Route::post('/laporan', [\App\Http\Controllers\User\LaporanWargaController::class, 'store'])->name('laporan.store');
 });
 
 /*
@@ -126,6 +131,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/moderasi-penilaian', [ModerasiPenilaianController::class, 'index'])->name('moderasi-penilaian.index');
     Route::patch('/moderasi-penilaian/{penilaian}/toggle', [ModerasiPenilaianController::class, 'toggle'])->name('moderasi-penilaian.toggle');
     Route::delete('/moderasi-penilaian/{penilaian}', [ModerasiPenilaianController::class, 'destroy'])->name('moderasi-penilaian.destroy');
+
+    // Pengelolaan Laporan Insiden Warga
+    Route::get('/laporan', [\App\Http\Controllers\Admin\KelolaLaporanController::class, 'index'])->name('laporan.index');
+    Route::patch('/laporan/{id}/status', [\App\Http\Controllers\Admin\KelolaLaporanController::class, 'updateStatus'])->name('laporan.status');
 });
 
 /*
@@ -136,4 +145,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 Route::middleware(['auth', 'role:perangkat_desa'])->prefix('perangkat')->name('perangkat.')->group(function () {
     Route::get('/dashboard', [PerangkatDashboardController::class, 'index'])->name('dashboard');
     Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');
+
+    // Pantauan Laporan Insiden Lapangan
+    Route::get('/laporan', [\App\Http\Controllers\Perangkat\LaporanWargaController::class, 'index'])->name('laporan.index');
+    Route::patch('/laporan/{id}/tanggapan', [\App\Http\Controllers\Perangkat\LaporanWargaController::class, 'tanggapi'])->name('laporan.tanggapi');
 });

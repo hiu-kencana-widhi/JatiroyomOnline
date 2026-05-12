@@ -1,7 +1,7 @@
 <div align="center">
 
-# 🏛️ SMART VILLAGE: DESA JATIROYOM
-**Sistem Informasi Manajemen Surat, Presensi Aparatur & Pelayanan Publik Terpadu**
+# 🏛️ JATIROYOM ONLINE
+**Sistem Informasi Manajemen Surat, Laporan Warga, Presensi Aparatur & Pelayanan Publik Terpadu**
 
 [![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net)
@@ -9,7 +9,7 @@
 [![Styling](https://img.shields.io/badge/Styling-Premium_CSS_Stack-38B2AC?style=for-the-badge)](/)
 [![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)](#)
 
-*Solusi Digitalisasi Administrasi Desa Terintegrasi Pengajuan Surat Mandiri, Rekam Jejak Kehadiran Aparatur Real-Time, dan Transparansi Ulasan Kinerja Warga.*
+*Portal Administrasi Cerdas Desa Jatiroyom: Melayani Pengajuan Surat Mandiri, Pelaporan Kerusakan Infrastruktur Real-Time via Geolocation & Kamera Gawai, Rekam Jejak Kehadiran Aparatur, dan Transparansi Akuntabilitas Publik.*
 
 </div>
 
@@ -17,69 +17,72 @@
 
 ## 📖 Tentang Proyek
 
-**Sistem Smart Village Desa Jatiroyom** merupakan evolusi aplikasi web tata kelola desa dari platform surat-menyurat menjadi portal administrasi terpadu. Proyek ini mendigitalisasi tiga pilar utama pelayanan publik:
-1. **Pelayanan Administrasi Surat Warga** secara mandiri dan cepat.
-2. **Integritas Waktu & Presensi Aparatur Desa** menggunakan deteksi kamera mandiri yang tervalidasi dengan zona waktu riil Indonesia (WIB).
-3. **Akuntabilitas & Evaluasi Kinerja** melalui wadah pemberian *rating* serta ulasan langsung dari masyarakat.
+**JatiroyomOnline** merupakan platform transformasi digital berskala penuh untuk tata kelola administrasi dan pelayanan publik tingkat desa. Mengusung konsep *Smart Village*, sistem ini mendigitalisasi empat pilar utama interaksi antara pemerintah desa dan masyarakat:
+1. **Layanan Administrasi Surat Warga** secara mandiri dan cepat, menghilangkan birokrasi antrean fisik yang panjang.
+2. **Sistem Pelaporan Insiden Warga (*Citizen Incident Reporting*)** berbasis penjelajah peramban (*browser-native*) yang memanfaatkan sensor GPS gawai dan jepretan langsung kamera depan/belakang untuk melaporkan kerusakan jalan, lingkungan, maupun fasilitas umum.
+3. **Integritas Waktu & Presensi Aparatur Desa** menggunakan deteksi foto kamera mandiri (*webcam snapshot*) yang divalidasi mutlak dengan zona waktu peladen riil Indonesia (WIB).
+4. **Akuntabilitas & Evaluasi Kinerja** melalui ruang pemberian *rating* bintang serta ulasan kepuasan dari masyarakat yang termoderasi secara transparan.
 
-Dikembangkan dengan estetika premium, antarmuka sistem menjamin pengalaman pengguna yang luar biasa di perangkat desktop maupun seluler melalui arsitektur **Card Stacked Layout** tanpa pengguliran mendatar yang kaku.
+Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyamanan visual yang luar biasa di perangkat desktop maupun gawai seluler terkecil melalui arsitektur **Card Stacked Layout** yang responsif tanpa pengguliran mendatar yang mengganggu.
 
 ---
 
 ## ✨ Fitur & Modul Utama
 
 ### 🌐 1. Portal Publik & Transparansi Informasi
-- **Beranda Interaktif**: Etalase visual keindahan desa, struktur kepemimpinan, dan sorotan ulasan pelayanan dari masyarakat.
-- **Agenda & Acara Desa**: Publikasi acara dan jadwal kegiatan desa untuk memastikan masyarakat luas terus mengetahui informasi terkini.
-- **Transparansi Anggaran**: Publikasi grafik dan laporan alokasi anggaran desa yang transparan serta dapat diunduh langsung oleh publik.
-- **Peta Lokasi Akurat**: Sematan peta Google Maps Balai Desa Jatiroyom dengan perlindungan privasi berskala tinggi.
+- **Beranda Interaktif**: Etalase visual keindahan profil desa, struktur kepemimpinan aparatur, dan sorotan ulasan pelayanan riil dari masyarakat.
+- **Agenda & Acara Desa**: Publikasi acara, pengumuman, dan jadwal kegiatan desa untuk memastikan masyarakat luas terus mendapatkan informasi terkini.
+- **Transparansi Anggaran**: Rilis publikasi grafik dan rincian laporan alokasi anggaran belanja desa yang dapat dipantau dan diunduh langsung oleh publik.
+- **Peta Lokasi Terintegrasi**: Sematan peta interaktif menuju titik koordinat pusat layanan desa dengan perlindungan privasi berskala tinggi.
 
-### 👥 2. Dasbor Warga (Layanan Surat & Evaluasi)
-- **Akses Cepat NIK**: Masuk tanpa kata sandi yang rumit, cukup menggunakan NIK.
-- **Pengajuan Surat Dinamis**: Memilih ragam surat pengantar, mengisi formulir spesifik, dan melacak status persetujuan secara seketika (*real-time*).
-- **Unduh Arsip Resmi**: Akses unduh berkas digital (PDF) bertanda tangan elektronik langsung setelah disetujui.
-- **Penilaian Kinerja Aparatur**: Warga dapat memilih aparatur desa, memberikan *rating* bintang (1-5), serta menulis ulasan kepuasan layanan yang nantinya akan dimoderasi oleh sistem sebelum tampil publik.
+### 👥 2. Dasbor Warga (Surat, Laporan Insiden & Evaluasi)
+- **Akses Instan NIK**: Otentikasi mandiri yang ringkas tanpa perlu mengingat kata sandi rumit, cukup menggunakan Nomor Induk Kependudukan (NIK).
+- **Pengajuan Surat Dinamis**: Memilih ragam surat pengantar, mengisi rincian formulir spesifik, dan melacak tahapan verifikasi secara seketika.
+- **Lapor Insiden Lapangan (*Baru*)**: Warga dapat mengadukan fasilitas rusak dengan menyalakan **kamera gawai langsung dari peramban** (mendukung penukaran instan lensa depan/belakang), menyedot titik koordinat presisi tinggi tanpa singgahan *cache* via **Geolocation API**, serta mengoreksi patokan lokasi menggunakan pin peta interaktif gratis (Leaflet.js).
+- **Unduh Arsip Resmi**: Akses unduhan mandiri dokumen digital (PDF) bertanda tangan elektronik langsung setelah disetujui aparat.
+- **Penilaian Kinerja Aparatur**: Memberikan ulasan dan penilaian kepuasan layanan spesifik kepada masing-masing personel aparatur desa.
 
-### 💼 3. Dasbor Aparatur Desa (Presensi Mandiri)
-- **Otentikasi Aman**: Perlindungan ganda berbasis NIK dan PIN rahasia 6-digit.
-- **Presensi Pagi & Sore**: Fitur rekam kehadiran dengan pratinjau foto kamera mandiri (*webcam snapshot*) atau unggahan bukti.
-- **Integritas Waktu Internet**: Sinkronisasi waktu menggunakan konfigurasi basis server (`Asia/Jakarta`) guna menghindari manipulasi jam lokal pada gawai pengguna.
-- **Riwayat Status Kehadiran**: Perekaman pelabelan otomatis (*On Time*, *Telat*, *Tidak Hadir*) dan pemantauan status persetujuan admin.
+### 💼 3. Dasbor Perangkat Desa (Presensi & Tindak Lanjut Aduan)
+- **Otentikasi Berlapis**: Perlindungan masuk berbasis NIK dan PIN otentikasi rahasia 6-digit.
+- **Presensi Pagi & Sore**: Fitur rekam kehadiran harian dengan tangkapan foto langsung dari kamera.
+- **Integritas Waktu Server**: Menolak manipulasi manipulasi jam lokal pada gawai pengguna dengan menyinkronkan cap waktu langsung ke acuan zona peladen (`Asia/Jakarta`).
+- **Respon Aduan Warga (*Baru*)**: Perangkat lapangan dapat meninjau titik pelaporan kerusakan via pintasan rute **Google Maps** serta menyumbangkan progres investigasi/perbaikan langsung dari ponsel mereka di lokasi fisik, yang akan memicu transisi status otomatis.
 
-### 🛡️ 4. Dasbor Administrator (Tata Kelola Menyeluruh)
-- **Verifikasi Alur Surat**: Konfirmasi, penolakan dengan catatan, dan notifikasi pengambilan dokumen fisik di Balai Desa.
-- **Moderasi Presensi Aparatur**: Validasi ganda atas foto bukti masuk/pulang, serta kemampuan mencatat absensi/izin aparatur secara manual yang otomatis terintegrasi ke dasbor aparatur terkait.
-- **Moderasi Penilaian Publik**: Hak penuh untuk menyetujui, menyembunyikan (*toggle visibility*), atau menghapus ulasan yang mengandung unsur tidak pantas sebelum tayang di beranda.
-- **Manajemen Basis Data Lengkap**: Kelola akun warga, kelola akun aparatur dengan pengaturan status aktif/nonaktif, serta pengelolaan anggaran dan jenis surat.
+### 🛡️ 4. Dasbor Administrator (Pusat Kendali Menyeluruh)
+- **Verifikasi Alur Surat**: Konfirmasi penerbitan, penolakan dengan catatan koreksi, dan pengiriman notifikasi pengambilan dokumen fisik di Balai Desa.
+- **Moderasi Laporan Insiden (*Baru*)**: Pusat tinjauan aduan masyarakat yang dilengkapi jendela pratinjau foto bukti beresolusi penuh, filter kategori/status dinamis, serta kendali mutlak untuk mengubah status (*Menunggu* ➔ *Diproses* ➔ *Selesai*) dan memberikan instruksi penanganan.
+- **Moderasi Presensi & Penilaian Publik**: Validasi foto bukti presisi, kemampuan menginput izin/sakit secara manual, serta hak tayang ulasan publik.
+- **Manajemen Basis Data Terpadu**: Pengelolaan basis data penduduk, hak akses aparatur, pengaturan anggaran, dan penyesuaian jenis surat.
 
 ---
 
 ## 🔐 Informasi Kredensial Demo
 
-Sistem menggunakan alur gerbang *login* cerdas. Cukup ketikkan NIK, maka sistem akan otomatis memilah rute dasbor yang dituju atau menampilkan form input PIN rahasia.
+Sistem menerapkan alur gerbang masuk yang efisien. Cukup masukkan NIK terdaftar, maka sistem akan mengarahkan rute dasbor secara otomatis atau meminta verifikasi PIN tambahan.
 
-Gunakan akun terdaftar berikut untuk menguji sistem di lingkungan lokal:
+Gunakan akun terdaftar berikut untuk menguji coba fungsionalitas sistem di lingkungan pengembangan lokal:
 
-| Peran Dasbor | NIK | PIN / Sandi | Akses Menu |
+| Peran Dasbor | NIK | PIN / Sandi | Akses Menu & Kapabilitas |
 | :--- | :---: | :---: | :--- |
-| **Administrator Utama** | `001` | `123456` | Kontrol penuh atas seluruh modul dan moderasi sistem |
-| **Aparatur (Sekretaris Desa)**| `002` | `123456` | Dasbor rekam presensi mandiri dan pantau ulasan warga |
-| **Aparatur (Kaur Keuangan)** | `003` | `123456` | Dasbor rekam presensi mandiri dan pantau ulasan warga |
-| **Warga Desa (Siti Aminah)** | `3374101234560001` | *(Tanpa PIN)* | Akses pengajuan surat dan kirim ulasan kinerja aparatur |
+| **Administrator Utama** | `001` | `123456` | Kontrol penuh atas seluruh modul, persetujuan surat, dan kendali status laporan warga |
+| **Aparatur (Sekretaris Desa)**| `002` | `123456` | Dasbor rekam presensi mandiri dan pelaporan kemajuan aduan lapangan |
+| **Aparatur (Kaur Keuangan)** | `003` | `123456` | Dasbor rekam presensi mandiri dan pelaporan kemajuan aduan lapangan |
+| **Warga Desa (Siti Aminah)** | `3374101234560001` | *(Tanpa PIN)* | Akses permohonan surat, pelaporan insiden fisik, dan ulasan kinerja aparatur |
 
 ---
 
 ## 📱 Keunggulan UX: Responsivitas Mobile Tanpa Geser
 
-Untuk mengatasi kendala umum pada aplikasi web berbasis tabel yang menyulitkan pengguna ponsel, proyek ini mengimplementasikan inovasi CSS `.table-responsive-stack`:
-- **Desktop View**: Ditampilkan dalam bentuk tabel mendatar yang padat, rapi, dan informatif.
-- **Mobile View (`< 768px`)**: Seluruh tabel otomatis menyembunyikan *header* atas dan menyusun ulang setiap baris data menjadi **kartu informasi vertikal** dengan pemisah baris halus. Nama kolom disisipkan otomatis sebagai label di sisi kiri, memberikan kenyamanan navigasi tanpa perlu menggeser layar (*horizontal scroll*).
+Untuk menuntaskan kendala umum pada aplikasi web tradisional yang menampilkan tabel kaku hingga terpotong di layar ponsel, JatiroyomOnline mengimplementasikan inovasi CSS `.table-responsive-stack`:
+- **Desktop View**: Komponen tabel dirender dalam format baris mendatar yang padat, terstruktur, dan informatif.
+- **Mobile View (`< 768px`)**: Seluruh tabel secara mulus menyembunyikan tajuk kolom (*header*) atas dan menyusun ulang setiap baris sel menjadi **kartu susun vertikal independen**. Nama kolom disisipkan secara cerdas sebagai label di sisi kiri, memberikan navigasi sentuh yang alami tanpa mengharuskan pengguna menggeser layar secara horizontal.
+- **Isolasi Z-Index**: Penataan tumpukan komponen interaktif (seperti peta dan *dropdown*) telah dikalibrasi ketat agar tidak pernah memblokir penangkap sentuhan pada tombol navigasi utama.
 
 ---
 
 ## 🚀 Panduan Instalasi Lokal
 
-Ikuti petunjuk di bawah untuk mempersiapkan dan menjalankan aplikasi pada peladen pengembangan Anda:
+Ikuti langkah-langkah di bawah untuk memasang dan menjalankan portal JatiroyomOnline pada peladen lokal Anda:
 
 ### 1. Kloning Repositori
 ```bash
@@ -88,42 +91,55 @@ cd JatiroyomOnline
 ```
 
 ### 2. Instalasi Dependensi
-Pastikan PHP versi 8.1 atau lebih baru dan Composer telah terpasang.
+Pastikan peladen Anda menjalankan PHP versi 8.1 atau yang lebih baru dan Composer telah terpasang.
 ```bash
 composer install
 ```
 
-### 3. Persiapan Variabel Lingkungan
+### 3. Persiapan Konfigurasi Lingkungan
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
-Sesuaikan parameter `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` di dalam berkas `.env` sesuai pengaturan MySQL lokal Anda.
+Buka berkas `.env` dan sesuaikan parameter koneksi basis data (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) dengan kredensial MySQL lokal Anda.
 
-### 4. Migrasi dan Pengisian Seeder Master
-Perintah ini akan menyusun seluruh relasi skema basis data dan menanamkan akun demo beserta data awalan sistem:
+### 4. Migrasi Skema & Penanaman Seeder Master
+Perintah di bawah ini akan membangun fisik tabel dari awal dan menanamkan akun demo beserta data referensi awal:
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-### 5. Optimalisasi Tampilan dan Cache
-Guna memastikan sinkronisasi waktu WIB serta antarmuka tabel bertumpuk termuat sempurna:
+### 5. Optimalisasi Tampilan dan Pembersihan Cache
+Guna memastikan sinkronisasi acuan waktu WIB serta penyegaran tembolok tampilan (*view cache*) termuat dengan sempurna:
 ```bash
 php artisan optimize:clear
-php artisan view:clear
 ```
 
-### 6. Menjalankan Server
+### 6. Menjalankan Peladen Lokal
 ```bash
 php artisan serve
 ```
-Buka tautan `http://localhost:8000` di peramban favorit Anda.
+Akses portal melalui tautan `http://localhost:8000` di peramban gawai atau komputer meja Anda.
 
 ---
 
-## 🔄 Alur Kerja Sistem (Workflow)
+## 🔄 Alur Kerja Sistem (System Workflows)
 
-### A. Alur Permohonan & Pengambilan Surat
+### A. Alur Pelaporan Insiden Warga (*Citizen Incident Workflow*)
+```
+[ Warga: Ambil Foto Gawai & Titik GPS ] ──► [ Status: Menunggu Tinjauan ]
+                                                    │
+             ┌──────────────◄───(Ditolak?)──────────┴──────────(Diterima?)───►─────────────┐
+             ▼                                                                             ▼
+   [ Status: Ditolak ]                                                         [ Status: Diproses Lapangan ]
+   (Catatan desa terlampir)                                                    (Perangkat memberi catatan progres)
+                                                                                           │
+                                                                                           ▼
+                                                                               [ Status Akhir: Selesai ]
+                                                                               (Insiden tuntas diperbaiki)
+```
+
+### B. Alur Permohonan & Pengambilan Surat
 ```
 [ Warga: Pilih Surat & Isi Form ] ──► [ Status: Menunggu ]
                                             │
@@ -137,13 +153,6 @@ Buka tautan `http://localhost:8000` di peramban favorit Anda.
                                                                   (Klaim di Balai Desa)
 ```
 
-### B. Alur Presensi & Evaluasi Aparatur
-```
-[ Aparatur: Snap Foto Pagi/Sore ] ──► [ Sinkron Waktu Internet ] ──► [ Status: Terkonfirmasi ]
-                                                                             │
-[ Warga: Beri Rating & Ulasan ]   ──► [ Moderasi Admin ]         ──► [ Tampil di Beranda Desa ]
-```
-
 ---
 
 <br>
@@ -151,7 +160,7 @@ Buka tautan `http://localhost:8000` di peramban favorit Anda.
 <div align="center">
 
 ## 📸 GALERI ANTARMUKA & CUPLIKAN LAYAR
-Berikut adalah dokumentasi visual dari antarmuka sistem yang dikembangkan.
+Berikut adalah dokumentasi visual dari antarmuka portal desa yang telah dikembangkan.
 
 </div>
 
@@ -175,6 +184,6 @@ Berikut adalah dokumentasi visual dari antarmuka sistem yang dikembangkan.
 <br>
 
 **Didedikasikan untuk memajukan kualitas transparansi dan tata kelola desa berbasis teknologi digital.**  
-© Hak Cipta Sistem Informasi Smart Village JatiroyomOnline.
+© Hak Cipta Portal Administrasi Cerdas **JatiroyomOnline**.
 
 </div>

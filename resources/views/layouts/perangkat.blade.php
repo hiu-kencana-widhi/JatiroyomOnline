@@ -52,7 +52,7 @@
             padding: 12px 25px;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1045;
         }
         .nav-sidebar .nav-link {
             color: #94a3b8;
@@ -195,6 +195,9 @@
         <nav class="nav-sidebar">
             <a href="{{ route('perangkat.dashboard') }}" class="nav-link {{ request()->routeIs('perangkat.dashboard') ? 'active' : '' }}">
                 <i class="bi bi-grid-fill"></i> Dashboard
+            </a>
+            <a href="{{ route('perangkat.laporan.index') }}" class="nav-link {{ request()->routeIs('perangkat.laporan.*') ? 'active' : '' }}">
+                <i class="bi bi-megaphone-fill" style="color: var(--primary-teal-light);"></i> Laporan Warga
             </a>
             <div class="mt-5 px-3">
                 <form action="{{ route('logout') }}" method="POST">
