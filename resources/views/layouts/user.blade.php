@@ -197,6 +197,9 @@
             <a href="{{ route('user.laporan.index') }}" class="nav-link {{ request()->routeIs('user.laporan.*') ? 'active' : '' }}">
                 <i class="bi bi-megaphone-fill"></i> Lapor Insiden
             </a>
+            <a href="{{ route('user.umkm.index') }}" class="nav-link {{ request()->routeIs('user.umkm.*') ? 'active' : '' }}">
+                <i class="bi bi-shop"></i> Toko / Usaha Saya
+            </a>
             <a href="{{ route('user.profil') }}" class="nav-link {{ request()->routeIs('user.profil') ? 'active' : '' }}">
                 <i class="bi bi-person-circle"></i> Profil Saya
             </a>
