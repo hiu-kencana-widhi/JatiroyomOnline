@@ -128,11 +128,14 @@ Akses portal melalui tautan `http://localhost:8000` di peramban gawai atau kompu
 
 ## 🔄 Alur Kerja Sistem (System Workflows)
 
+Berikut adalah pemetaan diagram alur kerja terperinci yang mencakup seluruh antarmuka dan modul fungsional di portal **JatiroyomOnline**:
+
 ### A. Alur Navigasi & Transparansi Publik (*Public Gateway*)
 ```
 [ Pengunjung Web / Warga Umum ]
                │
-               ├─► [ Beranda Portal ] ──────► Akses Profil, Visi-Misi, & Etalase Ulasan Pilihan
+               ├─► [ Beranda Portal ] ──────► Akses Profil Desa, Visi-Misi, & Etalase Ulasan Pilihan
+               ├─► [ Siaran Darurat ] ──────► Spanduk Melayang Otomatis Tampil jika Ada Info/Pemadaman/Bansos
                ├─► [ Transparansi Dana ] ───► Unduh & Pantau Alokasi Anggaran Belanja Desa Riil
                └─► [ Agenda Acara Desa ] ───► Tinjau Informasi Kegiatan, Tanggal Pelaksanaan, & Pengumuman
 ```
@@ -171,7 +174,23 @@ Akses portal melalui tautan `http://localhost:8000` di peramban gawai atau kompu
                                                                                                           (Kerusakan tuntas diatasi)
 ```
 
-### D. Alur Presensi Mandiri Harian Aparatur (*Aparatur Integrity*)
+### D. Alur Siaran Spanduk Darurat & Pengumuman (*Broadcast Banner Control*)
+```
+[ Admin Utama: Terbitkan Spanduk Baru ] ──► [ Lengkapi Judul, Pesan, Tipe Urgensi, & Lampiran PDF ]
+                                                                   │
+                                                      [ Masa Tayang Dijadwalkan ]
+                                                                   │
+               ┌───────────────────────────────────────────────────┴───────────────────────────────────────────────────┐
+               ▼                                                                                                       ▼
+   [ Dirender Seketika Secara Global ]                                                                     [ Kedaluwarsa Otomatis ]
+   (Tampil melayang di Beranda Publik & Dasbor Warga)                                                      (Melewati Batas Waktu Akhir)
+                                                                                                                       │
+                                                                                                                       ▼
+                                                                                                           [ Spanduk Turun Layar ]
+                                                                                                           (Tersimpan di Riwayat Arsip)
+```
+
+### E. Alur Presensi Mandiri Harian Aparatur (*Aparatur Integrity*)
 ```
 [ Aparatur: Input NIK & PIN Rahasia ] ──► [ Rekam Kehadiran: Ambil Foto Pagi/Sore ]
                                                           │
@@ -185,7 +204,7 @@ Akses portal melalui tautan `http://localhost:8000` di peramban gawai atau kompu
                                             [ Validasi / Pemantauan Admin ]
 ```
 
-### E. Alur Pemberian & Moderasi Ulasan Kepuasan (*Public Accountability*)
+### F. Alur Pemberian & Moderasi Ulasan Kepuasan (*Public Accountability*)
 ```
 [ Warga: Pilih Nama Aparatur ] ──► [ Input Rating Bintang (1-5) & Teks Ulasan ]
                                                           │
