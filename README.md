@@ -1,3 +1,5 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=4E9B9B&height=100&section=header" width="150%"/>
+
 <div align="center">
 
 # 🏛️ JATIROYOM ONLINE
@@ -281,3 +283,6 @@ Berikut adalah dokumentasi visual dari antarmuka portal desa yang telah dikemban
 © Hak Cipta Portal Administrasi Cerdas **JatiroyomOnline**.
 
 </div>
+
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=4E9B9B&height=100&section=footerwidth="150%"/>
