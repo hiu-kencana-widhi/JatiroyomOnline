@@ -1,6 +1,6 @@
-
+src="https://capsule-render.vercel.app/api?type=waving&color=0D6EFD&height=150&section=header" width="100%"/>
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0D6EFD&height=150&section=header" width="100%"/>
+<img 
 # 🏛️ JATIROYOM ONLINE
 **Sistem Informasi Manajemen Surat, Laporan Warga, Presensi Aparatur, Pelayanan Publik & Pasar Digital Terpadu**
 
