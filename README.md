@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0D6EFD&height=150&section=header" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0D6EFD&height=200&section=header" width="100%"/>
 <div align="center">
 
 # 🏛️ JATIROYOM ONLINE
