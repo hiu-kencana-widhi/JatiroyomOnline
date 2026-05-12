@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Premium Parallax Header -->
-<header class="page-header py-5 text-white position-relative overflow-hidden text-center" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('{{ asset('image/gambar-umkm-desa-jatiroyom.png') }}') no-repeat center center/cover; min-height: 40vh; display: flex; align-items: center; justify-content: center;">
+<header class="page-header py-5 text-white position-relative overflow-hidden text-center" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('{{ asset('image/gambar-umkm-desa-jatiroyom.png') }}'); background-size: cover; background-position: center; min-height: 40vh; display: flex; align-items: center; justify-content: center;">
     <div class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-10"></div>
     <div class="container position-relative z-1">
         <span class="badge bg-success rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase shadow-sm" style="letter-spacing: 2px;">PASAR DIGITAL DESA</span>
