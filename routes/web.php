@@ -44,6 +44,7 @@ Route::get('/acara', [HomeController::class, 'acara'])->name('acara');
 Route::get('/anggaran', [HomeController::class, 'anggaran'])->name('anggaran');
 Route::get('/anggaran/download/{anggaran}', [HomeController::class, 'downloadAnggaran'])->name('anggaran.download');
 Route::post('/penilaian', [PenilaianController::class, 'store'])->name('penilaian.store')->middleware('auth');
+Route::get('/umkm', [\App\Http\Controllers\UmkmPublikController::class, 'index'])->name('umkm.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,9 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
     Route::get('/laporan', [\App\Http\Controllers\User\LaporanWargaController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/buat', [\App\Http\Controllers\User\LaporanWargaController::class, 'create'])->name('laporan.create');
     Route::post('/laporan', [\App\Http\Controllers\User\LaporanWargaController::class, 'store'])->name('laporan.store');
+
+    // Etalase Toko / UMKM Mandiri Warga
+    Route::resource('umkm', \App\Http\Controllers\User\UmkmController::class)->except(['show']);
 });
 
 /*
@@ -139,6 +143,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Manajemen Spanduk Pengumuman Desa Global
     Route::patch('/pengumuman/{pengumuman}/toggle', [\App\Http\Controllers\Admin\PengumumanController::class, 'toggle'])->name('pengumuman.toggle');
     Route::resource('pengumuman', \App\Http\Controllers\Admin\PengumumanController::class)->except(['show', 'create', 'edit']);
+
+    // Moderasi Pasar Digital & UMKM Desa
+    Route::patch('/umkm/{umkm}/verifikasi', [\App\Http\Controllers\Admin\UmkmController::class, 'verifikasi'])->name('umkm.verifikasi');
+    Route::resource('umkm', \App\Http\Controllers\Admin\UmkmController::class)->only(['index', 'destroy']);
 });
 
 /*
