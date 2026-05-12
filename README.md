@@ -146,7 +146,33 @@ Buka tautan `http://localhost:8000` di peramban favorit Anda.
 
 ---
 
+<br>
+
 <div align="center">
+
+## 📸 GALERI ANTARMUKA & CUPLIKAN LAYAR
+Berikut adalah dokumentasi visual dari antarmuka sistem yang dikembangkan.
+
+</div>
+
+<br>
+
+### 🖥️ Cuplikan Antarmuka Halaman Publik
+*Antarmuka beranda, transparansi informasi anggaran, dan agenda kegiatan desa yang dapat diakses oleh masyarakat umum.*
+
+#### 1. Beranda Utama (Hero & Navigasi)
+![Beranda Utama](public/image/readme/public/beranda.png)
+
+#### 2. Transparansi Anggaran Desa
+![Anggaran Desa](public/image/readme/public/anggaran.png)
+
+#### 3. Halaman Informasi Acara & Kegiatan
+![Acara Desa](public/image/readme/public/acara.png)
+
+---
+
+<div align="center">
+<br>
 
 **Didedikasikan untuk memajukan kualitas transparansi dan tata kelola desa berbasis teknologi digital.**  
 © Hak Cipta Sistem Informasi Smart Village Desa Jatiroyom.
