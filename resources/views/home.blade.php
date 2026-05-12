@@ -273,31 +273,6 @@
 <!-- Hero Section -->
 <section class="hero-section text-center px-3">
     <div class="container hero-content">
-        <!-- Ticker Pengumuman Desa Terpusat (Ultra-Sleek & Premium) -->
-        @php
-            $pengumumanAktif = \App\Models\PengumumanDesa::where('status_aktif', true)
-                ->where('tanggal_selesai', '>=', now())
-                ->latest()
-                ->first();
-        @endphp
-        @if($pengumumanAktif)
-        <div class="d-inline-flex align-items-center bg-white bg-opacity-10 border border-white border-opacity-20 rounded-pill p-1 pe-3 mb-4 shadow-lg" style="max-width: 100%; backdrop-filter: blur(12px); transform: translateZ(0);">
-            <span class="badge bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} rounded-pill px-3 py-2 fw-bold text-uppercase me-2 shadow-sm" style="font-size: 0.65rem; letter-spacing: 1px;">
-                <i class="bi bi-megaphone-fill me-1"></i> {{ $pengumumanAktif->tipe_spanduk }}
-            </span>
-            <div class="text-start overflow-hidden text-nowrap" style="max-width: 450px;">
-                <marquee behavior="scroll" direction="left" scrollamount="4" class="text-white small fw-medium m-0 align-middle" style="max-width: 100%;">
-                    <strong class="text-warning">{{ $pengumumanAktif->judul }}:</strong> {{ $pengumumanAktif->isi_pengumuman }}
-                </marquee>
-            </div>
-            @if($pengumumanAktif->file_lampiran)
-                <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-link text-white p-0 ms-2 ps-2 border-start border-white border-opacity-20 fw-bold small text-decoration-none" data-bs-toggle="tooltip" title="Unduh Bukti Lampiran">
-                    <i class="bi bi-cloud-arrow-down-fill text-info fs-6"></i>
-                </a>
-            @endif
-        </div>
-        @endif
-
         <span class="badge bg-primary rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase" style="letter-spacing: 2px;">Selamat Datang</span>
         <h1 class="display-2 fw-bold mb-3">Pesona Desa <span class="text-primary">Jatiroyom</span></h1>
         <p class="lead mb-5 mx-auto opacity-75" style="max-width: 700px;">
@@ -336,6 +311,48 @@
     </div>
 
     <div class="container py-lg-5 position-relative">
+        <!-- Spanduk Siaran Pengumuman Paten (Besar & Elegan seperti Baliho Digital) -->
+        @php
+            $pengumumanAktif = \App\Models\PengumumanDesa::where('status_aktif', true)
+                ->where('tanggal_selesai', '>=', now())
+                ->latest()
+                ->first();
+        @endphp
+        @if($pengumumanAktif)
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="card border-0 rounded-4 shadow-sm overflow-hidden" style="background: {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%)' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)' : 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)') }}; border-left: 6px solid {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#dc3545' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#f59e0b' : '#0d6efd') }} !important;">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                            <div class="d-flex align-items-start gap-3 gap-md-4">
+                                <div class="p-3 rounded-circle bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} text-white shadow-sm flex-shrink-0 mt-1">
+                                    <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'megaphone-fill') }}" style="font-size: 1.8rem;"></i>
+                                </div>
+                                <div>
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <span class="badge bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} rounded-pill px-3 py-1 text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">
+                                            Siaran {{ $pengumumanAktif->tipe_spanduk }}
+                                        </span>
+                                        <small class="text-muted fw-bold"><i class="bi bi-calendar-event me-1"></i> {{ $pengumumanAktif->created_at->format('d M Y') }}</small>
+                                    </div>
+                                    <h3 class="fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">{{ $pengumumanAktif->judul }}</h3>
+                                    <p class="text-secondary mb-0 fs-6 lh-base" style="max-width: 750px;">{{ $pengumumanAktif->isi_pengumuman }}</p>
+                                </div>
+                            </div>
+                            @if($pengumumanAktif->file_lampiran)
+                                <div class="flex-shrink-0 text-md-end pt-2 pt-md-0 border-top border-md-0 border-secondary border-opacity-10 mt-3 mt-md-0">
+                                    <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} btn-premium rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center justify-content-center text-nowrap">
+                                        <i class="bi bi-file-earmark-arrow-down-fill me-2"></i> Unduh Lampiran
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <!-- Visi: Centered Top Layout -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
