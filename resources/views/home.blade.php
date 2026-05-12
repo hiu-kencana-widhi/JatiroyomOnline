@@ -270,42 +270,34 @@
 
 @section('content')
 
-<!-- Spanduk Siaran Pengumuman Global -->
-@php
-    $pengumumanAktif = \App\Models\PengumumanDesa::where('status_aktif', true)
-        ->where('tanggal_selesai', '>=', now())
-        ->latest()
-        ->first();
-@endphp
-@if($pengumumanAktif)
-<div class="position-absolute w-100 start-0" style="top: 76px; z-index: 50;">
-    <div class="container">
-        <div class="alert alert-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} alert-dismissible fade show border-0 shadow-lg rounded-4 text-start p-3 d-flex align-items-center justify-content-between flex-wrap gap-2" style="background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);">
-            <div class="d-flex align-items-center gap-3">
-                <div class="p-2 rounded-circle bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} bg-opacity-10 text-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }}">
-                    <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'info-circle-fill') }} fs-4"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.95rem;">{{ $pengumumanAktif->judul }}</h6>
-                    <p class="small text-muted mb-0 text-truncate" style="max-width: 500px;">{{ $pengumumanAktif->isi_pengumuman }}</p>
-                </div>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-                @if($pengumumanAktif->file_lampiran)
-                    <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-outline-dark rounded-pill fw-bold px-3 py-1 shadow-sm" style="position: relative; z-index: 60;">
-                        <i class="bi bi-file-earmark-arrow-down-fill text-primary me-1"></i> Unduh Lampiran
-                    </a>
-                @endif
-                <button type="button" class="btn-close position-static p-1 m-0" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
-
 <!-- Hero Section -->
 <section class="hero-section text-center px-3">
     <div class="container hero-content">
+        <!-- Ticker Pengumuman Desa Terpusat (Ultra-Sleek & Premium) -->
+        @php
+            $pengumumanAktif = \App\Models\PengumumanDesa::where('status_aktif', true)
+                ->where('tanggal_selesai', '>=', now())
+                ->latest()
+                ->first();
+        @endphp
+        @if($pengumumanAktif)
+        <div class="d-inline-flex align-items-center bg-white bg-opacity-10 border border-white border-opacity-20 rounded-pill p-1 pe-3 mb-4 shadow-lg" style="max-width: 100%; backdrop-filter: blur(12px); transform: translateZ(0);">
+            <span class="badge bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} rounded-pill px-3 py-2 fw-bold text-uppercase me-2 shadow-sm" style="font-size: 0.65rem; letter-spacing: 1px;">
+                <i class="bi bi-megaphone-fill me-1"></i> {{ $pengumumanAktif->tipe_spanduk }}
+            </span>
+            <div class="text-start overflow-hidden text-nowrap" style="max-width: 450px;">
+                <marquee behavior="scroll" direction="left" scrollamount="4" class="text-white small fw-medium m-0 align-middle" style="max-width: 100%;">
+                    <strong class="text-warning">{{ $pengumumanAktif->judul }}:</strong> {{ $pengumumanAktif->isi_pengumuman }}
+                </marquee>
+            </div>
+            @if($pengumumanAktif->file_lampiran)
+                <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-link text-white p-0 ms-2 ps-2 border-start border-white border-opacity-20 fw-bold small text-decoration-none" data-bs-toggle="tooltip" title="Unduh Bukti Lampiran">
+                    <i class="bi bi-cloud-arrow-down-fill text-info fs-6"></i>
+                </a>
+            @endif
+        </div>
+        @endif
+
         <span class="badge bg-primary rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase" style="letter-spacing: 2px;">Selamat Datang</span>
         <h1 class="display-2 fw-bold mb-3">Pesona Desa <span class="text-primary">Jatiroyom</span></h1>
         <p class="lead mb-5 mx-auto opacity-75" style="max-width: 700px;">
