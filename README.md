@@ -83,8 +83,8 @@ Ikuti petunjuk di bawah untuk mempersiapkan dan menjalankan aplikasi pada pelade
 
 ### 1. Kloning Repositori
 ```bash
-git clone https://github.com/username-anda/management-surat-desa-jatiroyom.git
-cd management-surat-desa-jatiroyom
+git clone https://github.com/hiu-kencana-widhi/jatiroyomonline.git
+cd jatiroyomonline
 ```
 
 ### 2. Instalasi Dependensi
