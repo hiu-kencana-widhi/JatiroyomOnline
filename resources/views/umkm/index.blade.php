@@ -4,16 +4,16 @@
 
 @section('styles')
 <style>
-    .umkm-header {
+    .page-header {
         position: relative;
         min-height: 60vh;
         margin-top: -76px;
         display: flex;
         align-items: center;
-        background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('{{ asset('image/gambar-umkm-desa-jatiroyom.png') }}');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+        background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('{{ asset('image/gambar-umkm-desa-jatiroyom.png') }}?v={{ time() }}') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
         color: white;
         overflow: hidden;
         transition: margin-top 0.35s ease-in-out;
@@ -21,7 +21,7 @@
         padding-top: 76px; /* Offset for navbar height */
     }
 
-    .umkm-header-content {
+    .page-header-content {
         z-index: 10;
         animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translateZ(0);
@@ -32,7 +32,7 @@
         to { opacity: 1; transform: translateY(0) translateZ(0); }
     }
 
-    .umkm-header.pushed {
+    .page-header.pushed {
         margin-top: 0 !important;
     }
 
@@ -126,9 +126,8 @@
 
 @section('content')
 <!-- Premium Parallax Header -->
-<header class="umkm-header text-center">
-    <div class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-10"></div>
-    <div class="container umkm-header-content">
+<section class="page-header text-center">
+    <div class="container page-header-content">
         <span class="badge bg-success rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase shadow-sm" style="letter-spacing: 2px;">PASAR DIGITAL DESA</span>
         <h1 class="display-3 fw-bold mb-3 tracking-tight" style="font-family: 'Outfit', sans-serif;">Katalog Etalase <span class="text-success">UMKM</span></h1>
         <p class="lead max-w-2xl mx-auto text-white-50 mb-0" style="max-width: 700px;">
@@ -142,14 +141,14 @@
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f8fafc"></path>
         </svg>
     </div>
-</header>
+</section>
 
 <section class="py-5 min-vh-100" style="background-color: #f8fafc;">
     <div class="container py-4">
         
         <!-- Baris Pencarian dan Saringan Bento Kategori -->
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 umkm-header-content">
+            <div class="col-lg-10 page-header-content">
                 <div class="card border-0 shadow-sm rounded-4 bg-white p-2 mb-4">
                     <form action="{{ route('umkm.index') }}" method="GET" class="d-flex flex-column flex-md-row gap-2">
                         <!-- Pertahankan Kategori Saat Ini Jika Ada -->
@@ -316,7 +315,7 @@
 <script>
     const navbar = document.querySelector('.navbar');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    const header = document.querySelector('.umkm-header');
+    const header = document.querySelector('.page-header');
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
