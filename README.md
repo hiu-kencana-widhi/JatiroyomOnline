@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=4E9B9B&height=150&section=header" width="50%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=4E9B9B&height=150&section=header" width="100%"/>
 
 <div align="center">
 
@@ -285,4 +285,4 @@ Berikut adalah dokumentasi visual dari antarmuka portal desa yang telah dikemban
 </div>
 
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=4E9B9B&height=200&section=footer" width="150%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=4E9B9B&height=200&section=footer" width="100%"/>
