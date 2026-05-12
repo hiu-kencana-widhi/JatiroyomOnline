@@ -247,9 +247,9 @@
                     <li class="nav-item"><a class="nav-link px-3 {{ request()->routeIs('anggaran') ? 'active' : '' }}" href="{{ route('anggaran') }}">Anggaran</a></li>
                     <li class="nav-item ms-lg-3">
                         @auth
-                            <a class="btn btn-login" href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : route('user.dashboard') }}">Dashboard</a>
+                            <a class="btn btn-login" href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : (auth()->user()->role == 'perangkat_desa' ? route('perangkat.dashboard') : route('user.dashboard')) }}">Login</a>
                         @else
-                            <a class="btn btn-login" href="{{ route('login') }}">Masuk NIK</a>
+                            <a class="btn btn-login" href="{{ route('login') }}">Login</a>
                         @endauth
                     </li>
                 </ul>
@@ -313,12 +313,13 @@
                     <h6 class="footer-title">Lokasi Balai Desa</h6>
                     <div class="map-container shadow-lg">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.435579973686!2d109.432655!3d-6.89123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fc6d6e7f8d9b7%3A0x4027a76e3532980!2sJatiroyom%2C%20Bodeh%2C%20Pemalang%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1715200000000!5m2!1sen!2sid" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.9694443689373!2d109.48115467421117!3d-7.012876468692579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fde0314e45a91%3A0x28ff274f592e5266!2sBalai%20Desa%20Jatiroyom!5e0!3m2!1sid!2sid!4v1778600355455!5m2!1sid!2sid" 
                             width="100%" 
                             height="160" 
                             style="border:0;" 
                             allowfullscreen="" 
-                            loading="lazy">
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>

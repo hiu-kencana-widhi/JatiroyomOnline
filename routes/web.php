@@ -22,6 +22,18 @@ use App\Http\Controllers\User\SuratController;
 use App\Http\Controllers\User\RiwayatController;
 use App\Http\Controllers\User\ProfilController;
 
+// Perangkat Controllers
+use App\Http\Controllers\Perangkat\PerangkatDashboardController;
+use App\Http\Controllers\Perangkat\AbsensiController;
+
+// Admin Perangkat Controllers
+use App\Http\Controllers\Admin\KelolaPerangkatController;
+use App\Http\Controllers\Admin\RekapAbsensiController;
+use App\Http\Controllers\Admin\ModerasiPenilaianController;
+
+// Public Penilaian Controller
+use App\Http\Controllers\Public\PenilaianController;
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
@@ -31,6 +43,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/acara', [HomeController::class, 'acara'])->name('acara');
 Route::get('/anggaran', [HomeController::class, 'anggaran'])->name('anggaran');
 Route::get('/anggaran/download/{anggaran}', [HomeController::class, 'downloadAnggaran'])->name('anggaran.download');
+Route::post('/penilaian', [PenilaianController::class, 'store'])->name('penilaian.store')->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -97,4 +110,30 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
     Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
     Route::resource('anggaran', AnggaranController::class)->only(['index', 'store', 'destroy']);
+    
+    // Manajemen Perangkat Desa & Absensi
+    Route::get('/kelola-perangkat', [KelolaPerangkatController::class, 'index'])->name('kelola-perangkat.index');
+    Route::post('/kelola-perangkat', [KelolaPerangkatController::class, 'store'])->name('kelola-perangkat.store');
+    Route::put('/kelola-perangkat/{user}', [KelolaPerangkatController::class, 'update'])->name('kelola-perangkat.update');
+    Route::delete('/kelola-perangkat/{user}', [KelolaPerangkatController::class, 'destroy'])->name('kelola-perangkat.destroy');
+
+    // Rekap & Konfirmasi Absensi
+    Route::get('/rekap-absensi', [RekapAbsensiController::class, 'index'])->name('rekap-absensi.index');
+    Route::patch('/rekap-absensi/{absensi}/konfirmasi', [RekapAbsensiController::class, 'konfirmasi'])->name('rekap-absensi.konfirmasi');
+    Route::post('/rekap-absensi/manual', [RekapAbsensiController::class, 'storeManual'])->name('rekap-absensi.manual');
+
+    // Moderasi Penilaian Warga
+    Route::get('/moderasi-penilaian', [ModerasiPenilaianController::class, 'index'])->name('moderasi-penilaian.index');
+    Route::patch('/moderasi-penilaian/{penilaian}/toggle', [ModerasiPenilaianController::class, 'toggle'])->name('moderasi-penilaian.toggle');
+    Route::delete('/moderasi-penilaian/{penilaian}', [ModerasiPenilaianController::class, 'destroy'])->name('moderasi-penilaian.destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Perangkat Desa Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'role:perangkat_desa'])->prefix('perangkat')->name('perangkat.')->group(function () {
+    Route::get('/dashboard', [PerangkatDashboardController::class, 'index'])->name('dashboard');
+    Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');
 });

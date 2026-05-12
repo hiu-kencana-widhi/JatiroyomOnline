@@ -24,7 +24,10 @@ class LoginController extends Controller
             return back()->withErrors(['nik' => 'NIK tidak ditemukan atau belum terdaftar.']);
         }
 
-        if ($user->role === 'admin') {
+        if ($user->role === 'admin' || $user->role === 'perangkat_desa') {
+            if ($user->role === 'perangkat_desa' && !$user->status_aktif) {
+                return back()->withErrors(['nik' => 'Akun Perangkat Desa ini sedang dinonaktifkan.']);
+            }
             session(['pending_admin_nik' => $request->nik]);
             return redirect()->route('login.pin.form');
         }
@@ -50,7 +53,7 @@ class LoginController extends Controller
         ]);
 
         $nik = session('pending_admin_nik');
-        $user = \App\Models\User::where('nik', $nik)->where('role', 'admin')->first();
+        $user = \App\Models\User::where('nik', $nik)->whereIn('role', ['admin', 'perangkat_desa'])->first();
 
         if (!$user || !\Illuminate\Support\Facades\Hash::check($request->pin, $user->password)) {
             return back()->withErrors(['pin' => 'PIN salah!']);
@@ -58,9 +61,14 @@ class LoginController extends Controller
 
         session()->forget('pending_admin_nik');
         \Illuminate\Support\Facades\Auth::login($user);
-        \App\Models\System\LogAktivitas::record('Login Admin', 'Administrator login');
-        
-        return redirect()->route('admin.dashboard');
+
+        if ($user->role === 'admin') {
+            \App\Models\System\LogAktivitas::record('Login Admin', 'Administrator login');
+            return redirect()->route('admin.dashboard');
+        }
+
+        \App\Models\System\LogAktivitas::record('Login Perangkat', 'Perangkat Desa login');
+        return redirect()->route('perangkat.dashboard');
     }
 
     public function logout(Request $request)

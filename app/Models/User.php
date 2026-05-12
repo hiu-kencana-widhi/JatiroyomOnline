@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Surat\PengajuanSurat;
+use App\Models\Perangkat\AbsensiPerangkat;
+use App\Models\Perangkat\PenilaianPerangkat;
 
 class User extends Authenticatable
 {
@@ -33,6 +35,9 @@ class User extends Authenticatable
         'rt_rw',
         'password',
         'role',
+        'jabatan',
+        'foto_profil',
+        'status_aktif',
     ];
 
     /**
@@ -56,11 +61,28 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'tanggal_lahir' => 'date',
+            'status_aktif' => 'boolean',
         ];
     }
 
     public function pengajuanSurat()
     {
         return $this->hasMany(PengajuanSurat::class);
+    }
+
+    /**
+     * Relasi riwayat absensi (khusus role perangkat_desa).
+     */
+    public function absensi()
+    {
+        return $this->hasMany(AbsensiPerangkat::class, 'user_id');
+    }
+
+    /**
+     * Relasi ulasan/penilaian yang diterima (khusus role perangkat_desa).
+     */
+    public function penilaian()
+    {
+        return $this->hasMany(PenilaianPerangkat::class, 'perangkat_id');
     }
 }

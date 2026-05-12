@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Warga - Desa Jatiroyom</title>
+    <title>Panel Perangkat Desa - Jatiroyom</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         :root {
-            --sidebar-width: 260px;
-            --primary-blue: #2563eb;
+            --sidebar-width: 280px;
+            --primary-bg: #0f172a;
+            --primary-teal: #0d9488;
+            --primary-teal-light: #ccfbf1;
         }
         body {
             font-family: 'Outfit', sans-serif;
             background-color: #f8fafc;
             overflow-x: hidden;
+            color: #1e293b;
         }
         .sidebar {
             width: var(--sidebar-width);
@@ -23,18 +26,22 @@
             position: fixed;
             top: 0;
             left: 0;
-            background: #fff;
-            border-right: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            background: var(--primary-bg);
+            color: #fff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1050;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+            overflow-y: auto;
         }
         .sidebar.collapsed {
             left: calc(-1 * var(--sidebar-width));
         }
         .main-wrapper {
             margin-left: var(--sidebar-width);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .main-wrapper.expanded {
             margin-left: 0;
@@ -48,7 +55,7 @@
             z-index: 1000;
         }
         .nav-sidebar .nav-link {
-            color: #64748b;
+            color: #94a3b8;
             padding: 12px 18px;
             border-radius: 12px;
             margin: 6px 16px;
@@ -66,17 +73,18 @@
             transition: transform 0.2s ease;
         }
         .nav-sidebar .nav-link.active {
-            background-color: #eff6ff;
-            color: var(--primary-blue);
+            background-color: var(--primary-teal);
+            color: #fff;
             font-weight: 600;
         }
         .nav-sidebar .nav-link:hover:not(.active) {
-            background-color: #f1f5f9;
-            color: #1e293b;
+            background-color: rgba(255, 255, 255, 0.06);
+            color: #f8fafc;
             transform: translateX(6px);
         }
         .content-area {
-            padding: 25px;
+            padding: 30px;
+            flex: 1;
         }
         .card {
             border: none;
@@ -89,14 +97,14 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.4);
             z-index: 1040;
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(4px);
         }
         @media (max-width: 991.98px) {
             .sidebar { left: calc(-1 * var(--sidebar-width)); }
             .sidebar.show { left: 0; }
             .main-wrapper { margin-left: 0; }
             .sidebar-overlay.show { display: block; }
-            .content-area { padding: 15px; }
+            .content-area { padding: 20px; }
         }
 
         /* Responsive Table Stack */
@@ -178,29 +186,20 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="sidebar" id="sidebar">
-        <div class="p-4 mb-3 d-flex align-items-center">
-            <div class="bg-primary bg-opacity-10 rounded-3 p-2 me-2">
-                <i class="bi bi-person-badge text-primary fs-4"></i>
+        <div class="p-4 mb-3 d-flex align-items-center border-bottom border-secondary border-opacity-25">
+            <div class="rounded-3 p-2 me-2" style="background-color: var(--primary-teal);">
+                <i class="bi bi-shield-check fs-4 text-white"></i>
             </div>
-            <span class="fw-bold fs-5 tracking-tight text-dark">Panel<span class="text-primary">Warga</span></span>
+            <span class="fw-bold fs-5 tracking-tight text-white">Aparatur<span style="color: var(--primary-teal-light);">Desa</span></span>
         </div>
         <nav class="nav-sidebar">
-            <a href="{{ route('user.dashboard') }}" class="nav-link {{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
-                <i class="bi bi-house-door-fill"></i> Dashboard
-            </a>
-            <a href="{{ route('user.surat.pilih') }}" class="nav-link {{ request()->routeIs('user.surat.*') ? 'active' : '' }}">
-                <i class="bi bi-file-earmark-plus-fill"></i> Buat Surat
-            </a>
-            <a href="{{ route('user.riwayat') }}" class="nav-link {{ request()->routeIs('user.riwayat') ? 'active' : '' }}">
-                <i class="bi bi-clock-history"></i> Riwayat
-            </a>
-            <a href="{{ route('user.profil') }}" class="nav-link {{ request()->routeIs('user.profil') ? 'active' : '' }}">
-                <i class="bi bi-person-circle"></i> Profil Saya
+            <a href="{{ route('perangkat.dashboard') }}" class="nav-link {{ request()->routeIs('perangkat.dashboard') ? 'active' : '' }}">
+                <i class="bi bi-grid-fill"></i> Dashboard
             </a>
             <div class="mt-5 px-3">
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-outline-danger w-100 rounded-pill fw-bold">
+                    <button type="submit" class="btn btn-outline-danger w-100 rounded-pill d-flex align-items-center justify-content-center fw-bold">
                         <i class="bi bi-box-arrow-left me-2"></i> Keluar
                     </button>
                 </form>
@@ -214,17 +213,17 @@
                 <button class="btn btn-light rounded-circle me-3" id="toggleBtn">
                     <i class="bi bi-list fs-5"></i>
                 </button>
-                <h6 class="mb-0 fw-bold d-none d-md-block text-dark">Layanan Mandiri Desa Jatiroyom</h6>
+                <h6 class="mb-0 fw-bold d-none d-md-block text-dark">Sistem Presensi & Kinerja Aparatur</h6>
             </div>
             <div class="dropdown">
                 <div class="d-flex align-items-center bg-light p-1 pe-3 rounded-pill" role="button" data-bs-toggle="dropdown">
-                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                    <div class="text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="background-color: var(--primary-teal); width: 32px; height: 32px;">
                         {{ substr(auth()->user()->nama_lengkap, 0, 1) }}
                     </div>
                     <div class="small fw-bold d-none d-sm-block">{{ explode(' ', auth()->user()->nama_lengkap)[0] }}</div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-2" style="border-radius: 12px;">
-                    <li><a class="dropdown-item rounded-3" href="{{ route('user.profil') }}"><i class="bi bi-person me-2"></i> Profil Saya</a></li>
+                    <li><span class="dropdown-item-text small text-muted">{{ auth()->user()->jabatan ?? 'Perangkat Desa' }}</span></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
@@ -243,11 +242,7 @@
         <footer class="mt-auto py-4 px-4 border-top bg-white">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                 <div class="text-muted small">
-                    &copy; {{ date('Y') }} <span class="fw-bold text-primary">E-Surat Jatiroyom</span>. Layanan Mandiri Warga.
-                </div>
-                <div class="d-flex gap-3">
-                    <a href="https://wa.me/628123456789" class="text-decoration-none text-muted small"><i class="bi bi-whatsapp me-1"></i> Bantuan</a>
-                    <a href="#" class="text-decoration-none text-muted small">Panduan</a>
+                    &copy; {{ date('Y') }} <span class="fw-bold" style="color: var(--primary-teal);">Desa Jatiroyom</span>. Sistem Informasi Aparatur.
                 </div>
             </div>
         </footer>
@@ -262,11 +257,9 @@
 
         function toggleSidebar() {
             if (window.innerWidth >= 992) {
-                // Desktop Toggle
                 sidebar.classList.toggle('collapsed');
                 mainWrapper.classList.toggle('expanded');
             } else {
-                // Mobile Toggle
                 sidebar.classList.toggle('show');
                 overlay.classList.toggle('show');
             }

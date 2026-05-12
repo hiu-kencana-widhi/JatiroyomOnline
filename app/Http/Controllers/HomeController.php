@@ -20,7 +20,13 @@ class HomeController extends Controller
         
         $settings = \App\Models\System\Pengaturan::getAllCached();
 
-        return view('home', compact('acara', 'anggaran', 'settings', 'potret'));
+        $perangkat = \App\Models\User::with(['penilaian' => function ($q) {
+            $q->where('status_tampil', true)->with('warga')->latest();
+        }])->where('role', 'perangkat_desa')
+          ->where('status_aktif', true)
+          ->get();
+
+        return view('home', compact('acara', 'anggaran', 'settings', 'potret', 'perangkat'));
     }
 
     public function acara()

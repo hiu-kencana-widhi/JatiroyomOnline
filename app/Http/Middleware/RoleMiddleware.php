@@ -13,10 +13,10 @@ class RoleMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        if (!\Illuminate\Support\Facades\Auth::check() || \Illuminate\Support\Facades\Auth::user()->role !== $role) {
-            abort(403, 'Akses ditolak! Halaman ini hanya untuk ' . $role);
+        if (!\Illuminate\Support\Facades\Auth::check() || !in_array(\Illuminate\Support\Facades\Auth::user()->role, $roles)) {
+            abort(403, 'Akses ditolak! Anda tidak memiliki izin untuk membuka halaman ini.');
         }
 
         return $next($request);

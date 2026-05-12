@@ -64,7 +64,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transform: translateZ(0);
             will-change: margin-left;
             transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -80,31 +79,38 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            transform: translateZ(0);
         }
 
         .nav-sidebar .nav-link {
             color: #94a3b8;
-            padding: 12px 20px;
+            padding: 12px 18px;
             border-radius: 12px;
-            margin: 4px 15px;
+            margin: 6px 16px;
             display: flex;
             align-items: center;
             font-weight: 500;
-            transform: translateZ(0);
-            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-sidebar .nav-link i {
+            font-size: 1.2rem;
+            width: 28px;
+            text-align: left;
+            margin-right: 10px;
+            transition: transform 0.2s ease;
         }
 
         .nav-sidebar .nav-link.active {
             background-color: var(--accent-color);
             color: #fff;
-            box-shadow: none; /* Removed as requested */
+            font-weight: 600;
         }
 
         .nav-sidebar .nav-link:hover:not(.active) {
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.06);
             color: #f8fafc;
-            transform: translateX(5px);
+            transform: translateX(6px);
         }
 
         .content-area {
@@ -116,7 +122,6 @@
             border: none;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            transform: translateZ(0);
         }
 
         .sidebar-overlay {
@@ -144,22 +149,74 @@
 
         /* Responsive Table Stack */
         @media (max-width: 767.98px) {
+            .table-responsive-stack thead {
+                display: none !important;
+            }
+            .table-responsive-stack tbody, 
+            .table-responsive-stack tr, 
+            .table-responsive-stack td {
+                display: block !important;
+                width: 100% !important;
+            }
             .table-responsive-stack tr {
-                display: block;
                 background: #fff;
-                border: 1px solid #e2e8f0;
+                border: 1px solid #e2e8f0 !important;
                 border-radius: 16px;
-                margin-bottom: 15px;
-                padding: 10px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+                margin-bottom: 16px;
+                padding: 4px 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             }
             .table-responsive-stack td {
+                text-align: right !important;
+                padding: 12px 16px !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                font-size: 0.95rem;
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: flex-start !important;
+                gap: 12px;
+                white-space: normal !important;
+                word-break: break-word;
+            }
+            .table-responsive-stack td:last-child {
+                border-bottom: none !important;
+                justify-content: center !important;
+                padding-top: 14px !important;
+                padding-bottom: 14px !important;
+                background-color: #f8fafc;
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+            }
+            .table-responsive-stack td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 0.7rem;
+                color: #64748b;
+                text-align: left;
+                display: block;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .table-responsive-stack td > div,
+            .table-responsive-stack td > span,
+            .table-responsive-stack td > form {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: flex-end;
+                text-align: right;
+            }
+            .table-responsive-stack td:last-child::before {
+                display: none !important;
+            }
+            .table-responsive-stack td:last-child > * {
+                width: 100%;
+                justify-content: center;
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border: none !important;
-                padding: 8px 15px !important;
-                font-size: 0.85rem;
+                gap: 8px;
+            }
+            .table-responsive-stack .text-center {
+                text-align: right !important;
             }
         }
     </style>
@@ -188,6 +245,16 @@
             </a>
             <a href="{{ route('admin.jenis-surat.index') }}" class="nav-link {{ request()->routeIs('admin.jenis-surat.*') ? 'active' : '' }}">
                 <i class="bi bi-file-earmark-medical-fill"></i> Template Surat
+            </a>
+            <div class="text-uppercase small fw-bold px-4 mb-2 mt-4 text-secondary opacity-50" style="font-size: 0.7rem; letter-spacing: 1px;">Aparatur & Presensi</div>
+            <a href="{{ route('admin.kelola-perangkat.index') }}" class="nav-link {{ request()->routeIs('admin.kelola-perangkat.*') ? 'active' : '' }}">
+                <i class="bi bi-person-vcard-fill"></i> Kelola Aparatur
+            </a>
+            <a href="{{ route('admin.rekap-absensi.index') }}" class="nav-link {{ request()->routeIs('admin.rekap-absensi.*') ? 'active' : '' }}">
+                <i class="bi bi-calendar2-check-fill"></i> Rekap Presensi
+            </a>
+            <a href="{{ route('admin.moderasi-penilaian.index') }}" class="nav-link {{ request()->routeIs('admin.moderasi-penilaian.*') ? 'active' : '' }}">
+                <i class="bi bi-star-fill text-warning"></i> Moderasi Penilaian
             </a>
             <div class="text-uppercase small fw-bold px-4 mb-2 mt-4 text-secondary opacity-50" style="font-size: 0.7rem; letter-spacing: 1px;">Publikasi</div>
             <a href="{{ route('admin.acara.index') }}" class="nav-link {{ request()->routeIs('admin.acara.*') ? 'active' : '' }}">

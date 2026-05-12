@@ -249,6 +249,22 @@
     .bg-gradient-primary {
         background: linear-gradient(135deg, var(--bs-primary) 0%, transparent 100%);
     }
+
+    /* Interactive Rating Stars */
+    .rating-star-btn {
+        font-size: 2rem;
+        color: #cbd5e1;
+        cursor: pointer;
+        transition: transform 0.2s, color 0.2s;
+        background: none;
+        border: none;
+        padding: 0 4px;
+    }
+    .rating-star-btn:hover,
+    .rating-star-btn.active {
+        color: #f59e0b;
+        transform: scale(1.15);
+    }
 </style>
 @endsection
 
@@ -263,12 +279,12 @@
         </p>
         <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
             @auth
-                <a href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : route('user.dashboard') }}" class="btn btn-primary btn-premium shadow-lg">
-                    <i class="bi bi-speedometer2 me-2"></i> Masuk ke Dashboard
+                <a href="{{ auth()->user()->role == 'user' ? route('user.surat.pilih') : (auth()->user()->role == 'admin' ? route('admin.dashboard') : route('perangkat.dashboard')) }}" class="btn btn-primary btn-premium shadow-lg">
+                    <i class="bi bi-envelope-paper-fill me-2"></i> Buat Surat Sekarang
                 </a>
             @else
                 <a href="{{ route('login') }}" class="btn btn-primary btn-premium shadow-lg">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Ajukan Surat Sekarang
+                    <i class="bi bi-envelope-paper-fill me-2"></i> Buat Surat Sekarang
                 </a>
                 <a href="#keindahan" class="btn btn-outline-light btn-premium">
                     <i class="bi bi-camera-fill me-2"></i> Jelajahi Desa
@@ -458,6 +474,176 @@
     @endforeach
 </section>
 
+<!-- Transparansi Kinerja Aparatur Desa -->
+<section class="py-5 bg-white border-bottom">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <div class="d-inline-block px-4 py-2 rounded-pill bg-warning bg-opacity-10 text-warning fw-bold mb-3 shadow-sm" style="letter-spacing: 2px; font-size: 0.85rem;">
+                <i class="bi bi-star-fill me-2"></i> TRANSPARANSI PUBLIK
+            </div>
+            <h2 class="display-6 fw-bold text-dark">Kinerja & Pelayanan Aparatur</h2>
+            <div class="bg-warning mx-auto mt-2 mb-3" style="width: 60px; height: 4px; border-radius: 2px;"></div>
+            <p class="text-muted max-w-2xl mx-auto">Kami menjunjung tinggi keterbukaan informasi. Berikan penilaian dan masukan langsung atas pelayanan prima dari setiap aparatur desa.</p>
+        </div>
+
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show rounded-4 border-0 shadow-sm max-w-xl mx-auto mb-4" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <div class="row g-4 justify-content-center">
+            @forelse($perangkat ?? [] as $p)
+                @php
+                    $rataRata = $p->penilaian->avg('rating') ?? 0;
+                    $ulasanTerbaik = $p->penilaian->first();
+                @endphp
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-soft rounded-4 p-4 h-100 hover-lift transition-all d-flex flex-column justify-content-between bg-white">
+                        <div>
+                            <!-- Header Profil -->
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center fw-bold fs-4 me-3" style="width: 60px; height: 60px;">
+                                    {{ substr($p->nama_lengkap, 0, 1) }}
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold text-dark mb-1">{{ $p->nama_lengkap }}</h5>
+                                    <span class="badge bg-light text-secondary border px-2 py-1">{{ $p->jabatan }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Indikator Rating -->
+                            <div class="d-flex align-items-center mb-3 p-2 bg-light rounded-3">
+                                <div class="text-warning me-2">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <i class="bi bi-star{{ $i <= round($rataRata) ? '-fill' : '' }} fs-5"></i>
+                                    @endfor
+                                </div>
+                                <span class="fw-bold text-dark me-1">{{ number_format($rataRata, 1) }}</span>
+                                <span class="text-muted small">({{ $p->penilaian->count() }} Ulasan)</span>
+                            </div>
+
+                            <!-- Kutipan Ulasan Positif -->
+                            @if($ulasanTerbaik)
+                                <div class="p-3 bg-primary bg-opacity-10 rounded-3 mb-3 border-start border-primary border-4">
+                                    <p class="small text-dark italic mb-1">"{{ Str::limit($ulasanTerbaik->ulasan, 90) }}"</p>
+                                    <span class="fs-8 text-muted fw-bold">&mdash; {{ $ulasanTerbaik->warga?->nama_lengkap ?? 'Warga Jatiroyom' }}</span>
+                                </div>
+                            @else
+                                <p class="small text-muted italic mb-3">Belum ada ulasan terpublikasi untuk aparatur ini. Jadilah yang pertama memberikan apresiasi!</p>
+                            @endif
+                        </div>
+
+                        <!-- Tombol Interaksi -->
+                        <div class="d-flex gap-2 mt-auto pt-2">
+                            @auth
+                                <button type="button" class="btn btn-primary rounded-pill flex-grow-1 fw-bold small py-2" data-bs-toggle="modal" data-bs-target="#modalBeriNilai{{ $p->id }}">
+                                    <i class="bi bi-pencil-square me-1"></i> Beri Penilaian
+                                </button>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-primary rounded-pill flex-grow-1 fw-bold small py-2 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i> Masuk untuk Menilai
+                                </a>
+                            @endauth
+
+                            @if($p->penilaian->count() > 0)
+                                <button type="button" class="btn btn-outline-secondary rounded-pill px-3 py-2 small" data-bs-toggle="modal" data-bs-target="#modalDaftarUlasan{{ $p->id }}" title="Lihat Seluruh Ulasan">
+                                    <i class="bi bi-chat-quote"></i>
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Beri Penilaian -->
+                <div class="modal fade" id="modalBeriNilai{{ $p->id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 border-0 shadow-lg">
+                            <form action="{{ route('penilaian.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="perangkat_id" value="{{ $p->id }}">
+                                <input type="hidden" name="rating" id="inputRating{{ $p->id }}" value="5">
+
+                                <div class="modal-header border-0 pb-0">
+                                    <h6 class="modal-title fw-bold"><i class="bi bi-award text-warning me-2"></i> Apresiasi Kinerja Aparatur</h6>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-4 text-center">
+                                    <p class="small text-muted mb-2">Tertuju kepada:</p>
+                                    <h5 class="fw-bold text-dark mb-1">{{ $p->nama_lengkap }}</h5>
+                                    <span class="badge bg-light text-secondary border px-3 py-1 mb-4">{{ $p->jabatan }}</span>
+
+                                    <!-- Bintang Pilihan -->
+                                    <div class="mb-4">
+                                        <label class="form-label small fw-bold text-muted d-block mb-2">Pilih Bintang Kepuasan</label>
+                                        <div class="d-flex justify-content-center gap-2" id="starContainer{{ $p->id }}">
+                                            @for($star = 1; $star <= 5; $star++)
+                                                <button type="button" class="rating-star-btn active" onclick="pilihBintang({{ $p->id }}, {{ $star }})" id="starBtn{{ $p->id }}_{{ $star }}" title="Bintang {{ $star }}">
+                                                    &#9733;
+                                                </button>
+                                            @endfor
+                                        </div>
+                                        <span class="small text-warning fw-bold mt-2 d-block" id="teksRating{{ $p->id }}">Sangat Memuaskan (5 Bintang)</span>
+                                    </div>
+
+                                    <div class="text-start mb-2">
+                                        <label class="form-label small fw-bold text-muted">Tulis Ulasan / Masukan Membangun</label>
+                                        <textarea name="ulasan" class="form-control rounded-3" rows="4" placeholder="Sampaikan pengalaman Anda terkait kecepatan, keramahan, dan solusi yang diberikan oleh aparatur..." minlength="5" maxlength="1000" required></textarea>
+                                        <span class="fs-8 text-muted mt-1 d-block"><i class="bi bi-shield-lock me-1"></i> Ulasan Anda akan ditinjau secara berkala demi kenyamanan bersama.</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-0 pt-0 pe-4 pb-4 justify-content-center">
+                                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill px-5 fw-bold">Kirim Penilaian</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Daftar Ulasan Lengkap -->
+                <div class="modal fade" id="modalDaftarUlasan{{ $p->id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content rounded-4 border-0 shadow-lg">
+                            <div class="modal-header border-0 pb-0">
+                                <div>
+                                    <h6 class="modal-title fw-bold text-dark">Ulasan Masyarakat</h6>
+                                    <span class="small text-muted">{{ $p->nama_lengkap }}</span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                @foreach($p->penilaian as $ulasan)
+                                    <div class="p-3 bg-light rounded-3 mb-3 border">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-bold text-dark small"><i class="bi bi-person-circle text-muted me-1"></i> {{ $ulasan->warga?->nama_lengkap ?? 'Warga Jatiroyom' }}</span>
+                                            <span class="text-warning small">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <i class="bi bi-star{{ $i <= $ulasan->rating ? '-fill' : '' }}"></i>
+                                                @endfor
+                                            </span>
+                                        </div>
+                                        <p class="small text-dark mb-1">{{ $ulasan->ulasan }}</p>
+                                        <span class="fs-8 text-muted">{{ $ulasan->created_at->diffForHumans() }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="modal-footer border-0 pt-0">
+                                <button type="button" class="btn btn-light rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12 text-center py-4 text-muted small">
+                    Data aparatur desa sedang dipersiapkan untuk ditampilkan secara transparan.
+                </div>
+            @endforelse
+        </div>
+    </div>
+</section>
+
 <!-- Stats & Info -->
 <section class="py-5 bg-white">
     <div class="container py-4 text-center">
@@ -530,5 +716,30 @@
         navbar.classList.remove('expanded');
         hero.classList.remove('pushed');
     });
+
+    // Logika Pemilihan Bintang Interaktif
+    function pilihBintang(perangkatId, nilai) {
+        document.getElementById('inputRating' + perangkatId).value = nilai;
+        
+        const labelTeks = {
+            1: 'Sangat Kurang (1 Bintang)',
+            2: 'Kurang (2 Bintang)',
+            3: 'Cukup (3 Bintang)',
+            4: 'Memuaskan (4 Bintang)',
+            5: 'Sangat Memuaskan (5 Bintang)'
+        };
+        document.getElementById('teksRating' + perangkatId).innerText = labelTeks[nilai];
+
+        for (let s = 1; s <= 5; s++) {
+            const btn = document.getElementById(`starBtn${perangkatId}_${s}`);
+            if (btn) {
+                if (s <= nilai) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            }
+        }
+    }
 </script>
 @endsection

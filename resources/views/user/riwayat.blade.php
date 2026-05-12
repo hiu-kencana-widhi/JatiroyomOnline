@@ -169,12 +169,13 @@
                     <div class="col-md-6">
                         <div class="h-100 min-vh-25">
                             <iframe 
-                                src="https://www.google.com/maps?q=Balai+Desa+Jatiroyom+Pemalang&output=embed" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.9694443689373!2d109.48115467421117!3d-7.012876468692579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fde0314e45a91%3A0x28ff274f592e5266!2sBalai%20Desa%20Jatiroyom!5e0!3m2!1sid!2sid!4v1778600355455!5m2!1sid!2sid" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; min-height: 400px;" 
                                 allowfullscreen="" 
-                                loading="lazy">
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
                     </div>

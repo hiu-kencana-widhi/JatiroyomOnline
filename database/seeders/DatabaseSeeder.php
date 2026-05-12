@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             Auth\AdminSeeder::class,
+            Auth\PerangkatSeeder::class,
             Auth\WargaSeeder::class,
             Master\JenisSuratSeeder::class,
             System\InitialSettingSeeder::class,
