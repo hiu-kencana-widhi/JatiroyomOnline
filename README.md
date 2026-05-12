@@ -132,70 +132,17 @@ Berikut adalah dokumentasi visual dari antarmuka sistem yang dikembangkan.
 
 <br>
 
-### 🖥️ Halaman Publik (Public Views)
-*Antarmuka beranda, transparansi informasi, dan agenda kegiatan desa yang dapat diakses oleh masyarakat umum tanpa login.*
-
-<details>
-<summary><b>Klik untuk melihat daftar Screenshot Halaman Publik</b></summary>
-<br>
+### 🖥️ Cuplikan Antarmuka Halaman Publik
+*Antarmuka beranda, transparansi informasi anggaran, dan agenda kegiatan desa yang dapat diakses oleh masyarakat umum.*
 
 #### 1. Beranda Utama (Hero & Navigasi)
-> *Ganti tautan gambar di bawah dengan path/URL screenshot asli Anda.*
-![Beranda Utama](https://placehold.co/1200x600/1e293b/ffffff?text=Screenshot+Beranda+Utama)
+![Beranda Utama](public/image/readme/public/beranda.png)
 
 #### 2. Transparansi Anggaran Desa
-![Anggaran Desa](https://placehold.co/1200x600/1e293b/ffffff?text=Screenshot+Halaman+Anggaran)
+![Anggaran Desa](public/image/readme/public/anggaran.png)
 
 #### 3. Halaman Informasi Acara & Kegiatan
-![Acara Desa](https://placehold.co/1200x600/1e293b/ffffff?text=Screenshot+Halaman+Acara)
-
-</details>
-
----
-
-### 📱 Dasbor Warga (User / Citizen Views)
-*Area privat bagi masyarakat untuk melakukan permohonan surat, melacak riwayat, dan memutakhirkan profil.*
-
-<details>
-<summary><b>Klik untuk melihat daftar Screenshot Dasbor Warga</b></summary>
-<br>
-
-#### 1. Dasbor Utama Warga & Statistik
-![Dasbor Warga](https://placehold.co/1200x600/0f172a/38b2ac?text=Screenshot+Dasbor+Warga)
-
-#### 2. Pilihan & Formulir Pengajuan Surat
-![Form Pengajuan](https://placehold.co/1200x600/0f172a/38b2ac?text=Screenshot+Formulir+Pengajuan+Surat)
-
-#### 3. Riwayat & Unduh Berkas
-![Riwayat Surat](https://placehold.co/1200x600/0f172a/38b2ac?text=Screenshot+Riwayat+Pengajuan)
-
-</details>
-
----
-
-### 🛡️ Dasbor Administrator (Admin Panel Views)
-*Pusat kendali tata kelola administrasi desa, verifikasi surat, manajemen pengguna, dan pengaturan sistem.*
-
-<details>
-<summary><b>Klik untuk melihat daftar Screenshot Dasbor Administrator</b></summary>
-<br>
-
-#### 1. Halaman Login Admin (Verifikasi PIN Rahasia)
-![Login Admin](https://placehold.co/1200x600/020617/e2e8f0?text=Screenshot+Verifikasi+PIN+Admin)
-
-#### 2. Dasbor Utama Admin (Statistik & Akses Cepat)
-![Dasbor Admin](https://placehold.co/1200x600/020617/e2e8f0?text=Screenshot+Dasbor+Utama+Admin)
-
-#### 3. Kelola Alur Kerja Pengajuan Surat
-![Kelola Pengajuan](https://placehold.co/1200x600/020617/e2e8f0?text=Screenshot+Manajemen+Pengajuan+Surat)
-
-#### 4. Master Data Warga
-![Master Warga](https://placehold.co/1200x600/020617/e2e8f0?text=Screenshot+Kelola+Data+Warga)
-
-#### 5. Pengaturan Jenis Surat & Toggle Status
-![Jenis Surat](https://placehold.co/1200x600/020617/e2e8f0?text=Screenshot+Kelola+Jenis+Surat)
-
-</details>
+![Acara Desa](public/image/readme/public/acara.png)
 
 ---
 
