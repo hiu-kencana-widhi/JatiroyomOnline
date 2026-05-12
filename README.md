@@ -125,32 +125,76 @@ Akses portal melalui tautan `http://localhost:8000` di peramban gawai atau kompu
 
 ## 🔄 Alur Kerja Sistem (System Workflows)
 
-### A. Alur Pelaporan Insiden Warga (*Citizen Incident Workflow*)
+### A. Alur Navigasi & Transparansi Publik (*Public Gateway*)
 ```
-[ Warga: Ambil Foto Gawai & Titik GPS ] ──► [ Status: Menunggu Tinjauan ]
-                                                    │
-             ┌──────────────◄───(Ditolak?)──────────┴──────────(Diterima?)───►─────────────┐
-             ▼                                                                             ▼
-   [ Status: Ditolak ]                                                         [ Status: Diproses Lapangan ]
-   (Catatan desa terlampir)                                                    (Perangkat memberi catatan progres)
-                                                                                           │
-                                                                                           ▼
-                                                                               [ Status Akhir: Selesai ]
-                                                                               (Insiden tuntas diperbaiki)
+[ Pengunjung Web / Warga Umum ]
+               │
+               ├─► [ Beranda Portal ] ──────► Akses Profil, Visi-Misi, & Etalase Ulasan Pilihan
+               ├─► [ Transparansi Dana ] ───► Unduh & Pantau Alokasi Anggaran Belanja Desa Riil
+               └─► [ Agenda Acara Desa ] ───► Tinjau Informasi Kegiatan, Tanggal Pelaksanaan, & Pengumuman
 ```
 
-### B. Alur Permohonan & Pengambilan Surat
+### B. Alur Permohonan & Pengambilan Surat Resmi (*Citizen Services*)
 ```
-[ Warga: Pilih Surat & Isi Form ] ──► [ Status: Menunggu ]
-                                            │
-               ┌──────────◄───(Ditolak?)────┴────(Diterima?)───►──────────┐
-               ▼                                                          ▼
-    [ Status: Ditolak ]                                          [ Status: Diterbitkan ]
-    (Disertai alasan)                                            (Sistem buat file PDF)
-                                                                          │
-                                                                          ▼
-                                                                  [ Siap Diambil ]
-                                                                  (Klaim di Balai Desa)
+[ Warga: Otentikasi NIK ] ──► [ Dasbor Warga: Pilih Jenis Surat & Lengkapi Rincian ]
+                                                      │
+                                          [ Status Awal: Menunggu ]
+                                                      │
+                       ┌──────────────◄───(Ditolak?)──┴──(Diterima?)───►──────────────┐
+                       ▼                                                              ▼
+             [ Status: Ditolak ]                                           [ Status: Diterbitkan ]
+             (Alasan terlampir di akun)                                    (Sistem menerbitkan file PDF)
+                                                                                      │
+                                                                                      ▼
+                                                                             [ Pengambilan Surat ]
+                                                                             (Klaim fisik / Cetak Mandiri)
+```
+
+### C. Alur Pelaporan Insiden & Kerusakan Lapangan (*Citizen Incident Reporting*)
+```
+[ Warga: Aktifkan Kamera Peramban & Sensor GPS ] ──► [ Pengiriman Form Aduan Bukti Fisik ]
+                                                                   │
+                                                      [ Status Awal: Menunggu ]
+                                                                   │
+               ┌───────────────────────◄───(Tidak Valid?)──────────┴──────────(Diterima?)───►────────────────────────┐
+               ▼                                                                                                     ▼
+     [ Status: Ditolak ]                                                                                [ Status: Diproses ]
+     (Tanggapan koreksi dari Admin)                                                                     (Tindakan Perbaikan Lapangan)
+                                                                                                                     │
+                                                                                                     [ Perangkat Memberi Log Progres ]
+                                                                                                                     │
+                                                                                                                     ▼
+                                                                                                          [ Status Akhir: Selesai ]
+                                                                                                          (Kerusakan tuntas diatasi)
+```
+
+### D. Alur Presensi Mandiri Harian Aparatur (*Aparatur Integrity*)
+```
+[ Aparatur: Input NIK & PIN Rahasia ] ──► [ Rekam Kehadiran: Ambil Foto Pagi/Sore ]
+                                                          │
+                                         [ Sinkronisasi Waktu Server WIB ]
+                                                          │
+                                                          ▼
+                                            [ Label Otomatis via Sistem ]
+                                            (Tepat Waktu / Terlambat / Izin)
+                                                          │
+                                                          ▼
+                                            [ Validasi / Pemantauan Admin ]
+```
+
+### E. Alur Pemberian & Moderasi Ulasan Kepuasan (*Public Accountability*)
+```
+[ Warga: Pilih Nama Aparatur ] ──► [ Input Rating Bintang (1-5) & Teks Ulasan ]
+                                                          │
+                                          [ Status Awal: Tertunda / Disembunyikan ]
+                                                          │
+                                                          ▼
+                                            [ Dasbor Moderasi Administrator ]
+                                                          │
+                                  ┌───────────────────────┴───────────────────────┐
+                                  ▼                                               ▼
+                        [ Ulasan Disetujui ]                             [ Ulasan Ditolak / Dihapus ]
+                        (Tampil publik di Beranda)                       (Mengandung bahasa tidak pantas)
 ```
 
 ---
