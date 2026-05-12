@@ -83,8 +83,8 @@ Ikuti petunjuk di bawah untuk mempersiapkan dan menjalankan aplikasi pada pelade
 
 ### 1. Kloning Repositori
 ```bash
-git clone https://github.com/hiu-kencana-widhi/jatiroyomonline.git
-cd jatiroyomonline
+git clone https://github.com/hiu-kencana-widhi/JatiroyomOnline.git
+cd JatiroyomOnline
 ```
 
 ### 2. Instalasi Dependensi
@@ -175,6 +175,6 @@ Berikut adalah dokumentasi visual dari antarmuka sistem yang dikembangkan.
 <br>
 
 **Didedikasikan untuk memajukan kualitas transparansi dan tata kelola desa berbasis teknologi digital.**  
-© Hak Cipta Sistem Informasi Smart Village Desa Jatiroyom.
+© Hak Cipta Sistem Informasi Smart Village JatiroyomOnline.
 
 </div>
