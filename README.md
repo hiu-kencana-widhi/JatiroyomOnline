@@ -258,19 +258,19 @@ Berikut adalah dokumentasi visual dari antarmuka portal desa yang telah dikemban
 <br>
 
 ### 🖥️ Cuplikan Antarmuka Halaman Publik
-*Antarmuka beranda, etalase pasar digital, transparansi informasi anggaran, dan agenda kegiatan desa yang dapat diakses oleh masyarakat umum tanpa batas.*
+*Antarmuka beranda, informasi acara, etalase pasar digital, dan transparansi anggaran desa yang dapat diakses oleh masyarakat umum tanpa batas.*
 
 #### 1. Beranda Utama (Hero & Navigasi Terpadu)
 ![Beranda Utama](public/image/readme/public/beranda.png)
 
-#### 2. Etalase Pasar Digital & UMKM Desa (*Bento Grid*)
+#### 2. Halaman Informasi Acara & Agenda Kegiatan
+![Acara Desa](public/image/readme/public/acara.png)
+
+#### 3. Etalase Pasar Digital & UMKM Desa (*Bento Grid*)
 ![Pasar UMKM Desa](public/image/readme/public/umkm.png)
 
-#### 3. Transparansi Anggaran & APBDes
+#### 4. Transparansi Anggaran & APBDes
 ![Anggaran Desa](public/image/readme/public/anggaran.png)
-
-#### 4. Halaman Informasi Acara & Agenda Kegiatan
-![Acara Desa](public/image/readme/public/acara.png)
 
 ---
 
