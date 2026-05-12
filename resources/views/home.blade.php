@@ -353,6 +353,40 @@
         </div>
         @endif
 
+        <!-- Gerbang Promosi Pasar Digital Desa (Katalog UMKM Bento) -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="card border-0 rounded-4 overflow-hidden shadow-sm hover-lift transition-all position-relative" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 6px solid #16a34a !important;">
+                    <div class="position-absolute top-0 end-0 p-4 opacity-10 d-none d-md-block">
+                        <i class="bi bi-shop-window text-success" style="font-size: 8rem;"></i>
+                    </div>
+                    <div class="card-body p-4 p-md-5 position-relative z-1">
+                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                            <div class="d-flex align-items-start gap-3 gap-md-4">
+                                <div class="p-3 rounded-circle bg-success text-white shadow-sm flex-shrink-0 mt-1">
+                                    <i class="bi bi-shop fs-3"></i>
+                                </div>
+                                <div>
+                                    <span class="badge bg-success rounded-pill px-3 py-1 text-uppercase fw-bold mb-2" style="font-size: 0.7rem; letter-spacing: 1px;">
+                                        Inovasi Pemberdayaan Warga
+                                    </span>
+                                    <h3 class="fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">Pasar Digital & Etalase UMKM Jatiroyom</h3>
+                                    <p class="text-secondary mb-0 fs-6 lh-base" style="max-width: 700px;">
+                                        Telusuri aneka ragam karya kerajinan, camilan lezat, serta hasil bumi berkualitas dari para pelaku usaha mandiri desa kami. Transaksi aman, tanpa perantara, langsung terhubung melalui obrolan WhatsApp.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 text-md-end pt-2 pt-md-0 border-top border-md-0 border-success border-opacity-10 mt-3 mt-md-0">
+                                <a href="{{ route('umkm.index') }}" class="btn btn-success btn-premium rounded-pill px-4 py-3 shadow-sm d-inline-flex align-items-center justify-content-center text-nowrap fw-bold fs-6">
+                                    <i class="bi bi-cart-check-fill me-2 fs-5"></i> Kunjungi Etalase
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Visi: Centered Top Layout -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">

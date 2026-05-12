@@ -244,6 +244,7 @@
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link px-3 {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link px-3 {{ request()->routeIs('acara') ? 'active' : '' }}" href="{{ route('acara') }}">Acara Desa</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 {{ request()->routeIs('umkm.index') ? 'active' : '' }}" href="{{ route('umkm.index') }}">Pasar UMKM</a></li>
                     <li class="nav-item"><a class="nav-link px-3 {{ request()->routeIs('anggaran') ? 'active' : '' }}" href="{{ route('anggaran') }}">Anggaran</a></li>
                     <li class="nav-item ms-lg-3">
                         @auth
