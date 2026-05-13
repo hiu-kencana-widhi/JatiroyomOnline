@@ -62,6 +62,11 @@ Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyama
 - **Moderasi Presensi & Penilaian Publik**: Validasi foto bukti presisi, kemampuan menginput izin/sakit secara manual, serta hak tayang ulasan publik.
 - **Manajemen Basis Data Terpadu**: Pengelolaan basis data penduduk, hak akses aparatur, pengaturan anggaran, dan penyesuaian jenis surat.
 
+### 🎵 5. Umpan Balik Suara Keberhasilan (*Auditory Success Feedback*)
+- **Notifikasi Audio Selektif**: Guna memperkaya pengalaman antarmuka pengguna tanpa menimbulkan polusi suara, sistem dilengkapi fitur pemutar efek suara otomatis yang **hanya berbunyi saat sebuah aksi krusial berhasil tuntas**.
+- **Cakupan Menyeluruh**: Efek suara terpicu secara mulus setelah proses **Login**, **Logout**, penambahan data (**Create**), pembaruan rincian (**Edit**), dan penghapusan data (**Delete**) yang tervalidasi sukses.
+- **Efisiensi Aset**: Memanfaatkan pemuatan berkas audio tunggal tersembunyi berkinerja tinggi (`public/sound/sound.mp3`) yang disematkan langsung di seluruh *layout* utama dan mematuhi kebijakan *autoplay* modern peramban web.
+
 ---
 
 ## 🔐 Informasi Kredensial Demo

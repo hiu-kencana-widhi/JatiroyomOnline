@@ -359,5 +359,6 @@
         overlay.addEventListener('click', toggleSidebar);
     </script>
     @yield('scripts')
+    @include('components.app-sound')
 </body>
 </html>

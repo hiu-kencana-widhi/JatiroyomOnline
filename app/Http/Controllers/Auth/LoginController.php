@@ -35,7 +35,7 @@ class LoginController extends Controller
         // Login as citizen
         \Illuminate\Support\Facades\Auth::login($user);
         \App\Models\System\LogAktivitas::record('Login', 'Warga login menggunakan NIK');
-        return redirect()->route('user.dashboard');
+        return redirect()->route('user.dashboard')->with('play_sound', true);
     }
 
     public function showPinForm()
@@ -64,11 +64,11 @@ class LoginController extends Controller
 
         if ($user->role === 'admin') {
             \App\Models\System\LogAktivitas::record('Login Admin', 'Administrator login');
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('play_sound', true);
         }
 
         \App\Models\System\LogAktivitas::record('Login Perangkat', 'Perangkat Desa login');
-        return redirect()->route('perangkat.dashboard');
+        return redirect()->route('perangkat.dashboard')->with('play_sound', true);
     }
 
     public function logout(Request $request)
@@ -77,6 +77,6 @@ class LoginController extends Controller
         \Illuminate\Support\Facades\Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with('play_sound', true);
     }
 }

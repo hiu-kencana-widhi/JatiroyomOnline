@@ -77,5 +77,6 @@
         <h2>Desa Jatiroyom</h2>
         @yield('content')
     </div>
+    @include('components.app-sound')
 </body>
 </html>
