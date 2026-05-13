@@ -10,27 +10,95 @@
         ->first();
 @endphp
 @if($pengumumanAktif)
-<div class="alert alert-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} alert-dismissible fade show border-0 shadow-sm rounded-4 text-start p-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3" style="background: {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#fef2f2' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#fefce8' : '#eff6ff') }}; border-left: 5px solid {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#ef4444' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#eab308' : '#3b82f6') }} !important;">
-    <div class="d-flex align-items-start gap-3">
+<div class="alert alert-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} alert-dismissible fade show border-0 shadow-sm rounded-4 text-start p-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 hover-lift transition-all" role="button" data-bs-toggle="modal" data-bs-target="#modalSiaranGlobalUser" style="cursor: pointer; background: {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#fef2f2' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#fefce8' : '#eff6ff') }}; border-left: 5px solid {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#ef4444' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#eab308' : '#3b82f6') }} !important;">
+    <div class="d-flex align-items-start gap-3 flex-grow-1">
         <div class="p-2 rounded-circle bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} bg-opacity-10 text-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }}">
             <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'info-circle-fill') }} fs-4"></i>
         </div>
-        <div>
+        <div class="flex-grow-1">
             <div class="d-flex align-items-center gap-2 mb-1">
                 <span class="badge bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'info') }} rounded-pill text-uppercase" style="font-size: 0.65rem;">Pengumuman Desa</span>
                 <small class="text-muted fw-bold">{{ $pengumumanAktif->created_at->format('d M Y') }}</small>
             </div>
             <h6 class="fw-bold mb-1 text-dark" style="font-size: 1.05rem;">{{ $pengumumanAktif->judul }}</h6>
-            <p class="small text-muted mb-0" style="max-width: 650px; line-height: 1.4;">{{ $pengumumanAktif->isi_pengumuman }}</p>
+            <p class="small text-muted mb-1" style="max-width: 650px; line-height: 1.4;">{{ Str::limit($pengumumanAktif->isi_pengumuman, 140) }}</p>
+            <span class="fs-8 fw-bold text-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }}">
+                <i class="bi bi-hand-index-thumb me-1"></i> Sentuh untuk baca rincian & bagikan
+            </span>
         </div>
     </div>
-    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0">
+    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0" style="position: relative; z-index: 20;">
         @if($pengumumanAktif->file_lampiran)
-            <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-primary rounded-pill fw-bold px-3 py-2 shadow-sm" style="position: relative; z-index: 20;">
+            <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" onclick="event.stopPropagation()" class="btn btn-sm btn-primary rounded-pill fw-bold px-3 py-2 shadow-sm">
                 <i class="bi bi-file-earmark-arrow-down-fill me-1"></i> Unduh Lampiran
             </a>
         @endif
-        <button type="button" class="btn-close position-static p-2 m-0" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close position-static p-2 m-0" data-bs-dismiss="alert" aria-label="Close" onclick="event.stopPropagation()"></button>
+    </div>
+</div>
+
+<!-- Modal Detail Siaran Global User -->
+<div class="modal fade" id="modalSiaranGlobalUser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="modal-header bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} text-white p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'megaphone-fill') }} fs-2"></i>
+                    <div>
+                        <span class="badge bg-white text-dark rounded-pill px-2 py-1 mb-1 fw-bold text-uppercase" style="font-size: 0.65rem;">
+                            Siaran {{ $pengumumanAktif->tipe_spanduk }} Desa
+                        </span>
+                        <h5 class="modal-title fw-bold mb-0 text-white">{{ $pengumumanAktif->judul }}</h5>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
+                    <i class="bi bi-calendar-check text-muted"></i>
+                    <span class="small text-muted fw-bold">Diterbitkan pada: {{ $pengumumanAktif->created_at->format('d F Y, H:i') }} WIB</span>
+                </div>
+                
+                <div class="text-dark fs-5 mb-4 lh-base" style="white-space: pre-line;">{{ $pengumumanAktif->isi_pengumuman }}</div>
+                
+                @if($pengumumanAktif->file_lampiran)
+                    <div class="p-3 bg-light rounded-4 border d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-file-earmark-pdf-fill text-danger fs-3"></i>
+                            <div>
+                                <div class="fw-bold small text-dark">Dokumen Lampiran Resmi</div>
+                                <span class="text-muted fs-8">Tersedia untuk diunduh publik</span>
+                            </div>
+                        </div>
+                        <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-primary rounded-pill px-4 fw-bold">
+                            <i class="bi bi-download me-1"></i> Unduh File
+                        </a>
+                    </div>
+                @endif
+
+                <div class="bg-light p-4 rounded-4 border text-center mt-4">
+                    <h6 class="fw-bold text-dark mb-3"><i class="bi bi-share-fill text-success me-2"></i>Bagikan Informasi Ini</h6>
+                    <p class="text-muted small mb-3">Bantu sebarkan pengumuman penting ini kepada tetangga dan kerabat agar seluruh warga mengetahuinya.</p>
+                    
+                    @php
+                        $teksBagikan = "📢 *SIARAN " . strtoupper($pengumumanAktif->tipe_spanduk) . " DESA JATIROYOM*\n\n*" . $pengumumanAktif->judul . "*\nTanggal: " . $pengumumanAktif->created_at->format('d M Y') . "\n\n" . $pengumumanAktif->isi_pengumuman . "\n\n🌐 Portal Resmi: " . url('/');
+                        $waUrl = "https://wa.me/?text=" . urlencode($teksBagikan);
+                    @endphp
+
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a href="{{ $waUrl }}" target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold shadow-sm d-flex align-items-center gap-2">
+                            <i class="bi bi-whatsapp fs-5"></i> Bagikan ke WhatsApp
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-bold d-flex align-items-center gap-2" onclick="navigator.clipboard.writeText({{ json_encode($teksBagikan) }}); this.innerHTML='<i class=\'bi bi-check2-all text-success fs-5\'></i> Teks Tersalin!'; setTimeout(() => this.innerHTML='<i class=\'bi bi-files fs-5\'></i> Salin Teks', 3000);">
+                            <i class="bi bi-files fs-5"></i> Salin Teks
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-light border-0 py-3 justify-content-center">
+                <button type="button" class="btn btn-secondary rounded-pill px-5 fw-bold" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
     </div>
 </div>
 @endif

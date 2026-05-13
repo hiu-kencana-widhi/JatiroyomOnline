@@ -273,9 +273,9 @@
 <!-- Hero Section -->
 <section class="hero-section text-center px-3">
     <div class="container hero-content">
-        <span class="badge bg-primary rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase" style="letter-spacing: 2px;">Selamat Datang</span>
-        <h1 class="display-2 fw-bold mb-3">Pesona Desa <span class="text-primary">Jatiroyom</span></h1>
-        <p class="lead mb-5 mx-auto opacity-75" style="max-width: 700px;">
+        <span class="badge bg-primary rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase" style="letter-spacing: 2px; font-size: clamp(0.7rem, 1.5vw, 0.85rem);">Selamat Datang</span>
+        <h1 class="fw-bold mb-3" style="font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -1px;">Pesona Desa <span class="text-primary">Jatiroyom</span></h1>
+        <p class="lead mb-5 mx-auto opacity-75" style="max-width: 700px; font-size: clamp(1rem, 2vw, 1.25rem);">
             Mewujudkan tata kelola desa yang modern, transparan, dan mandiri melalui inovasi pelayanan digital terbaik untuk seluruh warga.
         </p>
         <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
@@ -321,14 +321,14 @@
         @if($pengumumanAktif)
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10">
-                <div class="card border-0 rounded-4 shadow-sm overflow-hidden" style="background: {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%)' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)' : 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)') }}; border-left: 6px solid {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#dc3545' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#f59e0b' : '#0d6efd') }} !important;">
+                <div class="card border-0 rounded-4 shadow-sm overflow-hidden hover-lift transition-all" role="button" data-bs-toggle="modal" data-bs-target="#modalSiaranGlobalHome" style="cursor: pointer; background: {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%)' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)' : 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)') }}; border-left: 6px solid {{ $pengumumanAktif->tipe_spanduk === 'darurat' ? '#dc3545' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? '#f59e0b' : '#0d6efd') }} !important;">
                     <div class="card-body p-4 p-md-5">
                         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
-                            <div class="d-flex align-items-start gap-3 gap-md-4">
+                            <div class="d-flex align-items-start gap-3 gap-md-4 flex-grow-1">
                                 <div class="p-3 rounded-circle bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} text-white shadow-sm flex-shrink-0 mt-1">
                                     <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'megaphone-fill') }}" style="font-size: 1.8rem;"></i>
                                 </div>
-                                <div>
+                                <div class="flex-grow-1">
                                     <div class="d-flex align-items-center gap-2 mb-2">
                                         <span class="badge bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} rounded-pill px-3 py-1 text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">
                                             Siaran {{ $pengumumanAktif->tipe_spanduk }}
@@ -336,17 +336,89 @@
                                         <small class="text-muted fw-bold"><i class="bi bi-calendar-event me-1"></i> {{ $pengumumanAktif->created_at->format('d M Y') }}</small>
                                     </div>
                                     <h3 class="fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">{{ $pengumumanAktif->judul }}</h3>
-                                    <p class="text-secondary mb-0 fs-6 lh-base" style="max-width: 750px;">{{ $pengumumanAktif->isi_pengumuman }}</p>
+                                    <p class="text-secondary mb-3 fs-6 lh-base" style="max-width: 750px;">{{ Str::limit($pengumumanAktif->isi_pengumuman, 180) }}</p>
+                                    
+                                    <div class="pt-2 border-top border-secondary border-opacity-10 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                        <span class="small fw-bold text-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }}">
+                                            <i class="bi bi-hand-index-thumb me-1"></i> Sentuh untuk baca rincian & bagikan
+                                        </span>
+                                        <span class="badge bg-white text-dark border px-3 py-1 shadow-sm rounded-pill"><i class="bi bi-share-fill text-success me-1"></i> Bagikan</span>
+                                    </div>
                                 </div>
                             </div>
                             @if($pengumumanAktif->file_lampiran)
-                                <div class="flex-shrink-0 text-md-end pt-2 pt-md-0 border-top border-md-0 border-secondary border-opacity-10 mt-3 mt-md-0">
-                                    <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} btn-premium rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center justify-content-center text-nowrap">
+                                <div class="flex-shrink-0 text-md-end pt-2 pt-md-0 border-top border-md-0 border-secondary border-opacity-10 mt-3 mt-md-0" style="position: relative; z-index: 20;">
+                                    <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" onclick="event.stopPropagation()" class="btn btn-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} btn-premium rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center justify-content-center text-nowrap">
                                         <i class="bi bi-file-earmark-arrow-down-fill me-2"></i> Unduh Lampiran
                                     </a>
                                 </div>
                             @endif
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Detail Siaran Global Home -->
+        <div class="modal fade" id="modalSiaranGlobalHome" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="modal-header bg-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'danger' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'warning' : 'primary') }} text-white p-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-{{ $pengumumanAktif->tipe_spanduk === 'darurat' ? 'exclamation-octagon-fill' : ($pengumumanAktif->tipe_spanduk === 'peringatan' ? 'exclamation-triangle-fill' : 'megaphone-fill') }} fs-2"></i>
+                            <div>
+                                <span class="badge bg-white text-dark rounded-pill px-2 py-1 mb-1 fw-bold text-uppercase" style="font-size: 0.65rem;">
+                                    Siaran {{ $pengumumanAktif->tipe_spanduk }} Desa
+                                </span>
+                                <h5 class="modal-title fw-bold mb-0 text-white">{{ $pengumumanAktif->judul }}</h5>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4 p-md-5">
+                        <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
+                            <i class="bi bi-calendar-check text-muted"></i>
+                            <span class="small text-muted fw-bold">Diterbitkan pada: {{ $pengumumanAktif->created_at->format('d F Y, H:i') }} WIB</span>
+                        </div>
+                        
+                        <div class="text-dark fs-5 mb-4 lh-base" style="white-space: pre-line;">{{ $pengumumanAktif->isi_pengumuman }}</div>
+                        
+                        @if($pengumumanAktif->file_lampiran)
+                            <div class="p-3 bg-light rounded-4 border d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-pdf-fill text-danger fs-3"></i>
+                                    <div>
+                                        <div class="fw-bold small text-dark">Dokumen Lampiran Resmi</div>
+                                        <span class="text-muted fs-8">Tersedia untuk diunduh publik</span>
+                                    </div>
+                                </div>
+                                <a href="{{ asset('storage/' . $pengumumanAktif->file_lampiran) }}" target="_blank" class="btn btn-sm btn-primary rounded-pill px-4 fw-bold">
+                                    <i class="bi bi-download me-1"></i> Unduh File
+                                </a>
+                            </div>
+                        @endif
+
+                        <div class="bg-light p-4 rounded-4 border text-center mt-4">
+                            <h6 class="fw-bold text-dark mb-3"><i class="bi bi-share-fill text-success me-2"></i>Bagikan Informasi Ini</h6>
+                            <p class="text-muted small mb-3">Bantu sebarkan pengumuman penting ini kepada tetangga dan kerabat agar seluruh warga mengetahuinya.</p>
+                            
+                            @php
+                                $teksBagikan = "📢 *SIARAN " . strtoupper($pengumumanAktif->tipe_spanduk) . " DESA JATIROYOM*\n\n*" . $pengumumanAktif->judul . "*\nTanggal: " . $pengumumanAktif->created_at->format('d M Y') . "\n\n" . $pengumumanAktif->isi_pengumuman . "\n\n🌐 Portal Resmi: " . url('/');
+                                $waUrl = "https://wa.me/?text=" . urlencode($teksBagikan);
+                            @endphp
+
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <a href="{{ $waUrl }}" target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold shadow-sm d-flex align-items-center gap-2">
+                                    <i class="bi bi-whatsapp fs-5"></i> Bagikan ke WhatsApp
+                                </a>
+                                <button type="button" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-bold d-flex align-items-center gap-2" onclick="navigator.clipboard.writeText({{ json_encode($teksBagikan) }}); this.innerHTML='<i class=\'bi bi-check2-all text-success fs-5\'></i> Teks Tersalin!'; setTimeout(() => this.innerHTML='<i class=\'bi bi-files fs-5\'></i> Salin Teks', 3000);">
+                                    <i class="bi bi-files fs-5"></i> Salin Teks
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-0 py-3 justify-content-center">
+                        <button type="button" class="btn btn-secondary rounded-pill px-5 fw-bold" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>

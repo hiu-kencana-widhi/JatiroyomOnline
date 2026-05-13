@@ -85,7 +85,7 @@
     }
 
     .navbar.scrolled .navbar-brand i {
-        color: var(--primary-color) !important;
+        color: #d97706 !important;
     }
 
     .navbar .navbar-toggler {
@@ -114,9 +114,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
         }
         .navbar.expanded .nav-link, 
-        .navbar.expanded .navbar-brand span,
-        .navbar.expanded .navbar-brand i {
+        .navbar.expanded .navbar-brand span {
             color: #334155 !important;
+        }
+        .navbar.expanded .navbar-brand i {
+            color: #d97706 !important;
         }
         .navbar.expanded .navbar-toggler-icon {
             filter: none !important;
@@ -146,17 +148,27 @@
         justify-content: center;
         transition: 0.3s;
     }
+
+    /* Curated Premium Tailored Colors for Anggaran Desa (Amber Gold Theme) */
+    .text-amber-theme { color: #d97706 !important; }
+    .bg-amber-theme { background-color: #d97706 !important; }
+    .bg-amber-light { background-color: rgba(217, 119, 6, 0.08) !important; }
+    .border-amber-theme { border-color: rgba(217, 119, 6, 0.2) !important; }
+    .btn-outline-amber { color: #d97706; border-color: #d97706; background: transparent; }
+    .btn-outline-amber:hover { background-color: #d97706; color: white; }
+    .btn-amber { background-color: #d97706; color: white; border: none; }
+    .btn-amber:hover { background-color: #b45309; color: white; }
 </style>
 @endsection
 
 @section('content')
 <section class="page-header text-center">
     <div class="container page-header-content">
-        <div class="d-inline-block px-4 py-2 rounded-pill bg-white bg-opacity-10 text-white fw-bold mb-3 shadow-sm" style="letter-spacing: 2px; font-size: 0.85rem; backdrop-filter: blur(5px);">
+        <div class="d-inline-block px-4 py-2 rounded-pill bg-white bg-opacity-10 text-white fw-bold mb-3 shadow-sm" style="letter-spacing: 2px; font-size: clamp(0.7rem, 1.5vw, 0.85rem); backdrop-filter: blur(5px);">
             <i class="bi bi-wallet2 me-2"></i> TRANSPARANSI DESA
         </div>
-        <h1 class="display-3 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; letter-spacing: -1px;">Anggaran & APBDes</h1>
-        <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Wujud keterbukaan informasi publik dalam pengelolaan Dana Desa Jatiroyom yang akuntabel.</p>
+        <h1 class="fw-bold mb-3" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-family: 'Outfit', sans-serif; letter-spacing: -1px;">Anggaran & <span class="text-amber-theme">APBDes</span></h1>
+        <p class="lead opacity-75 mx-auto" style="max-width: 700px; font-size: clamp(1rem, 2vw, 1.25rem);">Wujud keterbukaan informasi publik dalam pengelolaan Dana Desa Jatiroyom yang akuntabel.</p>
     </div>
 
     <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden" style="line-height: 0; z-index: 5;">
@@ -170,8 +182,8 @@
     <div class="container py-4">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center page-header-content">
-                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3 fw-bold shadow-sm" style="letter-spacing: 1px;">DOKUMEN PUBLIK</span>
-                <h2 class="display-6 fw-bold text-dark mb-4" style="font-family: 'Outfit', sans-serif;">Komitmen Transparansi Kami</h2>
+                <span class="badge bg-amber-light text-amber-theme rounded-pill px-4 py-2 mb-3 fw-bold shadow-sm" style="letter-spacing: 1px; font-size: clamp(0.7rem, 1.5vw, 0.85rem);">DOKUMEN PUBLIK</span>
+                <h2 class="fw-bold text-dark mb-4" style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-family: 'Outfit', sans-serif;">Komitmen Transparansi Kami</h2>
                 <p class="text-muted lead px-lg-5">Kami berkomitmen mengelola dana desa secara transparan. Warga berhak mengetahui dan mengawasi setiap penggunaan anggaran desa.</p>
             </div>
         </div>
@@ -181,15 +193,15 @@
             <div class="col-md-6">
                 <div class="card budget-card p-4 shadow-sm hover-lift transition-all">
                     <div class="d-flex align-items-center">
-                        <div class="icon-box bg-danger bg-opacity-10 text-danger me-4 shadow-none">
+                        <div class="icon-box bg-amber-light text-amber-theme me-4 shadow-none">
                             <i class="bi bi-file-earmark-pdf-fill fs-2"></i>
                         </div>
                         <div class="flex-grow-1">
                             <h5 class="fw-bold text-dark mb-1" style="font-family: 'Outfit', sans-serif;">{{ $ang->judul }}</h5>
-                            <p class="text-muted small mb-0">Tahun Anggaran: <span class="fw-bold text-primary">{{ $ang->created_at->format('Y') }}</span></p>
+                            <p class="text-muted small mb-0">Tahun Anggaran: <span class="fw-bold text-amber-theme">{{ $ang->created_at->format('Y') }}</span></p>
                         </div>
                         <div class="ms-3">
-                            <a href="{{ asset('storage/' . $ang->file_path) }}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-4 fw-bold">
+                            <a href="{{ asset('storage/' . $ang->file_path) }}" target="_blank" class="btn btn-outline-amber btn-sm rounded-pill px-4 fw-bold">
                                 <i class="bi bi-eye-fill me-1"></i> Lihat
                             </a>
                         </div>
@@ -197,7 +209,7 @@
                     <hr class="my-4 opacity-5">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="text-muted small"><i class="bi bi-clock-history me-2"></i> Update: {{ $ang->created_at->format('d M Y') }}</span>
-                        <a href="{{ route('anggaran.download', $ang) }}" class="btn btn-success rounded-pill px-4 fw-bold shadow-sm">
+                        <a href="{{ route('anggaran.download', $ang) }}" class="btn btn-amber rounded-pill px-4 fw-bold shadow-sm">
                             <i class="bi bi-download me-2"></i> Unduh PDF
                         </a>
                     </div>
@@ -216,11 +228,11 @@
 
         <div class="mt-5 p-4 p-md-5 bg-white rounded-4 shadow-sm border-0 position-relative overflow-hidden">
             <div class="position-absolute top-0 end-0 p-5 opacity-5">
-                <i class="bi bi-info-circle-fill text-primary" style="font-size: 15rem; margin-top: -50px; margin-right: -50px;"></i>
+                <i class="bi bi-info-circle-fill text-amber-theme" style="font-size: 15rem; margin-top: -50px; margin-right: -50px;"></i>
             </div>
             <div class="row align-items-center position-relative" style="z-index: 2;">
                 <div class="col-lg-2 text-center mb-4 mb-lg-0">
-                    <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 90px; height: 90px;">
+                    <div class="bg-amber-light text-amber-theme rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 90px; height: 90px;">
                         <i class="bi bi-info-circle-fill fs-1"></i>
                     </div>
                 </div>

@@ -113,7 +113,7 @@
                                 @endif
                             </div>
                         </td>
-                        <td class="text-end pe-4" data-label="Aksi Keputusan">
+                        <td class="text-end pe-4" data-label="Keputusan Moderasi">
                             <!-- BUNGKUSAN DIV TUNGGAL AGAR AMAN DI MOBILE STACK -->
                             <div class="d-flex justify-content-end gap-1 flex-wrap" style="position: relative; z-index: 10;">
                                 @if($item->status_verifikasi !== 'Disetujui')

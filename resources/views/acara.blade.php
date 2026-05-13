@@ -85,7 +85,7 @@
     }
 
     .navbar.scrolled .navbar-brand i {
-        color: var(--primary-color) !important;
+        color: #8b5cf6 !important;
     }
 
     .navbar .navbar-toggler {
@@ -114,9 +114,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
         }
         .navbar.expanded .nav-link, 
-        .navbar.expanded .navbar-brand span,
-        .navbar.expanded .navbar-brand i {
+        .navbar.expanded .navbar-brand span {
             color: #334155 !important;
+        }
+        .navbar.expanded .navbar-brand i {
+            color: #8b5cf6 !important;
         }
         .navbar.expanded .navbar-toggler-icon {
             filter: none !important;
@@ -143,17 +145,23 @@
         border-radius: 30px;
         border: none;
     }
+
+    /* Curated Premium Tailored Colors for Acara Desa (Amethyst Purple Theme) */
+    .text-purple-theme { color: #8b5cf6 !important; }
+    .bg-purple-theme { background-color: #8b5cf6 !important; }
+    .bg-purple-light { background-color: rgba(139, 92, 246, 0.08) !important; }
+    .border-purple-theme { border-color: rgba(139, 92, 246, 0.2) !important; }
 </style>
 @endsection
 
 @section('content')
 <section class="page-header text-center">
     <div class="container page-header-content">
-        <div class="d-inline-block px-4 py-2 rounded-pill bg-white bg-opacity-10 text-white fw-bold mb-3 shadow-sm" style="letter-spacing: 2px; font-size: 0.85rem; backdrop-filter: blur(5px);">
+        <div class="d-inline-block px-4 py-2 rounded-pill bg-white bg-opacity-10 text-white fw-bold mb-3 shadow-sm" style="letter-spacing: 2px; font-size: clamp(0.7rem, 1.5vw, 0.85rem); backdrop-filter: blur(5px);">
             <i class="bi bi-calendar-check me-2"></i> AGENDA DESA
         </div>
-        <h1 class="display-3 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; letter-spacing: -1px;">Acara & Agenda Jatiroyom</h1>
-        <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Informasi lengkap mengenai kegiatan masyarakat dan agenda pemerintahan mendatang di Desa Jatiroyom.</p>
+        <h1 class="fw-bold mb-3" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-family: 'Outfit', sans-serif; letter-spacing: -1px;">Acara & Agenda <span class="text-purple-theme">Jatiroyom</span></h1>
+        <p class="lead opacity-75 mx-auto" style="max-width: 700px; font-size: clamp(1rem, 2vw, 1.25rem);">Informasi lengkap mengenai kegiatan masyarakat dan agenda pemerintahan mendatang di Desa Jatiroyom.</p>
     </div>
 
     <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden" style="line-height: 0; z-index: 5;">
@@ -167,8 +175,8 @@
     <div class="container py-4">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center page-header-content">
-                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-2 mb-3 fw-bold shadow-sm" style="letter-spacing: 1px;">AGENDA TERPADU</span>
-                <h2 class="display-6 fw-bold text-dark mb-4" style="font-family: 'Outfit', sans-serif;">Kebersamaan Membangun Desa</h2>
+                <span class="badge bg-purple-light text-purple-theme rounded-pill px-4 py-2 mb-3 fw-bold shadow-sm" style="letter-spacing: 1px; font-size: clamp(0.7rem, 1.5vw, 0.85rem);">AGENDA TERPADU</span>
+                <h2 class="fw-bold text-dark mb-4" style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-family: 'Outfit', sans-serif;">Kebersamaan Membangun Desa</h2>
                 <p class="text-muted lead px-lg-5">Kami berkomitmen untuk selalu menginformasikan setiap agenda dan kegiatan desa secara terbuka guna meningkatkan partisipasi aktif dan mempererat silaturahmi seluruh warga.</p>
             </div>
         </div>
@@ -181,25 +189,25 @@
                         @if($ac->gambar)
                             <img src="{{ asset('storage/' . $ac->gambar) }}" class="event-img w-100" style="height: 250px; object-fit: cover;" alt="{{ $ac->judul }}">
                         @else
-                            <div class="event-img bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="height: 250px;">
-                                <i class="bi bi-calendar-event text-primary display-4"></i>
+                            <div class="event-img bg-purple-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                                <i class="bi bi-calendar-event text-purple-theme display-4"></i>
                             </div>
                         @endif
                         <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-white text-primary rounded-pill px-3 py-2 fw-bold shadow-sm">
+                            <span class="badge bg-white text-purple-theme rounded-pill px-3 py-2 fw-bold shadow-sm">
                                 <i class="bi bi-tag-fill me-1"></i> Kegiatan
                             </span>
                         </div>
                     </div>
                     <div class="card-body p-4 text-center text-md-start">
                         <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
-                            <div class="bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 small fw-bold">
+                            <div class="bg-purple-light text-purple-theme rounded-pill px-3 py-1 small fw-bold">
                                 <i class="bi bi-calendar3 me-2"></i>{{ \Carbon\Carbon::parse($ac->tanggal)->format('d M Y') }}
                             </div>
                         </div>
                         <h5 class="fw-bold text-dark mb-3" style="font-family: 'Outfit', sans-serif;">{{ $ac->judul }}</h5>
                         <p class="text-muted small mb-4 lh-lg">{{ Str::limit($ac->deskripsi, 100) }}</p>
-                        <div class="d-flex align-items-center justify-content-center justify-content-md-start text-primary fw-bold small">
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-start text-purple-theme fw-bold small">
                             Lihat Detail Acara <i class="bi bi-arrow-right ms-2"></i>
                         </div>
                     </div>
@@ -218,7 +226,7 @@
                             @endif
                             <div class="{{ $ac->gambar ? 'col-lg-7' : 'col-12' }} p-4 p-lg-5">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <span class="badge bg-primary text-white rounded-pill px-3 py-2">
+                                    <span class="badge bg-purple-theme text-white rounded-pill px-3 py-2">
                                         {{ \Carbon\Carbon::parse($ac->tanggal)->format('d F Y') }}
                                     </span>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

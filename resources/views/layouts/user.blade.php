@@ -163,8 +163,11 @@
             }
             .table-responsive-stack td:last-child > * {
                 width: 100%;
-                justify-content: center;
-                display: flex;
+                flex-direction: row !important;
+                justify-content: center !important;
+                align-items: center !important;
+                display: flex !important;
+                flex-wrap: wrap;
                 gap: 8px;
             }
             .table-responsive-stack .text-center {
@@ -275,6 +278,7 @@
                 // Mobile Toggle
                 sidebar.classList.toggle('show');
                 overlay.classList.toggle('show');
+                document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : '';
             }
         }
 

@@ -149,7 +149,7 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td class="text-end pe-4" data-label="Aksi">
+                                <td class="text-end pe-4" data-label="Kelola">
                                     <div class="d-flex justify-content-end gap-1" style="position: relative; z-index: 10;">
                                         <button type="button" class="btn btn-sm btn-light border rounded-pill px-2 py-1" data-bs-toggle="modal" data-bs-target="#editModal{{ $item->id }}">
                                             <i class="bi bi-pencil text-primary"></i>

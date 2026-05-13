@@ -129,9 +129,9 @@
 <section class="page-header text-center">
     <div class="container page-header-content">
         <span class="badge bg-success rounded-pill px-4 py-2 mb-3 fw-bold text-uppercase shadow-sm" style="letter-spacing: 2px;">PASAR DIGITAL DESA</span>
-        <h1 class="display-3 fw-bold mb-3 tracking-tight" style="font-family: 'Outfit', sans-serif;">Katalog Etalase <span class="text-success">UMKM</span></h1>
-        <p class="lead max-w-2xl mx-auto text-white-50 mb-0" style="max-width: 700px;">
-            Dukung pertumbuhan ekonomi lokal dengan membeli produk olahan tani, kuliner khas, dan kerajinan tangan langsung dari tangan kreatif warga Jatiroyom.
+        <h1 class="fw-bold mb-3 tracking-tight" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-family: 'Outfit', sans-serif;">Katalog Etalase <span class="text-success">UMKM</span></h1>
+        <p class="lead max-w-2xl mx-auto text-white-50 mb-0" style="max-width: 700px; font-size: clamp(1rem, 2vw, 1.25rem);">
+            Dukung ekonomi lokal dengan membeli produk unggulan, kuliner khas, dan kerajinan tangan warga Jatiroyom.
         </p>
     </div>
     
