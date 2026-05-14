@@ -29,6 +29,40 @@ Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyama
 
 ---
 
+## 🎨 Identitas Visual & Filosofi Logo
+
+<div align="center">
+  <img src="public/image/logo-jatiroyomonline.png" alt="Logo Jatiroyom Online" width="180"/>
+</div>
+
+<br>
+
+Logo resmi **Jatiroyom Online** dirancang dengan mengedepankan nilai-nilai modernitas, konektivitas, dan keterbukaan layanan digital berstandar tinggi. Berikut adalah penjabaran makna dan filosofi mendalam di balik identitas visual ini:
+
+### 1. Analisis Visual & Tipografi
+Logo ini menggunakan pendekatan *monogram interlock*, di mana huruf-huruf penyusunnya saling bertautan untuk membentuk satu kesatuan identitas visual yang kuat.
+- **Huruf 'J' dan 'O'**: Logo ini secara cerdas menggabungkan inisial **"J"** (Jatiroyom) dan **"O"** (Online).
+  - Huruf **'J'** dibentuk dengan garis vertikal yang melengkung tajam di bagian bawah.
+  - Huruf **'O'** direpresentasikan melalui lingkaran besar yang mendominasi sisi kanan.
+- **Konektivitas (*Interlocking*)**: Bagian ekor dari huruf **'J'** menyatu dan mengalir menjadi bagian dari lingkaran **'O'**. Secara filosofis, ini melambangkan sinergi dan integrasi yang tidak terputus antara identitas lokal (Jatiroyom) dengan dunia digital (Online).
+
+### 2. Makna Bentuk (Geometris)
+- **Lingkaran Sempurna ('O')**: Lingkaran sering dikaitkan dengan komunitas, inklusivitas, dan keutuhan. Dalam konteks JatiroyomOnline, ini menunjukkan bahwa platform ini bertujuan untuk merangkul seluruh komunitas dalam satu wadah global yang luas.
+- **Garis Vertikal dan Lengkungan**: Garis tegak lurus pada huruf **'J'** memberikan kesan stabilitas, integritas, dan kekuatan. Sementara lengkungannya memberikan kesan fleksibilitas dan keramahan dalam pelayanan.
+- **Gaya Minimalis**: Penggunaan bentuk yang bersih tanpa dekorasi berlebihan mencerminkan efisiensi, modernitas, dan kemudahan akses (*user-friendly*)—karakteristik utama dari sebuah platform *online*.
+
+### 3. Filosofi Warna
+Logo menggunakan kombinasi warna **Biru Cerah (*Electric Blue*)** yang elegan dan menonjol:
+- **Biru (*Blue*)**:
+  - **Teknologi & Digital**: Biru adalah warna standar industri teknologi yang melambangkan inovasi dan kecerdasan.
+  - **Kepercayaan (*Trust*)**: Warna ini membangun rasa aman dan profesionalisme bagi penggunanya.
+  - **Komunikasi**: Melambangkan aliran informasi yang lancar dan jernih.
+- **Hitam/Gelap Kontras (*Black/Dark Contrast*)**:
+  - **Elegan & Eksklusif**: Memberikan kontras yang tajam sehingga logo terlihat sangat menonjol (*bold*).
+  - **Kekuatan**: Menunjukkan ambisi dan pondasi yang kokoh bagi sebuah entitas.
+
+---
+
 ## ✨ Fitur & Modul Utama
 
 ### 🌐 1. Portal Publik & Transparansi Informasi

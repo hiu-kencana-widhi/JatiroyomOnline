@@ -13,12 +13,12 @@
     <!-- Preload Critical Assets -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" as="style">
-    <link rel="preload" href="{{ asset('image/logo-pemalang.png') }}" as="image">
+    <link rel="preload" href="{{ asset('image/logo-jatiroyomonline.png') }}" as="image">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="icon" type="image/png" href="{{ asset('image/logo-pemalang.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-jatiroyomonline.png') }}">
     
     <style>
         :root {
@@ -234,7 +234,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/">
-                <i class="bi bi-envelope-paper-fill text-primary me-2 fs-3"></i>
+                <img src="{{ asset('image/logo-jatiroyomonline.png') }}" alt="Logo Jatiroyom Online" class="me-2" style="height: 38px; width: auto; object-fit: contain;">
                 <span class="fw-bold text-dark">Jatiroyom<span class="text-primary">Online</span></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -271,7 +271,7 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <div class="d-flex align-items-center mb-4">
-                        <i class="bi bi-envelope-paper-fill text-primary me-2 fs-2"></i>
+                        <img src="{{ asset('image/logo-jatiroyomonline.png') }}" alt="Logo Jatiroyom Online" class="me-2" style="height: 45px; width: auto; object-fit: contain;">
                         <h4 class="fw-bold text-white mb-0">Jatiroyom<span class="text-primary">Online</span></h4>
                     </div>
                     <p class="mb-4 small" style="line-height: 1.6;">
@@ -328,7 +328,7 @@
 
             <div class="footer-bottom text-center">
                 <p class="mb-0 x-small opacity-75">
-                    &copy; {{ date('Y') }} Pemerintah Desa Jatiroyom. Dikelola oleh Tim IT Desa. <br>
+                    &copy; {{ date('Y') }} Pemerintah Desa Jatiroyom. Dikelola oleh Tim IT Desa. <span class="watermark-hiu fw-bold text-primary ms-1" style="letter-spacing: 0.5px;">ByHiu</span> <br>
                     <span class="opacity-50">Sistem Informasi Pelayanan Digital - v2.1.2</span>
                 </p>
             </div>

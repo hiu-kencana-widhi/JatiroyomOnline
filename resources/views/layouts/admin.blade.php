@@ -8,12 +8,11 @@
     <!-- Preloads for Speed -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
-    
+    <link rel="preload" href="{{ asset('image/logo-jatiroyomonline.png') }}" as="image">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="icon" type="image/png" href="{{ asset('image/logo-pemalang.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-jatiroyomonline.png') }}">
     
     <style>
         :root {
@@ -230,9 +229,7 @@
 
     <div class="sidebar" id="sidebar">
         <div class="p-4 mb-3 d-flex align-items-center border-bottom border-secondary border-opacity-25">
-            <div class="bg-primary rounded-3 p-2 me-2">
-                <i class="bi bi-shield-lock-fill text-white fs-4"></i>
-            </div>
+            <img src="{{ asset('image/logo-jatiroyomonline.png') }}" alt="Logo Jatiroyom" class="me-2" style="height: 35px; width: auto; object-fit: contain;">
             <span class="fw-bold fs-5 tracking-tight">Admin<span class="text-primary">Desa</span></span>
         </div>
         <nav class="nav-sidebar">
@@ -328,7 +325,7 @@
         <footer class="mt-auto py-4 px-5 border-top bg-white">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                 <div class="text-muted small">
-                    &copy; {{ date('Y') }} <span class="fw-bold">Pemerintah Desa Jatiroyom</span>.
+                    &copy; {{ date('Y') }} <span class="fw-bold">Pemerintah Desa Jatiroyom</span>. <span class="watermark-hiu fw-bold text-primary ms-1" style="letter-spacing: 0.5px;">ByHiu</span>
                 </div>
                 <div class="d-flex align-items-center gap-4">
                     <span class="badge bg-light text-secondary border rounded-pill px-3">v2.1.2</span>

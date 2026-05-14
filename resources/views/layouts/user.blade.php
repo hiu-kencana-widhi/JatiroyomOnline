@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-jatiroyomonline.png') }}">
+    <link rel="preload" href="{{ asset('image/logo-jatiroyomonline.png') }}" as="image">
     <style>
         :root {
             --sidebar-width: 260px;
@@ -182,9 +184,7 @@
 
     <div class="sidebar" id="sidebar">
         <div class="p-4 mb-3 d-flex align-items-center">
-            <div class="bg-primary bg-opacity-10 rounded-3 p-2 me-2">
-                <i class="bi bi-person-badge text-primary fs-4"></i>
-            </div>
+            <img src="{{ asset('image/logo-jatiroyomonline.png') }}" alt="Logo Jatiroyom" class="me-2" style="height: 35px; width: auto; object-fit: contain;">
             <span class="fw-bold fs-5 tracking-tight text-dark">Panel<span class="text-primary">Warga</span></span>
         </div>
         <nav class="nav-sidebar">
@@ -252,7 +252,7 @@
         <footer class="mt-auto py-4 px-4 border-top bg-white">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                 <div class="text-muted small">
-                    &copy; {{ date('Y') }} <span class="fw-bold text-primary">E-Surat Jatiroyom</span>. Layanan Mandiri Warga.
+                    &copy; {{ date('Y') }} <span class="fw-bold text-primary">E-Surat Jatiroyom</span>. Layanan Mandiri Warga. <span class="watermark-hiu fw-bold text-primary ms-1" style="letter-spacing: 0.5px;">ByHiu</span>
                 </div>
                 <div class="d-flex gap-3">
                     <a href="https://wa.me/628123456789" class="text-decoration-none text-muted small"><i class="bi bi-whatsapp me-1"></i> Bantuan</a>

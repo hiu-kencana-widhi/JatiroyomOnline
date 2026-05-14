@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-jatiroyomonline.png') }}">
+    <link rel="preload" href="{{ asset('image/logo-jatiroyomonline.png') }}" as="image">
     <style>
         :root {
             --sidebar-width: 280px;
@@ -190,9 +192,7 @@
 
     <div class="sidebar" id="sidebar">
         <div class="p-4 mb-3 d-flex align-items-center border-bottom border-secondary border-opacity-25">
-            <div class="rounded-3 p-2 me-2" style="background-color: var(--primary-teal);">
-                <i class="bi bi-shield-check fs-4 text-white"></i>
-            </div>
+            <img src="{{ asset('image/logo-jatiroyomonline.png') }}" alt="Logo Jatiroyom" class="me-2" style="height: 35px; width: auto; object-fit: contain;">
             <span class="fw-bold fs-5 tracking-tight text-white">Aparatur<span style="color: var(--primary-teal-light);">Desa</span></span>
         </div>
         <nav class="nav-sidebar">
@@ -248,7 +248,7 @@
         <footer class="mt-auto py-4 px-4 border-top bg-white">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                 <div class="text-muted small">
-                    &copy; {{ date('Y') }} <span class="fw-bold" style="color: var(--primary-teal);">Desa Jatiroyom</span>. Sistem Informasi Aparatur.
+                    &copy; {{ date('Y') }} <span class="fw-bold" style="color: var(--primary-teal);">Desa Jatiroyom</span>. Sistem Informasi Aparatur. <span class="watermark-hiu fw-bold text-primary ms-1" style="letter-spacing: 0.5px;">ByHiu</span>
                 </div>
             </div>
         </footer>
