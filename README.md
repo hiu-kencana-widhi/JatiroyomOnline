@@ -51,15 +51,16 @@ Logo ini menggunakan pendekatan *monogram interlock*, di mana huruf-huruf penyus
 - **Garis Vertikal dan Lengkungan**: Garis tegak lurus pada huruf **'J'** memberikan kesan stabilitas, integritas, dan kekuatan. Sementara lengkungannya memberikan kesan fleksibilitas dan keramahan dalam pelayanan.
 - **Gaya Minimalis**: Penggunaan bentuk yang bersih tanpa dekorasi berlebihan mencerminkan efisiensi, modernitas, dan kemudahan akses (*user-friendly*)—karakteristik utama dari sebuah platform *online*.
 
-### 3. Filosofi Warna
-Logo menggunakan kombinasi warna **Biru Cerah (*Electric Blue*)** yang elegan dan menonjol:
-- **Biru (*Blue*)**:
-  - **Teknologi & Digital**: Biru adalah warna standar industri teknologi yang melambangkan inovasi dan kecerdasan.
-  - **Kepercayaan (*Trust*)**: Warna ini membangun rasa aman dan profesionalisme bagi penggunanya.
-  - **Komunikasi**: Melambangkan aliran informasi yang lancar dan jernih.
-- **Hitam/Gelap Kontras (*Black/Dark Contrast*)**:
-  - **Elegan & Eksklusif**: Memberikan kontras yang tajam sehingga logo terlihat sangat menonjol (*bold*).
-  - **Kekuatan**: Menunjukkan ambisi dan pondasi yang kokoh bagi sebuah entitas.
+### 3. Filosofi Warna & Versatilitas Latar Belakang
+Logo ini dirancang dengan fleksibilitas tinggi menggunakan warna utama **Biru Cerah (*Electric Blue*)** berformat transparan (*Versatile Transparency*), memungkinkannya untuk menyatu secara sempurna di atas berbagai skema latar belakang:
+- **Biru Utama (*Electric Blue*)**:
+  - **Teknologi & Inovasi**: Biru mewakili standar luhur dunia digital, melambangkan kecerdasan, kecepatan, dan modernisasi tata kelola desa.
+  - **Kepercayaan (*Trust*)**: Menanamkan rasa aman, transparansi, dan kredibilitas dalam setiap interaksi pelayanan publik.
+  - **Kejernihan Komunikasi**: Merepresentasikan kelancaran arus informasi dari pemerintah desa kepada masyarakat.
+- **Adaptabilitas Latar Belakang (*Universal Background Versatility*)**:
+  - **Di Atas Latar Terang (*Light / Clean Theme*)**: Memberikan kontras yang sangat tajam, bersih, dan profesional (khas aplikasi modern bernilai tinggi).
+  - **Di Atas Latar Gelap (*Dark / Eksklusif Theme*)**: Memancarkan kesan elegan, eksklusif, dan mutakhir yang memperkuat karakter *bold* dari identitas desa.
+  - **Di Atas Latar Bertekstur/Kaca (*Glassmorphism*)**: Mempertahankan kejernihan visual yang harmonis tanpa kehilangan esensi bentuk geometrisnya.
 
 ---
 
