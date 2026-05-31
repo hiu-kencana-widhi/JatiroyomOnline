@@ -32,7 +32,7 @@ Dikembangkan dengan sentuhan estetika antarmuka premium, sistem menjamin kenyama
 ## 🎨 Identitas Visual & Filosofi Logo
 
 <div align="center">
-  <img src="public/image/logo-jatiroyomonline.png" alt="Logo Jatiroyom Online" width="180"/>
+  <img src="frontend/public/image/logo-jatiroyomonline.png" alt="Logo Jatiroyom Online" width="180"/>
 </div>
 
 <br>
@@ -68,7 +68,7 @@ Logo ini dirancang dengan fleksibilitas tinggi menggunakan warna utama **Biru Ce
 
 ### 🌐 1. Portal Publik & Transparansi Informasi
 - **Beranda Interaktif**: Etalase visual keindahan profil desa, struktur kepemimpinan aparatur, dan sorotan ulasan pelayanan riil dari masyarakat.
-- **Pasar Digital UMKM (*Baru*)**: Katalog produk olahan tani, kuliner khas, dan kerajinan tangan warga yang disajikan dengan tata letak *Bento Grid* modern, lencana status terverifikasi, saringan kategori dinamis, serta generator tautan pesanan instan via WhatsApp tanpa potongan biaya sistem.
+- **Pasar Digital UMKM (*Baru*)**: Katalog produk olahan tani, kuliner khas, dan kerajinan tangan warga yang disajikan dengan tata letak *Bento Grid* modern, lencana status terverifikasi, saringan kategori dinamis, serta generator tautan pemesanan instan via WhatsApp tanpa potongan biaya sistem.
 - **Siaran Spanduk Darurat**: Pengunjung langsung disambut oleh pita pengumuman global bergaya *Glassmorphism* di bawah menu utama yang menyajikan peringatan mendesak, jadwal pemadaman, atau pembagian bansos secara *real-time*, lengkap dengan tombol pengunduhan surat edaran/dokumen pendukung.
 - **Agenda & Acara Desa**: Publikasi acara, pengumuman, dan jadwal kegiatan desa untuk memastikan masyarakat luas terus mendapatkan informasi terkini.
 - **Transparansi Anggaran**: Rilis publikasi grafik dan rincian laporan alokasi anggaran belanja desa yang dapat dipantau dan diunduh langsung oleh publik.
@@ -100,7 +100,7 @@ Logo ini dirancang dengan fleksibilitas tinggi menggunakan warna utama **Biru Ce
 ### 🎵 5. Umpan Balik Suara Keberhasilan (*Auditory Success Feedback*)
 - **Notifikasi Audio Selektif**: Guna memperkaya pengalaman antarmuka pengguna tanpa menimbulkan polusi suara, sistem dilengkapi fitur pemutar efek suara otomatis yang **hanya berbunyi saat sebuah aksi krusial berhasil tuntas**.
 - **Cakupan Menyeluruh**: Efek suara terpicu secara mulus setelah proses **Login**, **Logout**, penambahan data (**Create**), pembaruan rincian (**Edit**), dan penghapusan data (**Delete**) yang tervalidasi sukses.
-- **Efisiensi Aset**: Memanfaatkan pemuatan berkas audio tunggal tersembunyi berkinerja tinggi (`public/sound/sound.mp3`) yang disematkan langsung di seluruh *layout* utama dan mematuhi kebijakan *autoplay* modern peramban web.
+- **Efisiensi Aset**: Memanfaatkan pemuatan berkas audio tunggal tersembunyi berkinerja tinggi (`frontend/public/sound/sound-jatiroyomonline.mp3`) yang disematkan langsung di seluruh *layout* utama dan mematuhi kebijakan *autoplay* modern peramban web.
 
 ---
 
@@ -123,7 +123,7 @@ Gunakan akun terdaftar berikut untuk menguji coba fungsionalitas sistem di lingk
 
 Untuk menuntaskan kendala umum pada aplikasi web tradisional yang menampilkan tabel kaku hingga terpotong di layar ponsel, JatiroyomOnline mengimplementasikan inovasi CSS `.table-responsive-stack`:
 - **Desktop View**: Komponen tabel dirender dalam format baris mendatar yang padat, terstruktur, dan informatif.
-- **Mobile View (`< 768px`)**: Seluruh tabel secara mulus menyembunyikan tajuk kolom (*header*) atas dan menyusun ulang setiap baris sel menjadi **kartu susun vertikal independen**. Nama kolom disisipkan secara cerdas sebagai label di sisi kiri, memberikan navigasi sentuh yang alami tanpa mengharuskan pengguna menggeser layar secara horizontal.
+- **Mobile View (`< 768px`)**: Seluruh tabel secara mulus menyembunyikan tajuk kolom (*header*) atas dan menyusun ulang setiap baris sel menjadi **kartu susun vertikal indeks independen**. Nama kolom disisipkan secara cerdas sebagai label di sisi kiri, memberikan navigasi sentuh yang alami tanpa mengharuskan pengguna menggeser layar secara horizontal.
 - **Isolasi Z-Index**: Penataan tumpukan komponen interaktif (seperti peta dan *dropdown*) telah dikalibrasi ketat agar tidak pernah memblokir penangkap sentuhan pada tombol navigasi utama.
 
 ---
@@ -138,36 +138,51 @@ git clone https://github.com/hiu-kencana-widhi/JatiroyomOnline.git
 cd JatiroyomOnline
 ```
 
-### 2. Instalasi Dependensi
-Pastikan peladen Anda menjalankan PHP versi 8.1 atau yang lebih baru dan Composer telah terpasang.
+### 2. Instalasi Dependensi Backend (Laravel)
+Pastikan peladen Anda menjalankan PHP versi 8.2 atau yang lebih baru dan Composer telah terpasang.
 ```bash
+cd backend
 composer install
 ```
 
-### 3. Persiapan Konfigurasi Lingkungan
+### 3. Persiapan Konfigurasi Lingkungan Backend
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
-Buka berkas `.env` dan sesuaikan parameter koneksi basis data (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) dengan kredensial MySQL lokal Anda.
+Buka berkas `.env` di dalam folder `backend/` dan sesuaikan parameter koneksi basis data (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) dengan kredensial MySQL lokal Anda.
 
-### 4. Migrasi Skema & Penanaman Seeder Master
-Perintah di bawah ini akan membangun fisik tabel dari awal dan menanamkan akun demo beserta data referensi awal:
+### 4. Migrasi Skema, Penanaman Seeder & Symlink Storage
+Perintah di bawah ini akan membangun fisik tabel dari awal, menanamkan akun demo, dan menghubungkan folder storage ke folder frontend:
 ```bash
 php artisan migrate:fresh --seed
+php artisan storage:link
 ```
 
-### 5. Optimalisasi Tampilan dan Pembersihan Cache
-Guna memastikan sinkronisasi acuan waktu WIB serta penyegaran tembolok tampilan (*view cache*) termuat dengan sempurna:
+### 5. Instalasi Dependensi & Kompilasi Frontend (Vite)
+Pastikan Node.js dan NPM telah terpasang pada komputer Anda:
 ```bash
-php artisan optimize:clear
+cd ../frontend
+npm install
+npm run build
 ```
 
 ### 6. Menjalankan Peladen Lokal
-```bash
-php artisan serve
-```
-Akses portal melalui tautan `http://localhost:8000` di peramban gawai atau komputer meja Anda.
+
+Untuk menjalankan aplikasi di lingkungan lokal secara bersamaan:
+
+*   **Jalankan Backend (Laravel Server)**:
+    ```bash
+    cd backend
+    php artisan serve
+    ```
+    Akses portal melalui tautan `http://localhost:8000`.
+
+*   **Jalankan Frontend Dev Server (Vite)**:
+    ```bash
+    cd frontend
+    npm run dev
+    ```
 
 ---
 
@@ -225,9 +240,9 @@ Berikut adalah pemetaan diagram alur kerja terperinci yang mencakup seluruh anta
 ### D. Alur Pelaporan Insiden & Kerusakan Lapangan (*Citizen Incident Reporting*)
 ```
 [ Warga: Aktifkan Kamera Peramban & Sensor GPS ] ──► [ Pengiriman Form Aduan Bukti Fisik ]
-                                                                   │
+                                                                    │
                                                       [ Status Awal: Menunggu ]
-                                                                   │
+                                                                    │
                ┌───────────────────────◄───(Tidak Valid?)──────────┴──────────(Diterima?)───►────────────────────────┐
                ▼                                                                                                     ▼
      [ Status: Ditolak ]                                                                                [ Status: Diproses ]
@@ -243,13 +258,13 @@ Berikut adalah pemetaan diagram alur kerja terperinci yang mencakup seluruh anta
 ### E. Alur Siaran Spanduk Darurat & Pengumuman (*Broadcast Banner Control*)
 ```
 [ Admin Utama: Terbitkan Spanduk Baru ] ──► [ Lengkapi Judul, Pesan, Tipe Urgensi, & Lampiran PDF ]
-                                                                   │
+                                                                    │
                                                       [ Masa Tayang Dijadwalkan ]
-                                                                   │
+                                                                    │
                ┌───────────────────────────────────────────────────┴───────────────────────────────────────────────────┐
                ▼                                                                                                       ▼
-   [ Dirender Seketika Secara Global ]                                                                     [ Kedaluwarsa Otomatis ]
-   (Tampil melayang di Beranda Publik & Dasbor Warga)                                                      (Melewati Batas Waktu Akhir)
+    [ Dirender Seketika Secara Global ]                                                                     [ Kedaluwarsa Otomatis ]
+    (Tampil melayang di Beranda Publik & Dasbor Warga)                                                      (Melewati Batas Waktu Akhir)
                                                                                                                        │
                                                                                                                        ▼
                                                                                                            [ Spanduk Turun Layar ]
@@ -259,30 +274,30 @@ Berikut adalah pemetaan diagram alur kerja terperinci yang mencakup seluruh anta
 ### F. Alur Presensi Mandiri Harian Aparatur (*Aparatur Integrity*)
 ```
 [ Aparatur: Input NIK & PIN Rahasia ] ──► [ Rekam Kehadiran: Ambil Foto Pagi/Sore ]
-                                                          │
-                                         [ Sinkronisasi Waktu Server WIB ]
-                                                          │
-                                                          ▼
-                                            [ Label Otomatis via Sistem ]
-                                            (Tepat Waktu / Terlambat / Izin)
-                                                          │
-                                                          ▼
-                                            [ Validasi / Pemantauan Admin ]
+                                                           │
+                                          [ Sinkronisasi Waktu Server WIB ]
+                                                           │
+                                                           ▼
+                                             [ Label Otomatis via Sistem ]
+                                             (Tepat Waktu / Terlambat / Izin)
+                                                           │
+                                                           ▼
+                                             [ Validasi / Pemantauan Admin ]
 ```
 
 ### G. Alur Pemberian & Moderasi Ulasan Kepuasan (*Public Accountability*)
 ```
 [ Warga: Pilih Nama Aparatur ] ──► [ Input Rating Bintang (1-5) & Teks Ulasan ]
-                                                          │
-                                          [ Status Awal: Tertunda / Disembunyikan ]
-                                                          │
-                                                          ▼
-                                            [ Dasbor Moderasi Administrator ]
-                                                          │
-                                  ┌───────────────────────┴───────────────────────┐
-                                  ▼                                               ▼
-                        [ Ulasan Disetujui ]                             [ Ulasan Ditolak / Dihapus ]
-                        (Tampil publik di Beranda)                       (Mengandung bahasa tidak pantas)
+                                                           │
+                                           [ Status Awal: Tertunda / Disembunyikan ]
+                                                           │
+                                                           ▼
+                                             [ Dasbor Moderasi Administrator ]
+                                                           │
+                                   ┌───────────────────────┴───────────────────────┐
+                                   ▼                                               ▼
+                         [ Ulasan Disetujui ]                             [ Ulasan Ditolak / Dihapus ]
+                         (Tampil publik di Beranda)                       (Mengandung bahasa tidak pantas)
 ```
 
 ---
@@ -302,16 +317,16 @@ Berikut adalah dokumentasi visual dari antarmuka portal desa yang telah dikemban
 *Antarmuka beranda, informasi acara, etalase pasar digital, dan transparansi anggaran desa yang dapat diakses oleh masyarakat umum tanpa batas.*
 
 #### 1. Beranda Utama (Hero & Navigasi Terpadu)
-![Beranda Utama](public/image/readme/public/beranda.png)
+![Beranda Utama](frontend/public/image/readme/public/beranda.png)
 
 #### 2. Halaman Informasi Acara & Agenda Kegiatan
-![Acara Desa](public/image/readme/public/acara.png)
+![Acara Desa](frontend/public/image/readme/public/acara.png)
 
 #### 3. Etalase Pasar Digital & UMKM Desa (*Bento Grid*)
-![Pasar UMKM Desa](public/image/readme/public/umkm.png)
+![Pasar UMKM Desa](frontend/public/image/readme/public/umkm.png)
 
 #### 4. Transparansi Anggaran & APBDes
-![Anggaran Desa](public/image/readme/public/anggaran.png)
+![Anggaran Desa](frontend/public/image/readme/public/anggaran.png)
 
 ---
 
@@ -322,6 +337,5 @@ Berikut adalah dokumentasi visual dari antarmuka portal desa yang telah dikemban
 © Hak Cipta Portal Administrasi Cerdas **JatiroyomOnline**.
 
 </div>
-
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0D6EFD&height=200&section=footer" width="100%"/>
